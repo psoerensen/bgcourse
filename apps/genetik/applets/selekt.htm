@@ -1,0 +1,306 @@
+<HTML>
+<HEAD>
+<SCRIPT LANGUAGE="JavaScript">
+
+function Calculate() {
+
+cif= document.select.gg2.value;
+ 
+genera= document.select.h5.value ;
+a=" "; 
+
+
+
+  oAA=                 document.select.c2.value ;
+  oAa=                 document.select.c3.value ;
+  oaa=                 document.select.c4.value ;
+
+          fantal =  eval(oAA)+eval(oAa)+eval(oaa) ;
+
+if (fantal > 0) {  
+
+  p = (eval(oAA) + (oAa/2.))/ fantal;
+  q = (eval(oaa) + (oAa/2.))/ fantal;
+  eAA = p*p*fantal;
+  eAa = 2*p*q*fantal;
+  eaa = q*q*fantal;
+  ki = (oAA-eAA)*(oAA-eAA)/eAA +   
+       (oAa-eAa)*(oAa-eAa)/eAa +   
+       (oaa-eaa)*(oaa-eaa)/eaa     ;
+
+document.select.d2.value = eAA.toFixed(cif);
+document.select.d3.value = eAa.toFixed(cif);
+document.select.d4.value = eaa.toFixed(cif);
+            
+document.select.g2.value = p.toFixed(cif);
+document.select.h2.value = q.toFixed(cif);
+}
+
+
+  if (fantal > 2 )  {
+                    
+document.select.g3.value = "Chi-sqr = " + ki.toFixed(cif);
+document.select.g4.value = "N = "       + fantal.toFixed(cif);
+ }				 
+
+
+s1= document.select.e2.value ;
+s2= document.select.e3.value ;
+s3= document.select.e4.value ;
+
+ if (s1 > 1) {s2=s2/s1; s3=s3/s1; s1=1; }               
+ if (s2 > 1) {s1=s1/s2; s3=s3/s2; s2=1; }                
+ if (s3 > 1) {s1=s1/s3; s2=s2/s3; s3=1; }
+eAA=    oAA*s1               ;
+eAa=    oAa*s2                ;
+eaa=    oaa*s3                ;
+
+            document.select.f2.value  = eAA.toFixed(cif); 
+            document.select.f3.value  = eAa.toFixed(cif);
+            document.select.f4.value  = eaa.toFixed(cif);
+}
+
+
+
+function Run() {
+
+cif= document.select.gg2.value;
+
+
+genera= document.select.h5.value ;
+a  = " generation     q            load " ;
+
+st1 =[];
+st2 =[];
+
+for(  i = 0; i < genera ;  ++i) {
+
+              
+
+p= document.select.g2.value ;
+q= document.select.h2.value ;
+
+    if ( p   >  1.  ) { p =   1 ; }
+    if ( (p+q) <  1.00000 ) { q =   1-p; }
+    if ( (p+q) >  1.00000 ) { q =   1-p; }
+
+s1= document.select.e2.value ;
+s2= document.select.e3.value ;
+s3= document.select.e4.value ;
+
+ if (s1 > 1) {s2=s2/s1; s3=s3/s1; s1=1; }               
+ if (s2 > 1) {s1=s1/s2; s3=s3/s2; s2=1; }                
+ if (s3 > 1) {s1=s1/s3; s2=s2/s3; s3=1; }
+
+ document.select.e2.value = s1 ;
+ document.select.e3.value = s2 ;
+ document.select.e4.value = s3 ;
+                
+
+  eAA = p*p* s1 ;
+  eAa = 2*p*q *s2 ;
+  eaa = q*q*s3;
+  fantal= eval(eAA) +eval(eAa) +eval(eaa);
+  eAA = eAA/fantal;
+  eAa = eAa/fantal;
+  eaa = eaa/fantal;
+  load = p*p*(1-s1) +2*p*q*(1-s2)+ q*q*(1-s3);
+
+
+document.select.h3.value = "Genetic load "       + load.toFixed(6);
+
+deltaq = (eaa + (eAa/2.)) - q  ;
+if (deltaq*deltaq < .000001*.000001) {deltaq=0. ;}
+ if (deltaq*deltaq > .71*.71) {deltaq=0. ;}
+
+  p =  eAA + (eAa/2.) ;
+  q =  eaa + (eAa/2.) ;
+
+document.select.h3.value = "Delta-q "       + deltaq.toFixed(cif);
+
+document.select.g2.value = p.toFixed(7);
+document.select.h2.value = q.toFixed(7);
+
+
+ii=i+1;
+a += ii + "\t" + q.toFixed(cif) + "\t" + load.toFixed(cif) + "\n";
+st1[i]= q;
+st2[i]= load;
+
+} //end genera
+
+if(genera >1) {document.select.store.value = a;}
+ri=[];
+
+for(  m = 1; m < 3 ;  ++m) {
+                       if (m == 1){ri=st1};
+                       if (m == 2){ri=st2};
+qq=0; gg=1;   
+for(  k = 0; k < genera ;  ++k) { ggg = gg;qqq = qq;
+gg = ((k-1)/(genera))*500;
+qq = (1-ri[k])*300;
+                                      
+var c = document.getElementById("myCanvas");
+var ctx = c.getContext("2d");
+ctx.moveTo(gg,qq); 
+ctx.lineTo(ggg,qqq);
+ctx.stroke();
+} ctx.fillText(m,gg,qq);   ctx.moveTo(0,300);               }
+
+
+}
+
+
+
+function Nullify() {
+document.select.c2.value ="0"; document.select.c3.value ="0";document.select.c4.value ="0";
+document.select.d2.value =" "; document.select.d3.value =" ";document.select.d4.value =" ";
+document.select.f2.value =" "; document.select.f3.value =" ";document.select.f4.value =" ";
+                               document.select.g3.value =" ";document.select.g4.value =" ";
+document.select.g2.value = ".5";document.select.h2.value = ".5";document.select.h3.value = " ";
+							      document.select.store.value = " ";
+
+var c = document.getElementById("myCanvas");
+var ctx = c.getContext("2d");
+ctx.clearRect ( 0 , 0 , 500, 300 );
+}
+ 
+</SCRIPT>
+ <title>Program for calculation of changes in gene and genotype frequencies
+under selection </title>  
+</HEAD>
+<BODY BGCOLOR="#00FFFF">
+
+<H3>
+3.4 Selection: Change in gene- and genotype frequencies by selection
+ </H3>
+
+
+<b>You can start either real observations (numbers) or relative genotype
+frequencies in the relevant fields.</b>
+ 
+<p><FORM name="select">
+ 
+<table border="4"><tr>
+
+<td><input type="text" name="b1" value="Genotypes" ></td>
+<td><input type="text" name="b2" value="AA" ></td>
+  <td><input type="text" name="b3" value="Aa" ></td>
+  <td><input type="text" name="b4" value="aa" ></td>
+ 
+</tr><tr>
+  <td><input type="text" name="c1" value="Observed numbers" ></td>
+  <td><input type="text" name="c2" value="0" ></td>
+ <td><input type="text" name="c3" value="0" ></td> 
+  <td><input type="text" name="c4" value="0" ></td>
+ 
+ 
+</tr><tr>
+  <td><input type="text" name="d1" value="Expected numbers" ></td>
+  <td><input type="text" name="d2" value=" " ></td>
+  <td><input type="text" name="d3" value=" " ></td>
+  <td><input type="text" name="d4" value=" " ></td>
+ 
+</tr><tr>
+  <td><input type="text" name="e1" value="Fitness = 1-s" ></td>
+  <td><input type="text" name="e2" value="1" ></td>
+  <td><input type="text" name="e3" value="1" ></td>
+  <td><input type="text" name="e4" value="1" ></td>
+  <td><input type="button" name="f5" value="Calculate, observations" OnClick="Calculate()"></td> 
+</tr><tr>
+  <td><input type="text" name="f1" value="Expected after selection" ></td>
+  <td><input type="text" name="f2" value=" " ></td>
+  <td><input type="text" name="f3" value=" " ></td>
+  <td><input type="text" name="f4" value=" " ></td>
+  <td><input type="button" name="e5" value="Graph over generations" OnClick="Run()"></td>  
+
+</tr><tr>
+  <td>Gene frequency p -> </td>
+  <td><input type="text" name="g2" value=".5" ></td>
+  <td><input type="text" name="g3" value=" " ></td>
+  <td><input type="text" name="g4" value=" " ></td>
+  <td><input type="button" name="g5" value="Restart" OnClick="Nullify()"></td>
+
+
+
+
+
+</tr><tr>
+  <td>Gene frequency q -> </td>
+  <td><input type="text" name="h2" value=".5" ></td>
+  <td><input type="text" name="h3" value="Genetic load" ></td>
+ <td>Generations -> </td>
+ <td><input type="text" name="h5" value="20" ></td>
+ 
+</tr><tr>
+  <td><input type="text" name="i1" value="Knud Christensen" ></td>
+  <td><input type="text" name="i2" value="Mail kc@sund.ku.dk" ></td>
+  <td><input type="text" name="i3" value="April 2015" ></td>
+<td>Set digit for print -></td>
+<td><input type="text" name="gg2" value="4" ></td>
+
+ 
+</tr></table>
+<b>Generation  q Frequency  Genetic load &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ........ Change of q (1) and load (2) over generations ......</b>
+<br><TEXTAREA NAME="store" cols="34" rows="18"></TEXTAREA> 
+<canvas id="myCanvas" width="500" height="300" style="border:1px solid #a3a3a3"; >
+</canvas>
+
+</form>
+
+
+<P>Click the <B>Calculate</B> button.
+Put  the fitness of the genotypes (relative or numbers,  e.g. the heterozygote can have values above 1) 
+you set the number of generation, if you want more than one;
+or you can get a graph over gene frequency changes over the generations you want by chosing 
+the number of generations. The corresponding data you can extract over the clip board in the 
+lower left window.
+<br>You can also start the process by putting your gene frequencies and
+there after take some selections rounds.
+<BR>For practical reasons delta q is put to 0 for values less than .000001.
+Sometimes when delta q is less than .0001 there are problems with rounding
+and some browsers can not see the results proper. 
+<hr>
+Example:
+<p>If you have a genetic system for instance yellow coat colour in the
+Labrador Retriever, where the recessive (yellow) have the fitness 1-s by
+selection you get:
+<PRE>
+Genotype         EE&nbsp; Ee  ee Total
+--------------------------------------------
+Observed number  141    80    11     = 232
+Frequency         p<SUP>2</SUP>   2pq    q<SUP>2</SUP>     = 1.00
+Fitness           1     1     1-s
+Proportion        p<SUP>2</SUP>    2pq    q<SUP>2</SUP>(1-s) = 1-sq<SUP>2
+</SUP>after selection
+---------</PRE>
+After selection the gene frequency q' can be calculated by the gene counting
+method, q' is the gene frequency in the next generation, is calculated as half
+of the heteroygotes plus the surviving recessive relative to half of the
+proportion of all surviving genes, that is equal 1-sq<SUP>2</SUP>.
+<PRE>      q' = (2pq/2 + q<SUP>2</SUP>(1-s))/(1-sq<SUP>2</SUP>)</PRE>
+To test the program put the observed number and press the <B>Calculate</B>
+button. You then get q=0.2198, if you have s(aa)=0 and press the <B>+1
+generation</B> button you get q'=0.1802.
+<hr>
+Questions:
+<br>Calculate the gene frequency in the first 5 generations 
+of selection and the equilibrium gene frequency in the genetic system shown below
+with selection favouring the heterozygotes with s<sub>1</sub> = 0.3 and s<sub>2</sub> = 0.5
+<p>
+<pre>Genotype         AA               Aa             aa       Total
+Observed numbers 225		  157            43
+Frequency        p<sup>2</sup>               2pq            q<sup>2</sup>       = 1,00
+Fitness          1-s<sub>1</sub>              1            1-s<sub>2</sub>      
+Proportion       p<sup>2</sup>(1-s<sub>1</sub>)         2pq           q<sup>2</sup>(1-s<sub>2</sub>)   = 1-p<sup>2</sup>s<sub>1</sub> - q<sup>2</sup>s<sub>2</sub>
+after selection</pre>
+<p>How many generations will it take to reach equilibrium within 0.02 units ?
+<p>What would happen after 5 generations selection if s<sub>1</sub> = -0.3 and s<sub>2</sub> = -0.5
+<br>Would there be any equilibrium ?
+<hr>
+ <A HREF="../../genetics/3/2.htm">Back to theory</A>,
+ <A HREF="../3/2.htm">Back to theory (in Danish)</A>
+
+or <A HREF="0.htm">Back to the other program</A>
+</BODY>
+</HTML>

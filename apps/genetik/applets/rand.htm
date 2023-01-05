@@ -1,0 +1,289 @@
+<HTML>
+<HEAD>
+ <title>Program for calculation of changes in gene and effect of population size </title>  
+<SCRIPT LANGUAGE="JavaScript">
+
+function Calculate() {
+
+cif= document.random.gg2.value;           
+
+
+qq = [];
+mean = [];
+stan = []; 
+ st=[];
+loa = [];
+load = [];
+los = [];
+
+
+s1= document.random.e2.value ;
+s2= document.random.e3.value ;
+s3= document.random.e4.value ;
+
+ if (s1 > 1) {s2=s2/s1; s3=s3/s1; s1=1; }               
+ if (s2 > 1) {s1=s1/s2; s3=s3/s2; s2=1; }                
+ if (s3 > 1 ) {s1=s1/s3; s2=s2/s3; s3=1; }
+
+ document.random.e2.value = s1 ;
+ document.random.e3.value = s2 ;
+ document.random.e4.value = s3 ;
+
+anta= document.random.h4.value ;
+mode= document.random.g3.value ;
+N= document.random.g4.value ;     NN=2*N;
+genera= document.random.i4.value ; 
+kk=genera;
+
+
+
+
+ 
+					  for( j = 0; j < anta ;  ++j) { 
+
+if(j == 0) {for( i = 0; i < genera ;  ++i){  qq [i]  =0;  st[i] =0;  loa[i]  =0;  los[i] = 0;}}
+
+  
+
+p= eval(document.random.g2.value) ;
+q= eval(document.random.h2.value) ;
+
+xx=p*q;
+
+
+a="";
+					for( i = 1; i < genera ;  ++i)   { 
+
+ 
+
+ load = eval(p*p*(1-s1)) +eval(2*p*q*(1-s2))+ eval(q*q*(1-s3));
+
+
+  mean[i] = eval(q);
+
+cif= eval(document.random.gg2.value) ;
+
+
+a += "\n" + i.toFixed(cif) + " " + q.toFixed(cif) + " "+ load.toFixed(cif) + " " + los[i].toFixed(cif) ;
+              
+
+      
+  qq [i] += eval( q) ;                                   // for average
+  loa[i] += eval( load) ;
+   st[i] +=  q*q;
+
+  if (q > 0.999 || q < 0.001) { los[i] +=  1; }
+
+       
+
+                         			     // random element i genfrekvenser
+ 
+   hlp=0; 
+   for( m = 0; m < NN ;  ++m)  { rn = Math.random();
+   if (rn > q ) {hlp+=1;}
+    }
+    p=hlp/NN; q=1-p;                                
+  a +=" "+rn.toFixed(cif) +" ";
+
+   
+load = eval(p*p*(1-s1)) +eval(2*p*q*(1-s2))+ eval(q*q*(1-s3));
+
+  pny=  eval(p*p* s1) + eval(p*q *s2); 
+  qny=  eval(q*q* s3) + eval(p*q *s2); 
+  
+
+  p =  pny/(1-load) ;
+  q =  qny/(1-load) ;
+  
+
+  
+}                                        	   //end genera
+
+
+
+  if ( mode == 1 ) { document.random.store.value =  a ;
+
+
+qq=0; gg=.5;  
+for(  k = 1; k < genera ;  ++k) { ggg = gg;qqq = qq;
+gg = ((k-1)/(genera-2))*500;
+qq = (1-mean[k])*300;
+                                      
+var c = document.getElementById("myCanvas");
+
+var ctx = c.getContext("2d");
+ctx.moveTo(gg,qq); 
+ctx.lineTo(ggg,qqq);
+ctx.stroke();
+} }
+
+
+} //end antal pop
+
+
+ if (mode== 0 )        { 
+
+ a = "Generation Genfreq. Varians of q  Pop. with lost genes" ;
+
+  for(  l = 1; l < genera ;  ++l)  {  
+
+   st[l] = 1- (anta-(st[l]-(qq[l]*qq[l]/anta)/(anta-1)) )/anta ;
+  qq [l] =   (anta-qq[l])/anta; 
+  loa[l] = 1-(anta-loa[l])/anta;
+ los[l] =  1-(anta-los[l])/anta;
+  a += "\n" +  l.toFixed(cif) + " " +  st[l].toFixed(cif) + " " + qq[l].toFixed(cif)  + " " + los[l].toFixed(cif)+ " " + loa[l].toFixed(cif);
+	                 } 
+
+ri=[];
+document.random.store.value = a;
+for(  m = 1; m < 5 ;  ++m) {
+                       if (m == 1){ri=qq};
+                       if (m == 2){ri=st};
+                       if (m == 3){ri=los};
+                       if (m == 4){ri=loa};
+qq=0; gg=1;  
+for(  k = 1; k < genera ;  ++k) { ggg = gg;qqq = qq;
+gg = ((k-1)/(genera-1))*500;
+qq = (1-ri[k])*300;
+                                      
+var canvas = document.getElementById('myCanvas');
+var ctx = canvas.getContext("2d");
+ctx.moveTo(gg,qq); 
+ctx.lineTo(ggg,qqq);
+ctx.stroke();
+} ctx.fillText(m,gg,qq);                }
+ctx.fillText("1=q, 2=V, 3=lost genes, 4= genetic load ",20,50);
+
+}
+
+
+}
+
+
+function Nullify() {
+document.random.e2.value ="1"; document.random.e3.value ="1";document.random.e4.value ="1";
+                               document.random.g2.value =".5";document.random.h2.value =".5" ;
+document.random.store.value =" ";
+
+var canvas = document.getElementById('myCanvas');
+var context = canvas.getContext('2d');
+context.clearRect(0, 0, canvas.width, canvas.height);
+
+}
+ 
+</SCRIPT>
+</HEAD>
+<BODY BGCOLOR="#00FFFF">
+
+<H3>
+3.5 Selection: Change in gene- and genotype frequencies,
+and effect of population size</H3>
+
+<B>In all cells with initial values you can put data </B>
+<BR>You can put the fitness for each genotype.
+<br>
+<FORM name="random">
+ 
+<table border="4"><tr>
+  <td><input type="text" name="i1" value="Knud Christensen" ></td>
+  <td><input type="text" name="i2" value="Mail kc@sund.ku.dk" ></td>
+  <td><input type="text" name="i3" value="April 2015" ></td>
+</tr><tr>
+<td><input type="text" name="b1" value="Genotypes" ></td>
+<td><input type="text" name="b2" value="AA" ></td>
+  <td><input type="text" name="b3" value="Aa" ></td>
+  <td><input type="text" name="b4" value="aa" ></td>
+ 
+ 
+</tr><tr>
+  <td>Fitness = 1-s -> </td>
+  <td><input type="text" name="e2" value="1" ></td>
+  <td><input type="text" name="e3" value="1" ></td>
+  <td><input type="text" name="e4" value="1" ></td>
+ 
+
+</tr><tr>
+  <td>Gene frequency p -> </td>
+  <td><input type="text" name="g2" value=".5" ></td>
+
+  <td>Graph indiv-1, or avr-0 -></td>
+  <td><input type="text" name="g3" value="1" ></td>
+
+
+</tr><tr>
+  <td>Gene frequency q -></td>
+  <td><input type="text" name="h2" value=".5" ></td>
+ <td>Number of pop. -></td>
+  <td><input type="text" name="h4" value="10" ></td>
+ 
+</tr><tr>
+   <td>Pop. size -> </td>
+  <td><input type="text" name="g4" value="20" ></td>
+
+  <td>"Generations -></td>
+  <td><input type="text" name="i4" value="30" width="10"></td>
+</tr><tr>
+ <td>Set digit for print -> </td>
+<td><input type="text" name="gg2" value="5" ></td>
+   <td><input type="button" name="i2" value="Restart" OnClick="Nullify()"></td>
+<td><input type="button" name="i1" value="Evaluate" OnClick="Calculate()"></td> 
+
+ 
+</tr></table>
+<b>Generation  q Frequency  Genetic load &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ........Change of q over generations......</b>
+<br><TEXTAREA NAME="store" cols="44" rows="18"></TEXTAREA> 
+
+
+<canvas id="myCanvas" width="500" height="300" style="border:1px solid #d3d3d3;"></canvas>
+
+
+</form>
+
+
+
+<P>Click the <B>Evaluate</B> button.
+Put  the fitness of the genotypes (relative or numbers) and
+you can run one generation at the time by pressing the button <B>+1 generation!</B>,
+or you can get a graph over gene frequency changes over 60 generations by pressing 
+the <b>Run</b> button. The corresponding data you can extract over the clip board in the 
+lower left window.
+<br>If you define population size (pop. size) you can simulate random changes in 
+gene frequencies over time.
+<br>If you define more populations (number of pop.) you get an average estimate of the 
+gene frequencies over generations and its standard error.
+<br><b>If you use large and many populations the simulation might take several minutes, start
+with few and small populations so you can have an impression of the time consumption on your 
+computer.</b>
+<p> For utilization of a deterministic model  go   to the program 3.4 and its explanation.
+<hr>
+Example:
+<p>If you have a genetic system (Aa) with gene frequency q=.5. and you have random
+ mating. How many populations out of 
+ten would either have lost or fixed the gene a after 20 generations ?   
+after 40 ? and after 60 generations ?
+
+<p> Put 10 in the pop size box, and pres <b>Run</b> 10 times recording loss or fixation of 
+gene 'a' in each run. 
+<hr>
+Questions:
+<br>Calculate the gene frequency in the first 60 generations 
+of selection  in the genetic system shown below
+with selection favouring the heterozygotes with s<sub>1</sub> = 0.3 and s<sub>2</sub> = 0.5
+ having a population size of 20.
+<p>
+<pre>Genotype         AA               Aa             aa       Total
+Observed numbers 225		  157            43
+Frequency        p<sup>2</sup>               2pq            q<sup>2</sup>       = 1,00
+Fitness          1-s<sub>1</sub>              1            1-s<sub>2</sub>      
+Proportion       p<sup>2</sup>(1-s<sub>1</sub>)         2pq           q<sup>2</sup>(1-s<sub>2</sub>)   = 1-p<sup>2</sup>s<sub>1</sub> - q<sup>2</sup>s<sub>2</sub>
+after selection</pre>
+<p>Will  equilibrium within 0.02 units be reached ?
+
+
+<hr>
+<A HREF="../../genetics/3/2.htm">Back to theory</A>,
+<A HREF="../3/2.htm">Back to theory (in Danish)</A>
+
+or <A HREF="0.htm">Back to the other programs</A>
+</BODY>
+</HTML>

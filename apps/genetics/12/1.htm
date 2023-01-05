@@ -1,0 +1,90 @@
+<HTML>
+<HEAD>
+<META NAME="Generator" CONTENT="Microsoft FrontPage 4.0">
+<TITLE>Technology for estimering breeding value </TITLE>
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#551a8b" ALINK="#ff0000" BGCOLOR="#ffffff">
+<H3>12.1 Technology for breeding value estimation</H3>
+
+<P><A HREF="0.htm">Chapter 12</A> </P>
+
+<P>In chapter 7 simple methods for calculation of the estimated breeding values
+were given. Only data with uniform relation were included. This is a very simple form of
+estimation of the breeding value and it demands very little computer power,
+as it is based on the calculation of a single weight factor. This weight factor
+is dependent on the heritability, the number of individuals in the group, their internal
+relations and how they are related to the candidate. With the introduction of modern
+computers, the basis for a better utilization of existing data for estimation of
+the breeding value has materialized. The more
+advanced methods are based on systems of linear equation, in which every observation
+is provided with its own equation.
+Thereby the creation of a system of equations&nbsp; for calculation of the weight factors for every
+observation is completed. The model includes all observations from related animal
+as well as observations from related to related.<BR>
+An example of related to related animals: The mother of an offspring, whose father
+is being evaluated. If the mother of the offspring
+is present in the model of the father's estimated breeding value, the
+preconditions for random mating does not have to be too strict, since the father's breeding value
+has been adjusted for deviations of the dam's from the population mean value.<BR>
+The implied condition, that all observations must occur in the same environment, can also be
+taken more lightly, since for
+instance herd average can be taken into account in the models. To do this the model implies that more than one
+family per herd must be represented and that some of the sires in the herd should
+be used in other herds as well.</P>
+
+<P><STRONG>The most important methods for estimation of breeding value:</STRONG> <BR>
+1. Selection index (SI)<BR>
+2. Best linear prediction (BLP)<BR>
+3. Best linear unbiased prediction (BLUP)<BR>
+4. Animal model (AM)<br>
+5. Genomic selection
+<P>The selection index was developed in the 1950's and was utilized before the computer age. The SI is at
+present mainly used for model calculation, as it is useful for the evaluation of the effect of multi trait
+selection. If a certain set of economic weight factors are used, each trait will
+get an expected delta G's. Before the computer
+age it was common to pre-correct data, as for instance for calving age or slaughter weight,
+since these traits had some biological variation. Pre-correction is still applied to some extent.<BR>
+With the production of faster computers, it has been possible to develop models, which
+calculate
+estimated breeding value for all animals in a population. When this is the case, it is
+easier to use all information from all the individuals, as these will give information
+on relations to all the others. BLP does not include
+environmental factors, which makes is less useful. The solutions obtained from a few animals are identical to
+the solutions
+obtained by SI. 
+The BLUP and AM can simultaneous estimate  environmental effects and
+the correction for them.<BR>
+
+In the last three methods the relationship  matrix is utilized at varying degrees.
+ The
+relationship matrix is arranged according to the tabular method given in
+section 4.4. The solution of that many equations cannot be
+done explicitly, which have been taught when to solve two equations with two unknowns.
+ The solutions are
+first  based on guesses and then on recalculation until the solutions
+remain constant. This method is called iterative. It is possible, by means of this method, to estimate breeding values
+of millions of animals simultaneously. At present the AM method is used in the
+ both Danish dairy and swine breeding work.</P>
+<p><b>Genomic selection by Thomas Mark</b>
+<br>Genomic selection is a new technology in which breeding values are predicted from genome-wide markers 
+in the form of single nucleotide polymorphisms SNP. The genetic maps are based on SNP and they enable us to 
+divide the entire genome into thousands of relatively small chromosome segments. Then the effects of each 
+chromosome segment are estimated simultaneously. Finally, the genomic breeding value equals the sum of all
+ estimated chromosome segment effects. The chromosome segment effects can be estimated for a group of animals
+  (ie a reference population); and for any remaining animal, only a blood or tissue sample is needed to determine
+   its genomic breeding value. The chromosome segment effects apply to all animals in the population in which they
+    were estimated, because markers are in linkage disequilibrium with the causal gene that they bracket.
+<br>Genome-wide information allows accurate selection of young animals provided that phenotypes from sufficiently many
+ reference animals are available. This means that genomic breeding values are especially beneficial when
+  traditional selection is difficult such as when phenotypic recording is restricted by sex and age (e.g.
+   very beneficial for dairy cattle). However, conservative use of young animals without phenotypic
+    information (relating to self or progeny) is advised to avoid potential negative side effects related
+     to unfavourable mutations, unfavourable selection pressure on non-recorded breeding goal traits and 
+     high rates of inbreeding. 
+
+
+
+<P><A HREF="2.htm">Next page</A> </P>
+
+</BODY>
+</HTML>

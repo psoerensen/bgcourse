@@ -1,0 +1,155 @@
+<HTML><head>
+<SCRIPT LANGUAGE="JavaScript">
+
+function Calculate() {
+
+cif= document.mating.gg2.value;
+
+
+  q =	document.mating.freq.value ; p =1 -q;
+
+   c1=(p*p*p*p);
+document.mating.c2.value =  c1.toFixed(cif);
+document.mating.c3.value =  c1.toFixed(cif);
+document.mating.c4.value = "0";
+document.mating.c5.value = "0";
+
+   d1=(p*p*p*q*4); d2=(p*p*p*q*2);  
+document.mating.d2.value =  d1.toFixed(cif);
+document.mating.d3.value =  d2.toFixed(cif);
+document.mating.d4.value =  d2.toFixed(cif);
+document.mating.d5.value = "0";
+
+   e1=(p*p*q*q*4); e2=(p*p*q*q*1);   e3=(p*p*q*q*2);
+document.mating.e2.value =  e1.toFixed(cif);
+document.mating.e3.value =  e2.toFixed(cif);
+document.mating.e4.value =  e3.toFixed(cif);
+document.mating.e5.value =  e2.toFixed(cif);
+
+   f1=(p*p*q*q*2);   
+document.mating.f2.value =  f1.toFixed(cif);
+document.mating.f3.value = "0";
+document.mating.f4.value =  f1.toFixed(cif);
+document.mating.f5.value =  "0";
+
+   g1=(p*q*q*q*4); g2=(p*q*q*q*2);  
+document.mating.g2.value =  g1.toFixed(cif);
+document.mating.g3.value =  "0";
+document.mating.g4.value =  g2.toFixed(cif);
+document.mating.g5.value =  g2.toFixed(cif);
+
+   h1=(q*q*q*q);  
+document.mating.h2.value =  h1.toFixed(cif);
+document.mating.h3.value =  "0";
+document.mating.h4.value =  "0";
+document.mating.h5.value =  h1.toFixed(cif);
+
+t = c1 + d1 + e1 + f1 + g1 + h1 ;
+
+AA = c1 + d2 + e2 ;  
+aa = e2 + g2 + h1; 
+Aa = d2 + e3 + f1 + g2;
+
+document.mating.i2.value =  t.toFixed(cif);
+document.mating.i3.value =  AA.toFixed(cif);
+document.mating.i4.value =  Aa.toFixed(cif);
+document.mating.i5.value =  aa.toFixed(cif);
+
+
+}
+
+</SCRIPT>
+<title>Calculation of mating type frequencies</title>
+</head>
+
+<BODY BGCOLOR="#00ffff">
+
+<h3>2.4 Calculation of mating type frequencies in H-W population</h3>
+
+ 
+
+<P><B>Put the gene frequency for the recessive gene</B>
+
+<p><FORM name="mating">
+
+<table border="4"><tr>
+
+  <td><input type="text" name="b1" value="Mating type" ></td>
+  <td><input type="text" name="b2" value="Total freq." ></td>
+  <td><input type="text" name="b3" value="Offspring AA" ></td>
+  <td><input type="text" name="b4" value="Offspring Aa" ></td>
+  <td><input type="text" name="b5" value="OfFspring aa" ></td>
+  
+</tr><tr>
+  <td><input type="text" name="c1" value="AAxAA" ></td>
+  <td><input type="text" name="c2" value=" " ></td>
+  <td><input type="text" name="c3" value=" " ></td>  
+  <td><input type="text" name="c4" value=" " ></td>
+  <td><input type="text" name="c5" value=" " ></td>
+
+</tr><tr> 
+  <td><input type="text" name="d1" value=" AAxAa" ></td>
+  <td><input type="text" name="d2" value=" " ></td>
+  <td><input type="text" name="d3" value=" " ></td>
+  <td><input type="text" name="d4" value=" " ></td>
+  <td><input type="text" name="d5" value=" " ></td>
+ </tr><tr>
+  <td><input type="text" name="e1" value="AaxAa" ></td>
+  <td><input type="text" name="e2" value=" " ></td>
+  <td><input type="text" name="e3" value=" " ></td>
+  <td><input type="text" name="e4" value=" " ></td>
+  <td><input type="text" name="e5" value=" " ></td>
+</tr><tr>
+  <td><input type="text" name="f1" value="AAxaa" ></td>
+  <td><input type="text" name="f2" value=" " ></td>
+  <td><input type="text" name="f3" value=" " ></td>
+  <td><input type="text" name="f4" value=" " ></td>
+  <td><input type="text" name="f5" value=" " ></td>
+</tr><tr> 
+  <td><input type="text" name="g1" value="Aaxaa" ></td>
+  <td><input type="text" name="g2" value=" " ></td>
+  <td><input type="text" name="g3" value="" ></td>
+  <td><input type="text" name="g4" value=" " ></td>
+  <td><input type="text" name="g5" value=" " ></td>
+</tr><tr>
+ <td><input type="text" name="h1" value="aaxaa" ></td>
+  <td><input type="text" name="h2" value=" " ></td>
+  <td><input type="text" name="h3" value=" " ></td>
+  <td><input type="text" name="h4" value=" " ></td>
+   <td><input type="text" name="h5" value=" " ></td>
+</tr><tr>
+  <td><input type="button" name="i1" value="Calculate" OnClick="Calculate()"></td>
+  <td><input type="text" name="i2" value=" " ></td>
+  <td><input type="text" name="i3" value=" " ></td>
+  <td><input type="text" name="i4" value=" " ></td>
+  <td><input type="text" name="i5" value=" " ></td>
+</tr><tr>
+  <td>Frequency q, put -></td><td><input type="text" name="freq" value=".05" ></td>
+  <td><input type="text" name="j1" value="Knud Christensen" ></td>
+  <td><input type="text" name="j2" value="Mail kc@sund.ku.dk" ></td>
+  <td><input type="text" name="j3" value="April 2015" ></td>
+</tr><tr>
+<td>Set digit for print -> </td>
+<td><input type="text" name="gg2" value="5" ></td>
+
+
+
+</tr></table></form>
+
+<P>- and click the <B>Calculate</B> button.
+<hr>
+Examples:
+<br>If a recessive disease gene occur with a frequency of .005, 99 percent of the 
+diseases would be in families where both parents are normal healthy individuals.
+<hr>
+Questions:
+<br>Which mating type produce the highest number of heterozygotic offspring when the
+gene frequency p = .8  or .4 in a random mating population. 
+<hr>
+<A HREF="../../genetics/2/4.htm">Back to theory</A>,
+<A HREF="../2/4.htm">Back to theory (in Danish)</A>
+
+
+or <A HREF = "0.htm">Back to the other programs</A>
+
+</BODY></HTML>

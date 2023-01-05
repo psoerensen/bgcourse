@@ -1,0 +1,80 @@
+<HTML>
+<HEAD>
+ <title>Applet para calcula Cambias en las frecuencias g&eacute;nicas y de los genotipos durante selecci&oacute;n </title>  
+</HEAD>
+<BODY BGCOLOR="#00FFFF">
+
+<H3>
+3.4 Cambias en las frecuencias g&eacute;nicas y de los genotipos durante selecci&oacute;n </H3>
+
+<HR><B>En todas las celdas con los valores in&iacute;ciales se puede poner datos (verde y / o
+campos amarillos) </B>
+<p>
+
+<APPLET HEIGHT=400 WIDTH=650 
+ CODE="selekt.class">if you see this text you can't run this applets  chose Options | Network
+Preferencies | Languages | Enable Java</APPLET>
+
+<p>Se puede poner observaciones reales (n&uacute;meros) o relativa (porcientos) del genotipo
+frecuencias en los campos verdes y Haga clic al <B>Calculate</B> bot&oacute;n.
+<br>Una otra posibilida: Ponga el fitness de los genotipos (relativos o n&uacute;meros) y
+ ejecutar una generaci&oacute;n tras la otra pulsando el bot&oacute;n  <B>+ 1 generaci&oacute;n</B>,
+o usted puede obtener un gr&aacute;fico sobre los cambios de frecuencias g&eacute;nicas
+ de  60 generaciones pulsando
+el  <b>Run</b> bot&oacute;n. Los datos correspondientes se pueden extraer de la ventana izquierda usando las funciones 
+corta y pega.
+
+<br>Tambi&eacute;n puede iniciar el proceso con las frecuencias g&eacute;nicas y 
+ despu&eacute;s tomar algunas rondas de selecciones.
+<br>Por razones pr&aacute;cticas, delta q se pone a 0 para los valores inferiores a 0,000001.
+A veces, cuando delta q es menos de ,0001 hay problemas con el redondeo
+y en algunos navegadores no pueden ver los resultados adecuados.
+
+<hr>
+Ejemplo:
+<p>Si usted tiene un sistema gen&eacute;tico el color del pelaje amarillo en el
+Labrado Retriever, donde el recesivo (amarillo) tienen el fitness 1-s por la
+selecci&oacute;n que se obtiene:
+
+<PRE>Genotipo           EE               Ee             ee       Total
+----------------------------------------------------------------
+N&uacute;mero observado  141               80             11       = 232
+Frecuencia         p<SUP>2</SUP>               2pq            q<SUP>2</SUP>        = 1.00
+Fitness            1                1            1-s      
+Proporci&oacute;n         p<SUP>2</SUP>               2pq           q<SUP>2</SUP>(1-s)    = 1-sq<SUP>2
+</SUP>despu&eacute;s de selecci&oacute;n 
+---------</PRE>
+Despu&eacute;s de la selecci&oacute;n  la frecuencia g&eacute;nica q' se puede calcular por el 
+m&eacute;todo de gen conteo, q' es la frecuencia g&eacute;nica en la siguiente generaci&oacute;n, se calcula como media
+de las heterocigotes m&aacute;s los supervivientes recesivas en relaci&oacute;n con la mitad 
+ de todos los genes sobrevivientes, que es igual 1-sq<SUP>2</SUP>.
+
+<PRE>      q'  = (2pq/2 + q<SUP>2</SUP>(1-s))/(1-sq<SUP>2</SUP>)</PRE>
+
+ Para probar el applet rellenan los n&uacute;meros observados y pulse al  <B>Calculate</B>
+bot&oacute;n. A continuaci&oacute;n, obtiene q = 0,2198, si tiene s(aa) = 0 y pulse al
+ <B>+1 generation</B> bot&oacute;n y obtiene q'=0,1802.
+<hr>
+Cuestiones:
+<br>Calcular las frecuencias g&eacute;nicas en los primeros 5 generaciones
+de la selecci&oacute;n y la frecuencia g&eacute;nicas de equilibrio en el sistema gen&eacute;tico que se muestra a continuaci&oacute;n
+con la selecci&oacute;n favoreciendo los heterocigotos con s<sub>1</sub> = 0,3 y s<sub>2</sub> = 0,5.
+
+<p>
+<pre>Genotipo           AA               Aa             aa       Total
+N&uacute;mero observado  225		  157            43
+Frecuencia         p<sup>2</sup>               2pq            q<sup>2</sup>       = 1,00
+Fitness           1-s<sub>1</sub>              1            1-s<sub>2</sub>      
+Proporci&oacute;n        p<sup>2</sup>(1-s<sub>1</sub>)         2pq           q<sup>2</sup>(1-s<sub>2</sub>)   = 1-p<sup>2</sup>s<sub>1</sub> - q<sup>2</sup>s<sub>2</sub>
+despu&eacute;s de selecci&oacute;n </pre>
+<p>&iquest;Cu&aacute;ntas generaciones se tarda en alcanzar el equilibrio en 0,02 unidades?
+<P>&iquest;Qu&eacute; pasara despu&eacute;s de 5 generaciones de selecci&oacute;n, si s<sub>1</sub> 
+= -0,3 y s<sub>2</sub> = -0,5 ?
+<br>&iquest;Habr&aacute; alg&uacute;n equilibrio?
+<hr>
+ <A HREF="../3/2.htm">Volver a la teor&iacute;a</A>,
+
+
+o <A HREF="0.htm">Volver al otro applets</A>
+</BODY>
+</HTML>

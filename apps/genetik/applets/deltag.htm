@@ -1,0 +1,304 @@
+<HTML>
+<HEAD>
+   <TITLE> Program for calculating breeding values  and selection responce
+</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+
+function Calculate() {
+
+cif= document.deltag.gg2.value;
+
+mid= document.deltag.c2.value ;
+hhh= document.deltag.c3.value ;hh=hhh/100;
+
+ccc= document.deltag.c4.value ;cc=ccc/100;
+hlp= document.deltag.c5.value ;ccc=hlp/100;
+
+
+// fædre
+
+antf= document.deltag.e2.value ;
+
+    af = 0; sf = 0;  
+   if(antf > 0)
+   {
+  ant=antf;
+
+ mf= document.deltag.e3.value ;
+
+  vvs2  = document.deltag.g3.value ;
+
+  vvs3  = document.deltag.g2.value ;
+
+  hjp= vvs2*hh ;
+  if (vvs2 < 1.01 && vvs2 > .99) {hjp = ccc; }
+  if (vvs2 < .51 && vvs2 > .49 ) {hjp = vvs2*hh + eval(cc); }
+
+  b = (ant*hh*vvs3)/(1+ (ant-1)*hjp);
+  af = eval(mid) + eval(b*(mf-mid));
+  sf  = b*vvs3;
+
+document.deltag.e4.value = af.toFixed(cif);
+document.deltag.e5.value = sf.toFixed(cif);
+ 
+   }
+ // mødre
+
+  
+  antfa = document.deltag.f2.value ;
+  afa = 0; sfa = 0;  
+  if(antfa > 0.)
+  {
+              ant=antfa;
+ 
+   mfa = document.deltag.f3.value ;
+ 
+ vvd2  = document.deltag.g6.value ;
+  
+  vvd3  = document.deltag.g5.value ;
+
+
+  hjp= vvd2*hh ;
+  if (vvd2 < 1.01 && vvd2 > .99) {hjp = ccc; }
+  if (vvd2 < .51 && vvd2 > .49 ) {hjp = vvd2*hh + eval(cc); }
+
+  b   = (ant*hh*vvd3)/(1+ (ant-1)*hjp);
+  afa  = eval(mid) + eval(b*(mfa-mid));
+  sfa  = b*vvd3;
+
+document.deltag.f4.value = afa.toFixed(cif);
+document.deltag.f5.value = sfa.toFixed(cif);
+ 
+    acu  = Math.sqrt(sf);
+    dacu = Math.sqrt(sfa);
+	
+document.deltag.i4.value = acu.toFixed(cif);
+document.deltag.j4.value = dacu.toFixed(cif);
+ 
+      }
+      }
+
+
+function CalculateG() {
+(cif)= document.deltag.gg2.value;
+
+ 
+inte  = document.deltag.i2.value ;
+dinte = document.deltag.j2.value ;
+
+ 
+lengt  = document.deltag.i3.value ;
+dlengt = document.deltag.j3.value ;
+ 
+acu  = document.deltag.i4.value ;
+dacu = document.deltag.j4.value ;
+ 
+sigmaa  = document.deltag.i5.value ;
+dsigmaa = document.deltag.j5.value ; 
+
+ 
+deltag  = (inte*acu *sigmaa + dinte*dacu *dsigmaa)/(eval(lengt) + eval(dlengt));      
+	
+document.deltag.h0.value ="Delta G = "+deltag.toFixed(cif);   
+     
+      }
+
+
+function Convertr() {
+(cif)= document.deltag.gg2.value;
+ 
+acu  = document.deltag.i4.value ;
+dacu = document.deltag.j4.value ;
+            
+    acu  = Math.sqrt(acu);
+    dacu = Math.sqrt(dacu);
+
+ 
+ document.deltag.i4.value = acu.toFixed(cif);
+ document.deltag.j4.value = dacu.toFixed(cif) ;
+
+      }
+
+function Convertp() {
+(cif)= document.deltag.gg2.value;
+
+ 
+inte  = document.deltag.i2.value ;
+dinte = document.deltag.j2.value ;
+    hjp1= 1 / Math.sqrt(6.28);
+
+// der gaas i step fra -4 standardenheder i skrit af 1/200;
+
+    hjp = dinte;
+    if (dinte > 0.5) hjp = 1 - dinte;
+    hjp2=0.00003134;
+    i = -800;
+    while (  hjp2<hjp )
+       {hjp3 =-i;  
+        hjp3= - hjp3*hjp3/80000;
+        hjp2=hjp2 + 0.005*hjp1*Math.exp(hjp3);
+        i++;
+      }
+          hjp3 = -i + 1.0;
+        hjp3= - hjp3*hjp3/80000;
+        dinte = hjp1*Math.exp(hjp3)/dinte;
+
+
+
+    hjp = inte;
+    if (inte > 0.5) hjp = 1 - inte;
+    hjp2=0.00003134;
+    i = -800;
+    while ( hjp2<hjp  )
+       {hjp3 =-i;  
+        hjp3= - hjp3*hjp3/80000;
+        hjp2=hjp2 + 0.005*hjp1*Math.exp(hjp3);
+        i++;
+      }
+          hjp3 = -i + 1.0;
+        hjp3= - hjp3*hjp3/80000;
+        inte = hjp1*Math.exp(hjp3)/inte;
+ 
+  document.deltag.i2.value =  inte.toFixed(cif);
+  document.deltag.j2.value  = dinte.toFixed(cif);
+
+      }
+
+function Nullify() {
+document.deltag.i4.value = ".1"; document.deltag.j4.value = ".1" ;document.deltag.e4.value = " ";
+document.deltag.e5.value = " "; document.deltag.f4.value = " "; document.deltag.f5.value = " ";
+
+}
+ 
+</SCRIPT>
+ 
+</HEAD>
+<BODY BGCOLOR="#00ffff">
+
+<H3>
+8.2 Estimating breeding values and selection response</H3>
+The breeding value can be based on information from  any uniformly related individuals
+to the animals or own record, see program 7.2, 
+remember the actual relationships a and a' should be
+properly defined. By pressing the Calculate button the accuracy is transferred to the 
+delta G input window.
+<p>
+
+<FORM name="deltag">
+ 
+<table border="4"><tr>
+
+<td><input type="text" name="b1" value="Knud Christensen" ></td>
+<td><input type="text" name="b2" value="Mean value" ></td>
+  <td><input type="text" name="b3" value="Heritability" ></td>
+  <td><input type="text" name="b4" value="Common millieu %" ></td>
+   <td><input type="text" name="b5" value="Repeatability" ></td>
+</tr><tr>
+  <td><input type="text" name="c1" value="Mail kc@sund.ku.dk" ></td>
+<td><input type="text" name="c2" value="100" ></td>
+  <td><input type="text" name="c3" value="25" ></td>
+  <td><input type="text" name="c4" value="5" ></td>
+   <td><input type="text" name="c5" value="30" ></td>
+<td><input type="button" name="c6" value="Calculate BV" OnClick="Calculate()"></td> 
+</tr><tr>
+  <td><input type="text" name="d1" value="April 2015" ></td>
+<td><input type="text" name="d2" value="Number" ></td>
+  <td><input type="text" name="d3" value="Average" ></td>
+  <td><input type="text" name="d4" value="Breeding value (BV)" ></td>
+   <td><input type="text" name="d5" value="Accuracy**2 (r**2)" ></td>
+<td><input type="button" name="d6" value="Nullify" OnClick="Nullify()"></td> 
+</tr><tr>
+<td><input type="text" name="e1" value="Selection on sires" ></td>
+<td><input type="text" name="e2" value="20" ></td>
+  <td><input type="text" name="e3" value="110" ></td>
+  <td><input type="text" name="e4" value=" " ></td>
+   <td><input type="text" name="e5" value="" > </td>
+
+</tr><tr>
+<td><input type="text" name="f1" value="Selection on dams" ></td>
+<td><input type="text" name="f2" value="3" ></td>
+  <td><input type="text" name="f3" value="110" ></td>
+  <td><input type="text" name="f4" value=" " ></td>
+   <td><input type="text" name="f5" value="" > </td>
+</tr><tr>
+<td><input type="text" name="g1" value="For sire a' and a ->" ></td>
+<td><input type="text" name="g2" value="0.5" ></td>
+  <td><input type="text" name="g3" value="0.25" ></td>
+</tr><tr>
+<td><input type="text" name="g4" value="For dam a' and a ->" ></td>
+<td><input type="text" name="g5" value="1" ></td>
+ <td><input type="text" name="g6" value="1" ></td>
+<td><input type="text" name="gg1" value="Set digit for print ->" ></td>
+<td><input type="text" name="gg2" value="4" ></td>
+
+ 
+</tr><tr>
+   <td><input type="text" name="h0" value="Delta G " > </td> 
+<td><input type="text" name="h1" value="Intensity" ></td>
+<td><input type="text" name="h2" value="Generation length, L" ></td>
+  <td><input type="text" name="h3" value="Accuracy rAI" ></td>
+  <td><input type="text" name="h4" value="Sigma A " ></td>
+<td><input type="button" name="h5" value="Calculate delta G" OnClick="CalculateG()"></td> 
+
+</tr><tr>
+<td><input type="text" name="i1" value="Selected  sires" ></td>
+<td><input type="text" name="i2" value=".40" ></td>
+  <td><input type="text" name="i3" value="1" ></td>
+  <td><input type="text" name="i4" value=".6 " ></td>
+   <td><input type="text" name="i5" value="1" > </td>
+<td><input type="button" name="i6" value="Convert p to i" OnClick="Convertp()"></td> 
+
+</tr><tr>
+
+<td><input type="text" name="j1" value="Selected dams" ></td>
+<td><input type="text" name="j2" value=".40" ></td>
+  <td><input type="text" name="j3" value="1" ></td>
+  <td><input type="text" name="j4" value=".5" ></td>
+   <td><input type="text" name="j5" value="1" > </td>
+<td><input type="button" name="j6" value="Convert r**2 to r" OnClick="Convertr()"></td> 
+
+</tr></table>
+
+</form>
+
+
+
+
+<p>Set the values for sire and dam for estimating breedin values, then press the <B>Calculate</B> button. The delta G can be run independently 
+of the breeding value estimations, all values in the yellow fields shall be defined.
+<HR>The selection response is calculated in the lower 3 rows of the program
+ according to the formula shown below. The delta G is calculated per year. If the generation
+interval is set to one year the results is also per generation.
+The parameters are
+<BR>Selection intensity, i
+<BR>Accuracy of selection, r<SUB>AI</SUB>
+<BR>Generation interval, L
+<BR>The additive standard deviation, sigma<SUB>A</SUB>
+
+<P><center><IMG SRC="../../genetik/8/21.gif"  WIDTH=300 ALIGN=BOTTOM></center>
+<hr>Example:
+<BR>The accuracy is automatically transferred  from the breeding value estimation, but you
+can also  convert an externally derived accuracy squared
+ by means of  r<SUP>2</SUP> to r button. If you have the proportion
+selected (p) put your data in the (i) field and press the convert p to
+i button.
+<br>The calculation is based on the average of the contribution from the
+sires and dams. With the given initial parameters delta G is 0.04 units if you press
+the <B>Calculate delta G</B> button.
+
+
+<HR>
+Questions:
+<br>In a population are selected 10 % males  based on progeny test of 20 offspring 
+and 50 % females based on own performance. SigmaA is set to 1.
+<br>Calculate delta G per generation when the heritability is 0.40.
+<p>If the males as well as the females were selected on own performance calculate delta G.
+<br>Compare the two results
+<p>Repeat the calculations with a heritability of 0.10
+<hr>
+<A HREF="../../genetics/8/2.htm">Back to theory</A>,
+<A HREF="../8/2.htm">Back to theory (in Danish)</A>
+
+or <A HREF="0.htm">back to the other progtams</A>
+</BODY>
+</HTML>

@@ -1,0 +1,95 @@
+<HTML>
+<HEAD>
+   <title>Ligamiento, c&aacute;lculo la frecuencia de los gametos y  de los genotipos  generaci&oacute;n
+tras generaci&oacute;n</title></HEAD>
+<BODY BGCOLOR="#00FFFF">
+<h3>2.5 Ligamiento, frecuencia de los gametos y  de los genotipos  generaci&oacute;n
+tras generaci&oacute;n</h3>
+
+<P>- Ponga las observadas frecuencias de gametos  o  haga clic al <B>Inicate Mendel</B>
+bot&oacute;n. Si las frecuencias del gametos de madres suma a cero como dado, las frecuencias dado para
+los padres tambi&eacute;n se aplica para las madres.
+
+<BR>-Haga clic al <B>Next generation </B>bot&oacute;n para calcular las frecuencias de gametos y de genotipos
+en la pr&oacute;xima generaci&oacute;n.
+<BR>-Haga clic al <B>Restart </B> cuando se desea iniciar con un problema nuevo.
+
+<P><APPLET HEIGHT=350 WIDTH=700
+
+ CODE="li.class">if you see this you can't run the applet.
+<BR>chose Options | Network PReferencies | Languages | Enable Java</APPLET>
+<hr>
+
+<P>En todas las celdas con los valores in&iacute;ciales se puede poner datos (campos verde) y
+para obtener los resultados, clic al <B>Next generation</B> bot&oacute;n. Los valores de la tabla se han redondeado
+a seis decimales.
+<br>Se puede obtener un gr&aacute;fico sobre los cambios de desequilibrio de  60 generaciones pulsando
+el  <b>Run</b> bot&oacute;n.
+Los datos correspondientes se pueden extraer de la ventana izquierda usando las funciones 
+corta y pega.
+
+
+<HR>
+Ejemplo:
+<br>Cuando usted mira a la segregaci&oacute;n de los genes en dos loci, los gametos que pueden
+formarse como se muestran a continuaci&oacute;n, y los s&iacute;mbolos  se indican como las frecuencias observadas y las esperadas.
+  La desviaci&oacute;n entre los dos tiene el s&iacute;mbolo D para el desequilibrio.
+
+<PRE>
+ Gameto  Frecuencias observada    Frecuencias esperada        Desviaci&oacute;n
+ --------------------------------------------------------------
+  AB        r                  p(A)*p(B)             D
+  Ab        s                  p(A)*q(b)             -D
+  aB        t                  q(a)*p(B)             -D
+  ab        u                  q(a)*q(b)             D</PRE>
+
+<p>El desequilibrio  se puede calcular a partir de la tabla anterior,
+y tambi&eacute;n puede ser calculado como 
+ la diferencia en la frecuencia de  doble heterocigotos en la fase de ligamiento y
+ de repulsi&oacute;n divido por 2.
+
+<PRE>      D = r*u - t*s    (= [f(AB/ab) - f(Ab/aB)]/2) 
+    </PRE>
+El desequilibrio m&aacute;ximo se produce, cuando todos los heterocigotos dobles est&aacute;n en
+la fase de ligamiento f(AB/ab) o en fase de repulsi&oacute;n f(Ab/aB). V&eacute;ase la siguiente figura.
+
+<P><center><IMG SRC="../../genetik/2/5.gif" width=400 ></center>
+
+<P>Si la  frecuencia de recombinaci&oacute;n es c, D se reducir&aacute; a D * (1-c)
+pro generaci&oacute;n, y para la generaci&oacute;n n D<SUB>n</SUB> = D<SUB>0</SUB>*(1-c)<SUP>n</SUP>.
+
+<P>Si aplica los valores in&iacute;ciales r = 0,1, s = 0,2, t = 0,3, u = 0,4 y pulse el
+<B>Next generation </B>bot&oacute;n, podr&aacute;s ver todos los calculados frecuencias de genotipos
+y D = 0,0199 redondeado 0,02. Si usted contin&uacute;a utilizando el <B>Next generation</b> 
+bot&oacute;n m&aacute;s veces con c = 0,5, ver&aacute; que D aproxima a
+0 lo  significa las frecuencias observadas y esperadas de gametos son iguales, es decir
+r equilibrio  es 0,12.
+
+<hr>
+Cuestiones:
+<br>Calcula las frecuencias de gametos en los primeros 5 generaciones
+y las frecuencias de equilibrio de gametos en el sistema gen&eacute;tico que se muestra a continuaci&oacute;n
+donde las frecuencias de recombinaci&oacute;n entre los dos loci A y B es c = 0,2.
+<p>
+<pre>Gameto  Frecuencia observada    
+AB          0,21
+Ab 	    0,49
+aB	    0,19
+ab	    0,11
+</pre>
+<p>&iquest;Cu&aacute;les ser&iacute;an las frecuencias de los dos tipos de dobles heterocigotos
+en la pr&oacute;xima generaci&oacute;n?
+&iquest;Cu&aacute;ntas generaciones se tarda de alcanza el equilibrio en 0,02 unidades?
+Repetir los c&aacute;lculos para c = 0,05.
+
+<p>En F<sub>3</sub> despu&eacute;s de un cruzamiento entre dos l&iacute;neas puras aabb X AABB. &iquest;Qu&eacute;
+son las frecuencias de gametos si c = 0,5, 0,4 y 0,1?
+<br>Consejos: Utilice el bot&oacute;n de Initiate Mendel y utiliza m&aacute;s veces el bot&oacute;n Next generacion.
+
+<hr>
+
+<A HREF="../2/5.htm">Volver a la teor&iacute;a</A>,
+
+o <A HREF="0.htm">Volver al otro applets</A>
+</BODY>
+</HTML>

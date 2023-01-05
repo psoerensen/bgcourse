@@ -1,0 +1,142 @@
+<HTML>
+<title> 
+applet fo direct updating of breeding values
+</title>
+<BODY BGCOLOR="#00ffff">
+
+<H3>7.3
+Direct updating of breeding values</H3>
+The breeding value can be based on own and fathers and mothers record,
+as well as average of offspring of the three animals. Offspring of parents
+o the animal are either full or half sibs.
+
+<P>In the lower section can be produced a graph
+which shows the joint accuracy depending
+on number of own offspring. 
+<A HREF="../genetik/7/3.htm">Explanations of the underlying theory</A>.
+
+<P><APPLET WIDTH=700 HEIGHT=500
+
+ CODE="av.class">if you see this you can't run the applet.
+<BR>chose Options | Network PReferencies | Languages | Enable Java</APPLET>
+
+
+<HR>
+
+<P><B>In all cells with initial values you can put data (green and/o yellow
+fields)</B>
+<hr>
+<p><b>An example and description are shown in the this section.</b>
+<P>The applet is shown as a figure below with a pedigree diagram showing
+the relations between the animals in the applet. Some explanations of how
+to run the applet are given below the figure.
+
+<P><IMG SRC="../genetik/7/33.gif" >
+
+<P><B>Description of the buttons and fields</B>
+<LI>
+To start use the <B>Initiate</B> button (it works only one time), where
+it puts 0 o any default value.</LI>
+
+<LI>
+When you have put your data click the <B>Calculate</B> button and you get
+your results.</LI>
+
+<LI>
+The breeding values should be <B>Nullified</B> before you make new calculations.</LI>
+
+<B>Parameters</B>
+<LI>
+Mean value fo the traits (actual 100)</LI>
+
+<LI>
+Heritability fo the traits (actual 20 %)</LI>
+
+<LI>
+Common Milieu (environment) fo the traits for full sibs (actual 5
+%)</LI>
+
+<LI>
+Repeatability fo the traits, for repeated measurements (actual 30)</LI>
+
+<LI>
+Offspring text default is <B>offspring.half</B> fo half sibs. If you
+want full sibs put <B>offspring.full</B></LI>
+
+
+<P>The <B>number and value (average) fo the six posible observations</B>
+<LI>
+Father, ---- BV fo F on own records (actual 1 record, value 110)</LI>
+
+<LI>
+F offspring, BV fo F on offspring records (actual 10 records, value 105,
+offspring.full is set)</LI>
+
+<LI>
+Mother, ---- BV fo M on own records</LI>
+
+<LI>
+M offspring, BV fo M on offspring records</LI>
+
+<LI>
+Own, ----- BV fo O on own records (actual 1 record, value 99)</LI>
+
+<LI>
+O offspring, BV fo O on offspring records</LI>
+
+<H4>
+Results of calculation</H4>
+The <B>breeding value and accuracy fo the six observations</B>
+<LI>
+Father, ---- BV fo F on own records (actual based on 1 record, value 110)</LI>
+
+<LI>
+F offspring, BV fo F on offspring records (actual based on 10 records,
+value 105, offspring.full is set)</LI>
+
+<LI>
+Mother, ---- BV fo M on own records</LI>
+
+<LI>
+M offspring, BV fo M on offspring records</LI>
+
+<LI>
+Own, ----- BV fo O on own records (actual based on 1 record, value 99)</LI>
+
+<LI>
+O offspring, BV fo O on offspring records</LI>
+
+
+<P>The <B>breeding values and accuracy**2 in the last two lines</B>
+<LI>
+Father, ---- BV fo F on own and offspring records (actual based on own
+record and 10 offspring)</LI>
+
+<LI>
+Mother, ---- BV fo M on own and offspring records</LI>
+
+<LI>
+Own, ---- BV fo O on own and offspring records (actual based on 1 record)</LI>
+
+<LI>
+Own, ---- BV fo O on both parents and their offspring (actual based on
+all fathers information)</LI>
+
+<LI>
+Own, ---- BV fo O on all available information (actual based on own and
+all fathers information)</LI>
+
+<H4>
+Special facility</H4>
+The Father and mother text default is <B>own.new</B> If you want to use
+old BV estimates and accuracies**2 fo father and/or mother use <B>own.old</B>
+and in the same line put the old values fo BV and accuracy**2. In these
+cases the offspring lines is not used.
+<p><A HREF = "../../genetics/7/3.htm">Back to theory </A>,
+<p><A HREF = "../7/3.htm">Back to theory (in Danish) </A> 
+
+
+o <A HREF = "0.htm">back to the other applets</A>
+
+</BODY>
+</HTML>

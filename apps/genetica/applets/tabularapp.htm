@@ -1,0 +1,149 @@
+<HTML>
+<HEAD>
+   <TITLE>Un Applet para  la manipulaci&oacute;n   de un matriz general y c&aacute;lculo de la relaci&oacute;n y la
+consanguinidad </TITLE>
+</HEAD>
+<BODY BGCOLOR="#00FFFF">
+
+<H3>4.4 Manipulaci&oacute;n   de un matriz general y el c&aacute;lculo de la relaci&oacute;n y la
+consanguinidad </H3>
+La relaci&oacute;n y la consanguinidad, y la parte de la inversi&oacute;n del m&eacute;todo de la matriz
+han sido programadas por Nils Toft
+y Thomas Nejsum Madsen, respectivamente,
+mientras  la parte matriz general se ha   producido  de Bryan Lewis. La parte general incluyen, por ejemplo matrix multplication como A = b*c o A = b*c'.  Enlace otras aplicaciones de la General Matrix Applet: 
+<A HREF="animalm.htm">Estimaci&oacute;n  valores de cr&iacute;a del modelo animales</A> y <A HREF="selind.htm"> calcular &iacute;ndice de selecci&oacute;n</A>.
+
+
+<P><APPLET  code=TabularApp.class name=TabularApp  width=700 height=600 >If you see this you can't run the applet.
+<BR>chose Options | Network PReferencies | Languages | Enable Java </APPLET>
+
+<P> Editando
+los datos en el campo de datos es muy molesto, como la tecla de retorno no 
+puede ser
+utilizada para hecha una nueva l&iacute;nea, ya que funciona como pulsar el eval. bot&oacute;n. Para
+grandes conjuntos de datos &uacute;tilice 'Bloc de notas' o cualquier otro editor. Mover los datos al
+&aacute;rea de entrada por medio de la corta y pega usando Ctrl-ins (copia) y el cambio-ins
+(insertar).
+
+<hr>
+<p>Ejemplo:
+<br> Ejemplo de c&aacute;lculo de la consanguinidad en las columnas de la matriz que se muestra a continuaci&oacute;n
+son los animales, padre y madre, donde los animales m&aacute;s viejos deben aparecer  primero. 
+La genealog&iacute;a se
+convertido en la matriz  'a' como se hace a continuaci&oacute;n (0 significa padre desconocido):
+
+
+<TABLE CELLPADDING="5" WIDTH="96%">
+  <TR>
+   <TD BGCOLOR="#99ff99" width="100">
+<pre>Animal Padre Madre
+---------------
+ a =
+ 1     0   0
+ 2     1   0
+ 3     1   0
+ 4     1   0
+ 5     2   3
+ 6     4   3
+ 7     5   6</pre>
+</TD>
+    <TD valign="top">
+<IMG SRC="../../genetik/applets/ped.gif" height="150" >
+
+</td>   </TR>
+</table>
+
+<p>Copia estos datos, incluyendo (a =)  y pegan los en el "input area" 
+y  despu&eacute;s  pulsar el "evaluate" bot&oacute;n y la matriz debe aparecer
+en la ventana del resultado.
+<BR>Despu&eacute;s  entrar en la ventana de entrada:
+<PRE>      rel = :tabular(a)</PRE>
+y pulsar el 'evaluate' bot&oacute;n
+
+<P>La matriz de relaci&oacute;n (rel) aparecer&aacute; en la ventana de resultados y se
+muestran a continuaci&oacute;n. N&uacute;mero de d&iacute;gitos se pueden establecer, en sustituci&oacute;n de los 4 con
+3 cambiar&aacute; el n&uacute;mero de d&iacute;gitos a 3.
+
+<PRE>        Relationship matrix  1+F (inbreeding) in the diagonal 
+         rel =
+             1.000    0,500   0,500   0,500   0,500   0,500   0,500
+             0,500    1.000   0,250   0,250   0,625   0,250   0,437
+             0,500    0,250   1.000   0,250   0,625   0,625   0,625
+             0,500    0,250   0,250   1.000   0,250   0,625   0,437
+             0,500    0,625   0,625   0,250   1.125   0,437   0,781
+             0,500    0,250   0,625   0,625   0,437   1.125   0,781
+             0,500    0,437   0,625   0,437   0,781   0,781   1.218
+</PRE>
+
+<br>La consanguinidad de cada animal est&aacute; dada por su elemento en la diagonal, menos
+uno, es decir, los &uacute;ltimos tres animales tienen un coeficiente de consanguinidad
+de 0,125, 0,125 y 0,218, respectivamente.
+ 
+<br>Los n&uacute;meros de identificaci&oacute;n de cada uno de
+los animales puede ser cualquier n&uacute;mero, siempre y cuando los animales m&aacute;s viejos aparecen primero en la lista.
+Al definir la base (m&aacute;s antigua) generaci&oacute;n de los padres se establecen como ceros (0 = desconocido).
+
+</p>
+
+<p>Si usted est&aacute; interesado en el coeficiente de consanguinidad,
+ s&oacute;lo, se ejecuta el comando 'inbred'
+de la siguiente manera:
+<PRE>      inb = :inbred(a)
+usted tendr&aacute; la siguiente, en la ventana de resultados, con el n&uacute;mero de animales y coeficiente de consanguinidad:
+	Animal   F (inbreeding) 
+      inb =
+ 	1.000	 0,000	
+ 	2.000	 0,000	
+ 	3.000	 0,000	
+ 	4.000	 0,000	
+ 	5.000	 0,125	
+ 	6.000	 0,125	
+ 	7.000	 0,218	
+</pre>
+<P>Para invertir la matriz de relaci&oacute;n se utilizan el comando:
+<PRE>        reli = :invert(rel)</PRE>
+Que pone la matriz de relaci&oacute;n inversa en la ventana de  resultados
+
+<BR>
+<HR>Cuestiones:
+En el &aacute;rbol geneal&oacute;gico que se muestra a continuaci&oacute;n los individuos se han asignado los n&uacute;meros
+1-11.
+<TABLE CELLPADDING="5" WIDTH="96%">
+  <TR>
+    <TD valign="top" width="47%">
+<IMG SRC="../../genetik/opgaver/o46.gif" >
+
+</TD>
+    <TD valign="top" width="40%">
+<pre>Animal Padre Madre,  0=desconocido
+    1     0   0
+    2     0   0
+    3     0   0
+    4     0   0
+    5     0   0
+    6     2   1
+    7     5   4
+    8     7   3
+    9     7   6
+   10     7   8
+   11     10  9</pre>
+   </TR>
+</table>
+Calcula el coeficiente de consanguinidad de los individuos n&uacute;mero 10 y 11,
+y calcular el coeficiente de relaci&oacute;n entre  
+11 y todos los dem&aacute;s en el &aacute;rbol geneal&oacute;gico. El conjunto de datos que
+ se utilizar&aacute; para los c&aacute;lculos 
+se da arriba, (recuerda el a= antes los datos).
+
+<p>&iquest;Cu&aacute;l ser&iacute;a el coeficiente de consanguinidad despu&eacute;s del 5  generaci&oacute;n de apareamiento de hermanos completo?
+
+<HR>
+
+
+<A HREF="../4/5.htm">Volver a la teor&iacute;a </A>
+
+ o <A HREF="0.htm">Volver al otro applets</A>.
+
+
+</BODY>
+</HTML>

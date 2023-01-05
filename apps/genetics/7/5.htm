@@ -1,0 +1,79 @@
+
+ 
+<HTML>
+<HEAD>
+<TITLE>7.5 Animal model avlsværdi estimering</TITLE>
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#551a8b" ALINK="#ff0000" BGCOLOR="#ffffff">
+<H3>7.5 Animal model Breeding value estimation</H3>
+
+<P>&nbsp;<A HREF="4.htm"> preseding page</A> </P>
+
+<P>Animal model breeding value estimation uses all the information from all the measured animals, therefore it is one
+advantage if you can set up the inverse relationship matrix directly without having to invert it,
+  when it comes to large populations, see the following link .
+
+<TABLE CELLPADDING="5" >
+  
+ <TR>
+
+    <TD valign="top" BGCOLOR="#99ff99" "ALIGN="CENTER">
+<pre>animal sire dam
+---------------
+1 0 0
+2 0 0 
+3 0 0
+4 0 0 
+5 1 2
+6 1 2 
+7 3 4 
+8 5 6 
+
+genealogical diagram
+<IMG SRC="../../genetik/applets/ped1.gif" HEIGHT=130 >
+</pre></TD>
+
+ 
+
+    <TD valign="top" BGCOLOR="#99ff99" ALIGN="CENTER">
+<pre>relationship matrix
+1.00 0.00 0.00 0.00 0.50 0.50 0.00 0.50  
+0.00 1.00 0.00 0.00 0.50 0.50 0.00 0.50 
+0.00 0.00 1.00 0.00 0.00 0.00 0.50 0.00 
+0.00 0.00 0.00 1.00 0.00 0.00 0.50 0.00 
+0.50 0.50 0.00 0.00 1.00 0.50 0.00 0.75 
+0.50 0.50 0.00 0.00 0.50 1.00 0.00 0.75 
+0.00 0.00 0.50 0.50 0.00 0.00 1.00 0.00 
+0.50 0.50 0.00 0.00 0.75 0.75 0.00 1.25 
+
+
+<pre>The inverse Matrix
+2.0  1.0  0.0  0.0 -1.0 -1.0  0.0  0.0 
+1.0  2.0  0.0  0.0 -1.0 -1.0  0.0  0.0 
+0.0  0.0  1.5  0.5  0.0  0.0 -1.0  0.0  
+0.0  0.0  0.5  1.5  0.0  0.0 -1.0  0.0 
+-1.0 -1.0 0.0  0.0  2.5  0.5  0.0 -1.0  
+-1.0 -1.0 0.0  0.0  0.5  2.5  0.0 -1.0 
+0.0  0.0 -1.0 -1.0  0.0  0.0  2.0  0.0 
+0.0  0.0  0.0  0.0 -1.0 -1.0  0.0  2.0  
+    </TR>
+
+
+</table>
+<p>
+As you can see, the inverse relationship matrix has a very simple structure, link to the theory of the simple structure.
+ 
+<P>Direct set up of the inverse relationship matrix  <A HREF="../../genetik/applets/pj3.pdf">click here</A> </P>
+		
+
+
+
+<P>Applet with many computational examples of the use of the animal model  <A HREF="../../genetik/applets/animalm.htm">click here</A> </P>
+
+<P>Animal model including simultaneous calculation of mean and other correction factors <A HREF="../../genetik/applets/pj4.pdf">click here</A> </P>
+
+
+<P><A HREF="0.htm">lection 7</A> </P>
+
+</BODY>
+</HTML>

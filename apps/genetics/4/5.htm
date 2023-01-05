@@ -1,0 +1,157 @@
+<HTML>
+<HEAD>
+<META NAME="Generator" CONTENT="Microsoft FrontPage 4.0">
+<TITLE>Calculating inbreeding and relationship, the tabular method</TITLE>
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#551a8b" ALINK="#ff0000" BGCOLOR="#ffffff">
+<H3>4.5 Calculation of inbreeding and relationship, the tabular method</H3>
+
+<P><A HREF="4.htm">Preceding page</A> </P>
+
+<P>Calculation of inbreeding and relationship can be done by means of the tabular method.
+The big advantage of the tabular method is that a graph of the pedigree is
+not needed. Simultaneously there is only need to concentrate on two generations at
+one time, as the method always moves from the older to the
+younger animals. Therefore it is possible to build on the inbreeding and
+relationship of the preceding generation, as each level only points back to the parents.</P>
+
+<P>Only two simple formulas are applied in which the relationship and 
+inbreeding have the symbols a and F, as shown in the following two points:</P>
+
+<P>1) Inbreeding in an animal (X) is equal to half the relationship between its parents, A and B,
+and the additive relationship with oneself is<BR>
+a<SUB>XX</SUB> = 1 + F<SUB>X</SUB> <BR>
+2)The additive relationship between two animals, X and Y, are equal to half of the relationship between the oldest (X) and
+the parents, A and B, of the youngest
+(Y). <BR>
+a<SUB>XY</SUB> = (a<SUB>XA</SUB> + a<SUB>XB</SUB>)/2 </P>
+
+<P>The construction of the relationship matrix are shown in the following points. </P>
+
+
+1) Put the number of all animals in a line (the oldest first)
+<BR> 2) Put the number of each individual's parents above the number of the
+individual.
+
+<br> 3) Copy step 1) in a vertical column at the left side of the paper<BR>
+4) Write a row of 1's diagonally<BR>
+5) Calculate the relationship between animal 1 and 2, 3, 4 etc. to n<BR>
+6) Copy the first row in the first column<BR>
+7) Calculate the relationship between animal 2 and 3, 4 etc. to n<BR>
+8) Copy the second row in the second column<BR>
+9) etc. - - half of the parents relationship is added to the diagonal element, if relevant step 9
+shall be carried out before step 7</P>
+
+<P><STRONG>Example of application of the tabular method</STRONG> <BR>
+Using the following set of data.</P>
+<PRE>Animal Sire Dam
+    1    0   0
+    2    1   0
+    3    1   0
+    4    1   0
+    5    3   2
+    6    3   4
+    7    5   6 </PRE>
+<BR>
+
+<P>For hand calculation the steps from 1 to 4 is shown first. (-) means an unknown parent</P>
+<PRE>Parents        - -   1 -   1 -   1 -   3-2   3-4   5-6 
+Animal          1     2     3     4     5     6     7
+              -----------------------------------------
+   1            1    
+   2                  1       
+   3                        1             
+   4                             1
+   5                                   1
+   6                                         1
+   7                                               1</PRE>
+<BR>
+
+<P>The next steps (5 and 6) is to fill out the first row. The first value is the value for animal number 2. Look
+at the column of the parents, which shows 1 and -
+(unknown). The value in column 1 is 1, and unknown is equal to 0, which equals (1 +0)/2 = 1/2
+which is put into column 2. The same result is obtained for animal 3
+and 4. For animal 5 the parents are 2 and 3, in their corresponding columns is 1/2 and 1/2, which added and divided by 2 gives 1/2. The results are
+the same for animal 6 and 7. Now row one is copied into column one as seen below.</P>
+<PRE>Parents       - -   1 -   1 -   1 -   3-2   3-4   5-6 
+Animal         1     2     3     4     5     6     7
+              -----------------------------------------
+   1            1   1/2   1/2   1/2   1/2   1/2   1/2
+   2           1/2   1       
+   3           1/2         1             
+   4           1/2               1
+   5           1/2                     1
+   6           1/2                           1
+   7           1/2                                 1</PRE>
+<BR>
+
+<P>Then continue to row two (step 7 and 8). Animal 3 and 4 have 1 and unknown as parents. In column one
+second row is 1/2, which equals (1/2+0)/2 = 1/4 for animal 3 and 4. For animal 5, which have the parents 2 and 3,
+we have 1 and 1/4 in the two corresponding columns, this gives (1+1/4)/2 = 5/8. Animal 3 and 4 are parents of animal 6, their average relationship to 2 is 1/4, which is
+put into the diagram. Animal 7 has the parents 5 and 6, their average
+relationship to 2 is (5/8+1/4)/2 = 7/16, which is put in. The new results are copied to the corresponding places in column 2.</P>
+<PRE>Parents        - -   1 -   1 -   1 -   3-2   3-4   5-6 
+Animal          1     2     3     4     5     6     7
+               -----------------------------------------
+   1            1   1/2   1/2   1/2   1/2   1/2   1/2
+   2           1/2   1    1/4   1/4   5/8   1/4   7/16
+   3           1/2  1/4    1             
+   4           1/2  1/4          1
+   5           1/2  5/8               1
+   6           1/2  1/4                      1
+   7           1/2  7/16                           1</PRE>
+<BR>
+
+<P>Now we can continue filling in the table by repeting steps 7 and 8. Remember (step 9) that half of the relationship between the
+parents should be added to the diagonal
+element. This is not relevant until animal 5, where the parents, 2 and 3, have a relationship of 1/4, which
+can be read in row 2 column 3. Remember, if relevant step 9 should be carried out before step 7.</P>
+<PRE>Parents        - -   1 -   1 -   1 -   3-2   3-4   5-6 
+Animal          1     2     3     4     5     6     7
+               -----------------------------------------
+   1            1   1/2   1/2   1/2   1/2   1/2   1/2
+   2           1/2   1    <b>1/4</b>    1/4   5/8   1/4   7/16
+   3           1/2  1/4    1    1/4   5/8   5/8   5/8         
+   4           1/2  1/4   1/4    1    1/4   5/8   7/16
+   5           1/2  5/8   5/8   1/4  1+1/8
+   6           1/2  1/4   5/8   5/8          1
+   7           1/2  7/16  5/8   7/16               1</PRE>
+
+<BR><table align=right width="40%">
+<rt><td>The same results calculated by applet. Input in lower part of the window,
+output in the upper part.
+
+<br><img src="../../genetik/4/tab.gif"  > 
+</td></table>
+<P>The final table:</P>
+<PRE>Parents     - -   1 -   1 -   1 -   3-2   3-4   5-6 
+Animal       1     2     3     4     5     6     7
+           -----------------------------------------
+   1         1   1/2   1/2   1/2   1/2   1/2   1/2
+   2        1/2   1    1/4   1/4   5/8   1/4   7/16
+   3        1/2  1/4    1    1/4   5/8   5/8   5/8         
+   4        1/2  1/4   1/4    1    1/4   5/8   7/16
+   5        1/2  5/8   5/8   1/4  1+1/8  7/16  25/32
+   6        1/2  1/4   5/8   5/8   7/16 1+1/8  25/32
+   7        1/2  7/16  5/8   7/16 25/32 25/32 1+7/32</PRE>
+
+<P>The tabular method is simple to computerize, so this method should be used in large animal populations. </P>
+
+<P>The path graph is best used in relation to the genealogy, where&nbsp; good overview
+is important. In such cases the individual animal can play an important role. </P>
+
+<P>It is easier to use a program when carrying out the calculation,&nbsp;
+ <A HREF="../../genetik/applets/tabularapp.htm">click here for an applet</A>.<BR>
+A DOS program, which can be used to analyses entire populations, can be seen 
+<A HREF="../../genetik/4/inbred.htm"> here</A>. To download the
+program,
+ <A HREF="../../genetik/4/inbred.zip"> click here,</A> 
+and for an error list file <A HREF="lf90.zip">click here</A>. 
+When your browser wants to save, click save and save the files 'inbred.exe' 
+and fl90.eer. The file 'inbred.exe', which is a dos program, can now be executed
+in DOS. The input file should be generated as shown in the printed example.</P>
+
+<P><A HREF="0.htm">Chapter 4</A> </P>
+
+</BODY>
+</HTML>

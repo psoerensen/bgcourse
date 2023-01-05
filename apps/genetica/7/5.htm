@@ -1,0 +1,76 @@
+
+ 
+<HTML>
+<HEAD>
+<TITLE>7.5 Animal model valor de cria estimering</TITLE>
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#551a8b" ALINK="#ff0000" BGCOLOR="#ffffff">
+<H3>7.5 Animal model valor de cria estimation</H3>
+
+<P><A HREF="4.htm"> Preseding page</A> </P>
+
+<P>La estimación del valor de cría del modelo animal utiliza toda la información de todos los animales medidos, por lo que es una
+ventaja si puede configurar la matriz de relación inversa directamente sin tener que invertirla,
+   cuando se trata de grandes poblaciones, consulte el siguiente enlace.
+<p>
+Como puede ver debajo, la matriz de relación inversa tiene una estructura muy simple, ligada a 
+la teoría de la estructura simple. <P>Configuración directa de la matriz de relación inversa  <A HREF="../../genetik/applets/pj3.pdf">click here</A> </P>
+	
+<P>
+<TABLE CELLPADDING="5" >
+  
+ <TR>
+
+    <TD valign="top" BGCOLOR="#99ff99" "ALIGN="CENTER">
+<pre>animal sire dam
+---------------
+1 0 0
+2 0 0 
+3 0 0
+4 0 0 
+5 1 2
+6 1 2 
+7 3 4 
+8 5 6 
+
+genealogical diagram
+<IMG SRC="../../genetik/applets/ped1.gif" HEIGHT=130 >
+</pre></TD>
+
+ 
+
+    <TD valign="top" BGCOLOR="#99ff99" ALIGN="CENTER">
+<pre>relationship matrix
+1.00 0.00 0.00 0.00 0.50 0.50 0.00 0.50  
+0.00 1.00 0.00 0.00 0.50 0.50 0.00 0.50 
+0.00 0.00 1.00 0.00 0.00 0.00 0.50 0.00 
+0.00 0.00 0.00 1.00 0.00 0.00 0.50 0.00 
+0.50 0.50 0.00 0.00 1.00 0.50 0.00 0.75 
+0.50 0.50 0.00 0.00 0.50 1.00 0.00 0.75 
+0.00 0.00 0.50 0.50 0.00 0.00 1.00 0.00 
+0.50 0.50 0.00 0.00 0.75 0.75 0.00 1.25 
+
+
+<pre>The inverse Matrix
+2.0  1.0  0.0  0.0 -1.0 -1.0  0.0  0.0 
+1.0  2.0  0.0  0.0 -1.0 -1.0  0.0  0.0 
+0.0  0.0  1.5  0.5  0.0  0.0 -1.0  0.0  
+0.0  0.0  0.5  1.5  0.0  0.0 -1.0  0.0 
+-1.0 -1.0 0.0  0.0  2.5  0.5  0.0 -1.0  
+-1.0 -1.0 0.0  0.0  0.5  2.5  0.0 -1.0 
+0.0  0.0 -1.0 -1.0  0.0  0.0  2.0  0.0 
+0.0  0.0  0.0  0.0 -1.0 -1.0  0.0  2.0  
+    </TR>
+
+
+</table>
+
+<P>Applet con muchos ejemplos computacionales del uso del  animal modelo <A HREF="../../genetik/applets/animalm.htm">click here</A> </P>
+
+<P>Animal model  que incluye el cálculo simultáneo de la media y otros factores de corrección.  <A HREF="../../genetik/applets/pj4.pdf">click here</A> </P>
+
+
+<P><A HREF="0.htm">Cap&iacute;tulo 7 </A> </P>
+
+</BODY>
+</HTML>

@@ -1,0 +1,394 @@
+
+<HTML>
+<HEAD>
+   <TITLE>Tabular calculating of relationship and inbreeding cofficients</TITLE>
+
+<SCRIPT LANGUAGE="JavaScript">
+
+function Restart() {
+document.tabular.in.value =" ";document.tabular.out.value =" ";
+}
+
+
+
+
+function Calculate() {
+
+cif= document.tabular.gg2.value;
+
+
+    strin =    document.tabular.in.value ;
+
+
+   strin = strin.replace(/^[\s]+/g,''); strin = strin.replace(/\n/g,',');
+   strin = strin.replace(/,,/g,',');    strin = strin.replace(/[\s]+/g,' ');
+   strin = strin.replace(/\, /g,'\n');  strin = strin.replace(/\,/g,'\n');
+
+var tempArray = strin.split('\n');
+
+var I = [];
+var pop = [];
+var anim= [];
+for (var i = 0; i < tempArray.length; i++) {
+
+    pop[i] = tempArray[i].split(' ');
+   anim[i]=pop[i][0];
+}
+
+
+           var num = Array();
+           for (i=0; i<tempArray.length; i++) {
+                               num.push([0,0]); }
+//renumber
+         for (i=0; i<tempArray.length; i++) {
+
+             dad =  pop[i][1];
+             mom =  pop[i][2];
+
+        for (j=0; j<tempArray.length; j++) {
+
+             dyr =  pop[j][0];
+
+          if ( dyr == mom )  num[i][1] = j+1;
+          if ( dyr == dad )  num[i][0] = j+1;
+
+            }}
+
+//set up tabular
+
+           var hlp ;hlp=0;
+           for (i=1; i<tempArray.length; i++) {
+                               hlp += ","+0;  }
+
+          var tab = Array();
+           for (i=0; i<tempArray.length; i++) {
+           tab[i] = hlp.split(',');
+                                      }
+
+        for (i=0; i<tempArray.length; i++) {
+                for (j=i; j<tempArray.length; j++) {
+                         mom =   num[j][1] - 1;
+                         dad =   num[j][0] - 1;
+                        if ( i == j ) {             tab[i][j] = 1;
+                if ( (mom != -1) && (dad != -1) ) { tab[i][j] += 0.5*tab[mom][dad];}
+                        }
+                        else {
+                            var child = 0.0;
+                                if ( mom != -1 )   {child += tab[i][mom];}
+                                if ( dad != -1 )   {child += tab[i][dad];}
+                                                   tab[i][j] = 0.5*child;
+                                                   tab[j][i] = tab[i][j];
+                        }
+                }
+        }
+
+//print output
+
+var a= "Animal     1+F \n";
+
+for (i=0; i<tempArray.length; i++) { x=anim[i]*1; y=  tab[i][i]*1;
+a += x.toFixed(cif) + "\t" + y.toFixed(cif) + "\n";}
+
+
+
+a +="\nRelationship Matrix\n";
+
+for (i=0; i<tempArray.length; i++) {
+                for (j=0; j<tempArray.length; j++) {  y=  tab[i][j]*1;
+
+                                                   a += y.toFixed(cif) + "\t";} a +="\n";}
+
+document.tabular.out.value =   a;
+
+}
+
+
+
+
+// Returns the inverse of matrix `M`. Matrix Inversion in JavaScript 16 Nov 2013 by Andrew Ippoliti
+// http://blog.acipo.com/matrix-inversion-in-javascript/
+
+function Inverse(){
+    // I use Guassian Elimination to calculate the inverse:
+    // (1) 'augment' the matrix (left) by the identity (on the right)
+    // (2) Turn the matrix on the left into the identity by elemetry row ops
+    // (3) The matrix on the right is the inverse (was the identity matrix)
+    // There are 3 elemtary row ops: (I combine b and c in my code)
+    // (a) Swap 2 rows
+    // (b) Multiply a row by a scalar
+    // (c) Add 2 rows
+    
+cif= document.tabular.gg2.value;
+
+ strin =    document.tabular.out.value ;
+
+
+  strin = strin.replace(/(.*\n)+.*ix/,' ');
+
+
+
+   strin = strin.replace(/^[\s]+/g,'');strin = strin.replace(/[\s]+$/g,'');
+   strin = strin.replace(/\n/g,',');strin = strin.replace(/[\s]+/g,' ');strin = strin.replace(/\, /g,'\n');
+   strin = strin.replace(/\,/g,'\n');
+
+var tempArray = strin.split('\n');
+
+var C = [];
+
+for (var i = 0; i < tempArray.length; i++) {
+
+    C[i] = tempArray[i].split(' ');
+ a=" ";
+}
+    
+    //create the identity matrix (I), and a copy (C) of the original
+    var i=0, ii=0, j=0, dim=tempArray.length, e=0, t=0;
+    var I = []; 
+    for(i=0; i<dim; i+=1){
+        // Create the row
+        I[I.length]=[];
+
+        for(j=0; j<dim; j+=1){
+            
+            //if we're on the diagonal, put a 1 (for identity)
+            if(i==j){ I[i][j] = 1; }
+            else{ I[i][j] = 0; }
+            
+            // Also, make the copy of the original
+//            C[i][j] = M[i][j];
+        }
+    }
+    
+    // Perform elementary row operations
+    for(i=0; i<dim; i+=1){
+        // get the element e on the diagonal
+        e = C[i][i];
+        
+        // if we have a 0 on the diagonal (we'll need to swap with a lower row)
+        if(e==0){
+            //look through every row below the i'th row
+            for(ii=i+1; ii<dim; ii+=1){
+                //if the ii'th row has a non-0 in the i'th col
+                if(C[ii][i] != 0){
+                    //it would make the diagonal have a non-0 so swap it
+                    for(j=0; j<dim; j++){
+                        e = C[i][j];       //temp store i'th row
+                        C[i][j] = C[ii][j];//replace i'th row by ii'th
+                        C[ii][j] = e;      //repace ii'th by temp
+                        e = I[i][j];       //temp store i'th row
+                        I[i][j] = I[ii][j];//replace i'th row by ii'th
+                        I[ii][j] = e;      //repace ii'th by temp
+                    }
+                    //don't bother checking other rows since we've swapped
+                    break;
+                }
+            }
+            //get the new diagonal
+            e = C[i][i];
+            //if it's still 0, not invertable (error)
+            if(e==0){return}
+        }
+        
+        // Scale this row down by e (so we have a 1 on the diagonal)
+        for(j=0; j<dim; j++){
+            C[i][j] = C[i][j]/e; //apply to original matrix
+            I[i][j] = I[i][j]/e; //apply to identity
+        }
+        
+        // Subtract this row (scaled appropriately for each row) from ALL of
+        // the other rows so that there will be 0's in this column in the
+        // rows above and below this one
+        for(ii=0; ii<dim; ii++){
+            // Only apply to other rows (we want a 1 on the diagonal)
+            if(ii==i){continue;}
+            
+            // We want to change this element to 0
+            e = C[ii][i];
+            
+            // Subtract (the row above(or below) scaled by e) from (the
+            // current row) but start at the i'th column and assume all the
+            // stuff left of diagonal is 0 (which it should be if we made this
+            // algorithm correctly)
+            for(j=0; j<dim; j++){
+                C[ii][j] -= e*C[i][j]; //apply to original matrix
+                I[ii][j] -= e*I[i][j]; //apply to identity
+            }
+        }
+    }
+    
+    //we've done all operations, C should be the identity
+    //matrix I should be the inverse:
+    //    return I;
+
+a +=strin + "\n\nThe inverse Matrix\n";
+
+for (i=0; i<tempArray.length; i++) {
+                for (j=0; j<tempArray.length; j++) {  y=  I[i][j]*1;
+
+                                                   a += y.toFixed(cif) + " ";} a +="\n";}
+
+document.tabular.out.value =   a;
+
+
+}
+</SCRIPT>
+
+</HEAD>
+<BODY BGCOLOR="#00FFFF">
+
+<H3>4.4 Calculating relationship and
+inbreeding coefficients by the tabular method - and matrix inversion</H3>
+
+Link other applications of the  Matrix:  <A HREF="animalm.htm">Estimating animal model breeding values</A> and
+<A HREF="selind.htm"> calculating selection index</A>.
+The matrix nversion  is done by a program made by Andrew to be found at the folowing location 
+<A HREF="http://blog.acipo.com/matrix-inversion-in-javascript/"> Andrew Ippoliti's Blog</a>.
+
+<FORM name="tabular">
+<br><b>    ... Input aera .... &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp  ....Output area ....</b><br>
+<TEXTAREA NAME="in" cols="20" rows="20"></TEXTAREA>
+<TEXTAREA NAME="out" cols="63" rows="20"></TEXTAREA>
+
+<table border="4">
+<tr>
+  <td><input type="text" name="h1" value="Knud Christensen" ></td>
+  <td><input type="text" name="h2" value="Mail kc@sund.ku.dk" ></td>
+  <td><input type="text" name="h3" value="April 2015" ></td>
+  <td><input type="button" name="h5" value="Restart" OnClick="Restart()"></td>
+  <td><input type="button" name="h4" value="Inbreeding" OnClick="Calculate()"></td>
+  <td><input type="button" name="h6" value="Invert" OnClick="Inverse()"></td>
+
+</tr><tr>
+<td>Set digit for print -> </td>
+<td><input type="text" name="gg2" value="5" ></td>
+
+
+
+
+</tr></table>
+</form>
+
+<P>For larger sets of data use notepad or any other editor. Move the data to the
+input area (left field) by means of the clip board using ctrl-ins (copy) and shift-ins
+(insert).<br><b>The  oldest animals should  appear first, any numbers can be applied</b>.
+<br>The <b>Invert</b>  botton can only be run after an inbreeding run, or you put a matrix to be inverted in the output area!
+<hr>
+<p>Example:
+<br>Example of calculating inbreeding where the columns in the matrix shown below
+are animal, sire
+and dam, where the oldest animals should appear first. The pedigree are
+converted in a matrix as done below (0 means unknown parent):
+
+<TABLE CELLPADDING="5" >
+  <TR>
+ <TR>
+<TD width="20%">                  </TD> 
+
+    <TD valign="top" BGCOLOR="#99ff99" ALIGN="CENTER">
+<pre>animal sire dam
+---------------
+ 1     0   0
+ 2     1   0
+ 3     1   0
+ 4     1   0
+ 5     2   3
+ 6     4   3
+ 7     5   6</pre></TD>
+    <TD valign="top" >
+<IMG SRC="../../genetik/applets/ped.gif" HEIGHT=130 >
+
+   </TR>
+</table>
+
+<p>Take these data including in the clip board and transfer them to left window
+and there after press the 'Inbreeding' button and the inbreeding and relationship matrix should appear
+in the right window.
+<BR>There after use in the input window:
+
+and press the 'Inbreeding' button
+
+<P>The relationship matrix will appear in the result window and will
+look as shown below.
+<PRE>
+        Animal   F (inbreeding)
+
+        1.000    0.000
+        2.000    0.000
+        3.000    0.000
+        4.000    0.000
+        5.000    0.125
+        6.000    0.125
+        7.000    0.218
+
+        Relationship matrix  1+F (inbreeding) in the diagonal
+
+             1.000    0.500   0.500   0.500   0.500   0.500   0.500
+             0.500    1.000   0.250   0.250   0.625   0.250   0.437
+             0.500    0.250   1.000   0.250   0.625   0.625   0.625
+             0.500    0.250   0.250   1.000   0.250   0.625   0.437
+             0.500    0.625   0.625   0.250   1.125   0.437   0.781
+             0.500    0.250   0.625   0.625   0.437   1.125   0.781
+             0.500    0.437   0.625   0.437   0.781   0.781   1.218</PRE>
+
+The inbreeding for each animal is given by its diagonal element minus
+one, i.e. the last three animals are inbred with an inbreeding coefficient
+of 0.125, 0.125 and 0.218 respectively.
+<br>The identifying numbers of each
+animal can be any number, as long as the oldest animals appear first in the list.
+ When defining the base (oldest) generation  both parents are set as zeros (0 = unknown).
+</p>
+
+
+<HR>Below is shown a hand calculated example with the two general formula
+in use.
+<BR>The relationship between two animals is the average relationship between
+the oldest and the others two parents.
+<BR>and the inbreeding of an individual is half the relationship between
+the two parents.
+<CENTER></CENTER>
+
+<CENTER><IMG SRC="../../genetik/4/5.gif" ></CENTER>
+
+
+<P>For your own data put them in the matrix 'Animal sire dam' and repeat the process:
+<HR>Questions:
+<BR>In the pedigree shown below the individuals have been assigned the numbers
+from 1 to 11.
+
+<TABLE CELLPADDING="5" WIDTH="96%">
+  <TR>
+<TD width="20%">......       </TD>     
+    <TD valign="top" width="20%">
+<IMG SRC="../../genetik/opgaver/o46.gif" >
+
+</TD>
+    <TD valign="top" width="40%">
+<pre>Animal Sire Dam  , where 0 means unknown
+-------------------
+    1     0   0
+    2     0   0
+    3     0   0
+    4     0   0
+    5     0   0
+    6     2   1
+    7     5   4
+    8     7   3
+    9     7   6
+   10     7   8
+   11     10  9</pre>
+   </TR>
+</table>
+<P>Calculate the inbreeding coefficient for the individuals No 10 and 11,
+and calculate the additive relationship  coefficient between individual
+11 and all others in the pedigree. The data set to be used for the calculations
+is given above.
+<p>What would be the inbreeding coefficient after 5 generation of full sib mating?
+<HR>
+
+<P><A HREF="0.htm">Back to the other programs</A> or
+
+<A HREF="../../genetics/4/5.htm">back to inbreeding theory</A>.
+<A HREF="../4/5.htm">back to inbreeding theory (danish)</A>.
+</BODY>
+</HTML>

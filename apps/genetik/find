@@ -1,0 +1,21 @@
+find . -name "*.htm" -print -exec perl -pi -e 's/HW/H-W/g' {} \;
+
+cat ./*/*.htm |perl -ape  'if(/fris/) {print $_};chomp;s/.*// '
+ 
+more ./*/*.htm |awk '/^\./{a=$1};!/\./{print a "  "$0}'|perl -ape  'if(/fris/) {print $_};chomp;s/.*// '
+
+more ./*/*.htm |gawk '!/\./{print a"\t "$0};/^\./{a=$1};'|awk '/estad/ {print $0;} '
+
+find . -name "*.htm" -print -exec perl -pi -e 's/Á/&Aacute;/g;s/á/&aacute;/g;s/É/&Eacute;/g;s/é/&eacute;/g;s/Í/&Iacute;/g;s/í/&iacute;/g;s/Ó/&Oacute;/g;s/ó/&oacute;/g' {} \;
+
+find . -name "*.htm" -print -exec perl -pi -e 's/Ñ/&Ntilde;/g;s/ñ/&ntilde;/g;s/Ú/&Uacute;/g;s/ú/&uacute;/g;s/¿/&iquest;/g' {} \;   
+
+
+find . -name "*.htm" -print -exec perl -pi -e 's/\301/&Aacute;/g;s/\341/&aacute;/g;s/\311/&Eacute;/g;s/\351/&eacute;/g;s/\315/&Iacute;/g;s/\355/&iacute;/g;s/\323/&Oacute;/g;s/\363/&oacute;/g' {} \;
+
+find . -name "*.htm" -print -exec perl -pi -e 's/\321/&Ntilde;/g;s/\361/&ntilde;/g;s/\332/&Uacute;/g;s/\372/&uacute;/g;s/\277/&iquest;/g' {} \;   
+
+ 
+
+          
+find . -name "*.htm" -print -exec perl -pi -e 's/\346/&aelig;/g;s/\345/&aring;/g;s/\370/&oslash;/g;' {} \;'

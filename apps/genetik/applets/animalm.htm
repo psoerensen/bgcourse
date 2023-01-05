@@ -1,0 +1,777 @@
+<HTML>
+<HEAD>
+   <TITLE>Estimating animal model breeding values</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+
+function Restart() {
+document.selind.in.value =" ";document.selind.out.value =" ";
+}
+
+
+function Calculate() {
+
+   aaa=" ";
+   cif= document.selind.gg2.value;
+   strin =    document.selind.in.value ;
+
+   strin = strin.replace(/^[\s]+/g,''); strin = strin.replace(/\n/g,',');
+   strin = strin.replace(/,,/g,',');    strin = strin.replace(/[\s]+/g,' ');
+   strin = strin.replace(/\ ,/g,'\n');  strin = strin.replace(/\,/g,'\n');
+
+var tempArray = strin.split('\n');
+
+var pop = [];			 	
+for (var i = 0; i < tempArray.length; i++) { pop[i] = tempArray[i].split(' ');}
+
+ var         k= (eval(tempArray.length) -eval(1))*1 ; var  l=k; 
+
+
+var          gi = []; var         ax = []; var         a =  []; var         indx = [];var         aindx = [];
+
+  for ( i = 0; i < 20; i++) {   gi[i]= 0;ax[i]= 0;}
+  for ( i = 0; i <  k; i++) { indx[i]= 0; a[i]= 0;}
+ for ( i = 0; i < k; i++) {    aindx[i]=new Array(2); }
+      
+	    					     /* renumbring class variable */
+
+ width =pop[0].length;
+
+	 for (it=3; it<width; it++) {
+			
+			if(pop[0][it] > 1 ){
+		        				
+			                         // aindex contains the data for sorting
+			                         // index array
+			for (i=0; i<k; i++) {x= eval(i)+eval(1);
+				aindx[i][0] = pop[x][it];
+			        aindx[i][1] =x;}
+			                                          aindx.sort() ;   
+
+			for (i=0; i<k; i++) {x= eval(i)+eval(1);
+				    a[i] =  aindx[i][0] ;
+				indx[i] =   aindx[i][1];}
+
+                         j=0; if(pop[0][it] == 3 ){ j=eval(j)+eval(1);}
+y= eval(k)+eval(1);
+                        for (i=1; i<y; i++) {
+			l=indx[i-1];if(pop[l][it] != 0) {pop[l][it] = j; }
+			if(i<k){if(a[i] != a[i-1]) {if(a[i-1] != 0 ) {ax[j]=a[i]; j=eval(j)+eval(1);}}} 
+			}     pop[0][it] = j;
+  					}            }
+
+
+									/* permute dependent column to last column*/
+       for (it=3; it<width; it++) {if(pop[0][it] == -1 ){ for (i=0; i<y; i++) {
+				a[1] = pop[i][it];  pop[i][it]= pop[i][width-1];
+			        pop[i][width-1]= a[1];			}}}
+ 									//renumbering animals
+			for (i=0; i<k; i++) {
+x= eval(i)+eval(1);
+				a[i] = pop[x][0];
+			        pop[i+1][0] = eval(i)+eval(1);
+			for (j=0; j<k; j++) {			
+				if(pop[j][1] == a[i]){pop[j][1] = eval(i)+eval(1);}
+				if(pop[j][2] == a[i]){pop[j][2] = eval(i)+eval(1);}
+					    } }
+
+        if(pop[0][1] == 3 || pop[0][1] >4) {aaa += "\n rearranged input \n" ;for (i=0; i<pop.length; i++) {        //write rearranged input
+        for (j=0; j<width; j++) {  y=  pop[i][j]*1;  aaa += y.toFixed(cif) + "\t";} aaa +="\n";} } 
+
+                               					/* setting up equation numbers */
+			 	 for (i=2; i<width; i++) {
+ 			          if(i == 3 )                {l= eval(k)+eval(1); }       gi[i] =l;  
+                                  if(i > 2  )                {l += Math.abs(pop[0][i]);}   }				
+
+
+var        anim = new Array(l);
+var         xx = new Array(3);
+var         x =  new Array(2);
+var          gr = new Array(1);
+var          num = [];
+for (var i = 0; i < l; i++) {   anim[i]=new Array(l);xx[i]=new Array(3);x[i]=new Array(2); }
+for (var i = 0; i < k; i++) {    num[i]=new Array(2); }
+for ( i = 0; i < k; i++) {   gr[i]= 0; }
+for ( i = 0; i < l; i++) {   for ( j =i; j< l; j++){ anim[j][i]= 0;anim[i][j]= 0;} anim[i][i]= 1;}
+
+
+
+									// saving animal and class mumbers
+	    for (i=0; i<k; i++) {x[i][0] = a[i];}       
+	     for (it=3; it<width-1; it++) {if(pop[0][it] >1 ){ y= eval(it)+eval(1);
+             for (i= gi[it]; i< gi[y]; i++) {
+		x[i][0] = ax[i-  gi[it]];               }}}
+ 
+           if(pop[0][2] == 0 ){                                       // setting up the inverse direct
+           for (i=0; i<k; i++) {			
+                  gr[i] = 2;   
+ 
+                  num[i][0] = 0; 
+                  num[i][1] = 0;                                        }
+         for (i=0; i<k; i++) {y= eval(i)+eval(1);
+			 dad =  pop[y][1];
+			 mom =  pop[y][2];
+     
+               if ( mom == 0 && dad == 0 )  gr[i] = 1;   
+               if ( mom > 0 && dad == 0 )  gr[i] = 1.333333333;   
+               if ( mom == 0 && dad > 0 )  gr[i] = 1.333333333;   
+
+	for (j=0; j<k; j++) {y= eval(j)+eval(1);
+			 dyr =  pop[y][0];
+	      if ( dyr == mom )  num[i][1] = y; 
+	      if ( dyr == dad )  num[i][0] = y; 
+            }}
+
+
+
+  
+		                                                 /* set up anim the inverse A Matrix */
+         for (i=0; i<k; i++) { anim[i][i] =  gr[i]; y= eval(i)+eval(1);               
+              if(pop[y][width-1] > 0.001) { anim[k][i] =  1  ;}      // lines for mean & dirgonal                          
+	    
+			 mom =  eval(num[i][1]) - eval(1); 
+			 dad =  eval(num[i][0]) - eval(1);  
+
+				if ( (mom != -1) && (dad != -1) ) { 
+		 if(mom > dad ){ anim[mom][dad] +=  0.25*gr[i];}
+			  else { anim[dad][mom] +=  0.25*gr[i];}
+                             }
+				if ( mom != -1  ) { 
+				anim[i][mom] += -0.5*gr[i];				
+			        anim[mom][mom] +=  0.25*gr[i];
+			     }
+				if ( dad != -1 ) {   			      
+  			        anim[i][dad] += -0.5*gr[i];
+			        anim[dad][dad] +=  0.25*gr[i];  
+			    }					}
+       }  					// finish setting up the inverse A
+
+
+
+					// setting up the inverse with inbreeding L matrix
+ if(pop[0][2] == 1 ){                                       
+
+var          aa = [];var          bb = [];
+for ( i = 0; i < k; i++) {  aa[i]=new Array(k);bb[i]=new Array(k); }
+
+for (i=0; i< k; i++) {
+for (j=0; j< k; j++) {
+ aa[i][j]=0; bb[i][j]=0; }}
+
+
+aa[0][0]= 1; 
+
+             for (i=0; i<k; i++) { y= eval(i)+eval(1);
+			 dad =  eval(pop[y][1]);
+			 mom =  eval(pop[y][2]);
+	for (j=0; j<i; j++) { z1=0;		
+               if ( mom > 0 ) { z1 +=  aa[mom-1][j]; } 
+               if ( dad > 0 ) { z1 +=  aa[dad-1][j]; }   
+				 aa[i][j]= z1/2;     }
+ 	z2=0; 
+          for (idad=0; idad<dad; idad++) {z2 +=  aa[dad-1][idad]*aa[dad-1][idad]; } 
+          for (imam=0; imam<mom; imam++) {z2 +=  aa[mom-1][imam]*aa[mom-1][imam]; }
+ 		z3=  1 -.25*z2;
+		aa[i][i]=   Math.sqrt(z3);  
+                         }
+ 
+		z4 = 0;
+			for (i=0; i<k; i++) {
+			  for (kk=0; kk<k; kk++) {
+			  	for (j=0; j<k; j++) {
+			      z4 +=  aa[i][j] * aa[kk][j];
+			    }
+			    bb[i][kk] = z4;
+			    z4 = 0;   		 }
+						}   
+                                                                       
+
+				aa = matrix_invert(bb); // the inverse
+for (i=0; i< k; i++) {
+for (j=0; j< k; j++) {
+anim[i][j] = aa[i][j]; }
+y= eval(i)+eval(1);
+if(pop[y][width-1] > 0.001) { anim[k][i] =  1  ;
+anim[k][i] = 1;anim[i][k] = 1 ;}
+}
+    
+
+   }                                                       // end setting up the inverse with inbreeding 
+
+
+						/* correcting for h^2 and adding 1 to diagonal */
+     zz=pop[0][0];
+     for (i=0; i<k; i++) { for (j=i; j<k; j++) 
+     {anim[j][i]= anim[j][i]* zz;} y= eval(i)+eval(1);
+     if(pop[y][width-1] != 0) {anim[i][i]= eval(anim[i][i]) +  eval(1);}}
+
+
+						     /* set up Z and Y part of Matrix */
+
+   for (i=3; i<width; i++) { ll =  gi[i] - 1;
+   if(pop[0][i] > 1) {for (j=0; j<k; j++) {y= eval(j)+eval(1); l1=ll; l1 +=  +pop[y][i];
+
+   if(pop[y][width-1] > 0.001) {anim[l1][j] = 1;} }} 			     
+        if(Math.abs(pop[0][i]) == 1 ) {for (j=0; j<k; j++){y= eval(ll)+eval(1);yy= eval(j)+eval(1);  anim[y][j] =  pop[yy][i]; } }                                                                      					}
+
+
+    // setting uo Z*Z' Z*Y'  YZ last line 
+  
+     for (i=k; i<l; i++) { {for (j=i; j<l; j++) 
+     { zz=0;for (l2=0; l2<k; l2++) {zz += anim[i][l2]* anim[j][l2];} anim[j][i] = zz;}
+	 }    }
+
+    for (i=0; i<l; i++) { for (j=i; j<l; j++){ anim[i][j]=anim[j][i];}}              // mirror 
+
+
+   if(pop[0][1] == 4 || pop[0][1] >4 ) { aaa += "\n equations last row dependent \n" ;for (i=0; i<l; i++) {
+               for (j=0; j<l; j++) {  y=  anim[i][j]*1;  aaa += y.toFixed(cif) + "\t";} aaa +="\n";}} //print equation system
+
+
+k=pop.length-1;
+
+rows=anim.length -1;
+var          aa1 = [];
+var          bb1 = [];
+for (var i = 0; i < k; i++) {  aa1[i]=new Array(k);bb1[i]=new Array(k); }
+
+
+if(pop[0][1] == 1) {       								// the inverse for accuracy
+	  for (i=0; i<k; i++) {	 
+	  for (j=0; j<k; j++) { bb1[i][j] = anim[i][j]*1; }}  aa1=matrix_invert(bb1);  }   			     					
+
+
+                                                 /* gauss_elimination - triangularization */
+    ll=l-2; 
+
+var          ts = [];ts[0]=[];
+
+	for( i=0; i<=ll; i++ ) {
+                 if( Math.abs(anim[i][i]) < 0.000001){ts[0][0]=i; aaa += "\n no solutions \n" ;
+}
+
+		t=0; for( j=i+1; j<=ll; j++ ){ t= anim[j][i]/anim[i][i];
+                if(Math.abs(t) >0.000001){
+		for( k=ll+1; k>=i; k-- ) {anim[j][k] -= anim[i][k]*t;}    }}
+                }
+
+     ll=l-2;                                        /*solving equations for x */
+
+                        anim[ll+1][ll] = anim[ll][ll+1]/anim[ll][ll];
+                             x[ll][1] =  anim[ll+1][ll];
+           for( i=l-3; i>=0; i-- ) {t=0; for( k=i+1; k<ll+1; k++ ){
+                   t += anim[i][k] *anim[ll+1][k];}
+                        anim[ll+1][i] = (anim[i][ll+1] -t) /anim[i][i];
+             x[i][1] = anim[ll+1][i];
+            }
+
+
+if(pop[0][1] == 1) { aaa += "\n solutions + accuracy squared \n" ;                 // write solutions + accuracy squared
+var          x1 = [];for (i = 0; i < rows; i++) {  x1[i]=new Array(3);x1[i][2]=0;}
+
+	  for (i=0; i<rows; i++) {x1[i][0] =x[i][0]; x1[i][1] =x[i][1];	 
+	  if(i < pop.length -1 ) {x1[i][2] = (1- aa1[i][i]*pop[0][0])*1; } 
+         
+ for (j=0; j<3; j++) {  y=  x1[i][j]*1;   aaa += y.toFixed(cif) +  "\t";} aaa +="\n";}
+ 
+
+     
+}   
+
+
+
+if(pop[0][1] == 2 || pop[0][1] > 4 ) {aaa += "\n triangularization \n";
+for (i=0; i<rows; i++) {
+               for (j=0; j<rows; j++) {  y=  anim[i][j]*1;
+                                                   aaa += y.toFixed(cif) + "\t";} aaa +="\n";}
+}  
+
+
+
+
+aaa += "\n solutions \n" ; for (i=0; i<rows; i++) { for (j=0; j<2; j++) {  y=  x[i][j]*1;
+                                                   aaa += y.toFixed(cif) + "\t";} aaa +="\n";}
+
+
+document.selind.out.value =   aaa;
+
+
+
+
+} 
+
+
+// Returns the inverse of matrix `M`. Matrix Inversion in JavaScript 16 Nov 2013 by Andrew Ippoliti
+// http://blog.acipo.com/matrix-inversion-in-javascript/
+
+
+function matrix_invert(M){
+    // I use Guassian Elimination to calculate the inverse:
+    // (1) 'augment' the matrix (left) by the identity (on the right)
+    // (2) Turn the matrix on the left o the identity by elemetry row ops
+    // (3) The matrix on the right is the inverse (was the identity matrix)
+    // There are 3 elemtary row ops: (I combine b and c in my code)
+    // (a) Swap 2 rows
+    // (b) Multiply a row by a scalar
+    // (c) Add 2 rows
+    
+    //if the matrix isn't square: exit (error)
+    if(M.length !== M[0].length){return;}
+    
+    //create the identity matrix (I), and a copy (C) of the original
+    var i=0, ii=0, j=0, dim=M.length, e=0, t=0;
+    var I = [], C = [];
+    for(i=0; i<dim; i+=1){
+        // Create the row
+        I[I.length]=[];
+        C[C.length]=[];
+        for(j=0; j<dim; j+=1){
+            
+            //if we're on the diagonal, put a 1 (for identity)
+            if(i==j){ I[i][j] = 1; }
+            else{ I[i][j] = 0; }
+            
+            // Also, make the copy of the original
+            C[i][j] = M[i][j];
+        }
+    }
+    
+    // Perform elementary row operations
+    for(i=0; i<dim; i+=1){
+        // get the element e on the diagonal
+        e = C[i][i];
+        
+        // if we have a 0 on the diagonal (we'll need to swap with a lower row)
+        if(e==0){
+            //look through every row below the i'th row
+            for(ii=i+1; ii<dim; ii+=1){
+                //if the ii'th row has a non-0 in the i'th col
+                if(C[ii][i] != 0){
+                    //it would make the diagonal have a non-0 so swap it
+                    for(j=0; j<dim; j++){
+                        e = C[i][j];       //temp store i'th row
+                        C[i][j] = C[ii][j];//replace i'th row by ii'th
+                        C[ii][j] = e;      //repace ii'th by temp
+                        e = I[i][j];       //temp store i'th row
+                        I[i][j] = I[ii][j];//replace i'th row by ii'th
+                        I[ii][j] = e;      //repace ii'th by temp
+                    }
+                    //don't bother checking other rows since we've swapped
+                    break;
+                }
+            }
+            //get the new diagonal
+            e = C[i][i];
+            //if it's still 0, not invertable (error)
+            if(e==0){return}
+        }
+        
+        // Scale this row down by e (so we have a 1 on the diagonal)
+        for(j=0; j<dim; j++){
+            C[i][j] = C[i][j]/e; //apply to original matrix
+            I[i][j] = I[i][j]/e; //apply to identity
+        }
+        
+        // Subtract this row (scaled appropriately for each row) from ALL of
+        // the other rows so that there will be 0's in this column in the
+        // rows above and below this one
+        for(ii=0; ii<dim; ii++){
+            // Only apply to other rows (we want a 1 on the diagonal)
+            if(ii==i){continue;}
+            
+            // We want to change this element to 0
+            e = C[ii][i];
+            
+            // Subtract (the row above(or below) scaled by e) from (the
+            // current row) but start at the i'th column and assume all the
+            // stuff left of diagonal is 0 (which it should be if we made this
+            // algorithm correctly)
+            for(j=0; j<dim; j++){
+                C[ii][j] -= e*C[i][j]; //apply to original matrix
+                I[ii][j] -= e*I[i][j]; //apply to identity
+            }
+        }
+    }
+    
+    //we've done all operations, C should be the identity
+    //matrix I should be the inverse:
+    return I;
+}
+
+</SCRIPT>
+
+</HEAD>
+<BODY BGCOLOR="#00FFFF">
+
+<H3>7.2 Estimating animal model breeding values</H3>
+
+
+<p>Other scripts can handle <A HREF="tabularapp.htm">inbreeding, relationship, calculating the inverse </A>
+ and <b>estimating animal model breeding values.</b> It will perform well up to 2000 observations and might be even more.
+ It has been made for solving smaller scientific problems and for educational purposes. It is worth to note that the numeration 
+of the animals is free as long as the oldest appear first. <a href="#example">Link example</a>
+<P>
+
+    <b>    ... Input aera ....   ....Output area ....</b>
+
+<FORM name="selind">
+
+<TEXTAREA NAME="in" cols="20" rows="30"></TEXTAREA>
+<TEXTAREA NAME="out" cols="60" rows="30"></TEXTAREA>
+
+<table border="4">
+<tr>
+  <td><input type="text" name="h1" value="Knud Christensen" ></td>
+  <td><input type="text" name="h2" value="Mail kc@sund.ku.dk" ></td>
+  <td><input type="text" name="h3" value="April 2015" ></td>
+  <td><input type="button" name="h5" value="Restart" OnClick="Restart()"></td>
+  <td><input type="button" name="h4" value="Evaluate" OnClick="Calculate()"></td>
+ 
+</tr><tr>
+<td>Set digit for print -> </td>
+<td><input type="text" name="gg2" value="5" ></td>
+
+
+</tr></table>
+</form>
+
+
+<P><b>The estimating the animal model breeding values, use the Evaluate botton after having put your data in the input area. </b> You 
+can correct for any number of class variables
+ or continued variables in any combinations. 
+<br>For class variables the fist class is excluded for not  having 
+a degree of freedom as the mean value always is calculated.
+Zero is treated as missing value so if zero is a part of the observation set a constant should be added.  
+The first 3 columns in the dataset shall contain animal, sire and dam - all other columns can be used freely.  <a href="#example">Link example</a>
+
+
+<p><b>The first data line specify the parameters as follows</b> - referring to first example below as well as in general
+
+<pre>
+1.  1 specify (sigmaE/sigmaA)<sup>2</sup>  which in this case equals h<sup>2</sup> = .50
+
+2.  0 printing the solutions
+    1 printing the solutions and the accuracy squared, for smaller number of data (pc-time problems)
+    2 printing the triangualrization inclusive dependent var - last line the solutions
+    3 printing the rearranged input with classes from zero to n-1 and dependent variable as the final.
+    4 printing the equations inclusive the dependent var.
+    5 printing all types of output
+
+3.  0 normal model
+    1 model with inbreeding - for smaller number of data (more roundings and pc-time problems)
+    
+4.- 0 exclude the trait from the analyses   
+    1 specify a continued variable where the last one is the dependent trait 
+   -1 specify the dependent trait if not the last trait -  which is then interchanged with the last variable 
+    2 specify a class variable
+    3 specify a class variable but with all classes included (this can not be solved)</PRE>
+
+
+
+<p><a name="example"></a><b>Example of estimating  animal model breeding values for 8 animals, where the input file contains:
+<br>Animal Sire Dam, where 0 means unknown, one fixed factor, two continued vars. and the trait litter size
+ - except first line which specify the parameters explained above. </b>
+<TABLE CELLPADDING="5" WIDTH="96%">
+  <TR>
+       <TD BGCOLOR="#99ff99">
+<pre>Put the data below in 
+<b>the input window </b>
+followed by a return stroke 
+
+
+<b>1 0 0 2 1 1  1</b> 
+1 0 0 3 2 0  10
+2 0 0 2 3 1   9
+3 0 0 1 4 0   8 
+4 0 0 2 1 1   7
+5 1 2 1 5 1   9 
+6 1 2 1 6 0  10 
+7 3 4 2 4 1   8
+8 5 6 3 6 1  11
+ 
+
+</td>  <td><pre>Genealogical diagram     
+<br><IMG SRC="ped1.gif" HEIGHT=120 ></td>  
+<td>
+<pre> <b>Resulting in </b> 
+
+
+Animal model solutions
+
+ 1.0000	 0.1955	
+ 2.0000	 0.4287	
+ 3.0000	-0.3799	
+ 4.0000	-0.2443	
+ 5.0000	 0.3420	
+ 6.0000	 0.3582	
+ 7.0000	-0.4206	
+ 8.0000	 0.2903	
+ 0.0000	 6.9749	mean value
+ 2.0000	 0.5183	class  there is no degree of freedom for class 1
+ 3.0000	 1.8716	class
+ 0.0000	 0.4191	regression 1
+ 0.0000	-0.5322	regression 2</pre>
+</td>  </TR></table>
+
+
+<br>In the referred theory by Poul Jensen the first example on growth rate in young pigs can not be solved as the class year is given for all animals as follows.
+But the system will nullify the first year and it is then converted to a regression giving 4.3883 gram extra the second year. 
+The heritability is set to 0.33. 
+
+<TABLE CELLPADDING="5" WIDTH="96%">
+  <TR><TD valign="top">
+<pre>
+<b>2 0 0 2 1 </b>
+1 0 0 0 0
+2 0 0 1 225
+3 0 0 1 220
+4 0 0 1 255
+5 1 3 2 250
+6 1 3 2 198
+7 2 4 2 245
+8 2 4 2 260
+9 2 4 2 235</pre>
+</td>  <td>
+<pre>Genealogical diagram
+<IMG SRC="ped2.gif" HEIGHT=110 ></td>  
+<td><pre>
+Animal model solutions
+
+animal   estimate
+
+ 1.0000	-3.1844	
+ 2.0000	-0.3009	
+ 3.0000	-6.2135	
+ 4.0000	 9.6990	
+ 5.0000	-1.0912	
+ 6.0000	-11.4912	
+ 7.0000	 5.4271	
+ 8.0000	 8.4271	
+ 9.0000	 3.4271	
+ 0.0000	 232.2718	
+ 0.0000	 4.3883	</pre>
+  </td></TR>
+</table>
+
+<br>In case some of the parents are inbred the estimates will not be the same. In the following 
+small example solutions are made with (parameter 3 set to 1) and without inbreeding. Example 2.1 from RA Mrode
+ 'linear models for estimating breeding values, CABI Publishing'.
+
+The heritability is set to 0.33.
+
+<TABLE CELLPADDING="5" WIDTH="96%">
+  <TR>
+    <TD valign="top">
+<pre>
+<b>2 0 1 1 </b>
+1 0 0 15
+2 0 0 19
+3 1 2 7
+4 1 0 13
+5 4 3 22
+6 5 2 10</pre>
+</td>  <td>
+<pre>Genealogical diagram
+<IMG SRC="ped3.gif" HEIGHT=110 ></td>  
+  <td><pre>Animal model solutions
+
+not accounting for inbreeding
+
+ 1.0000	-0.3699	
+ 2.0000	 0.1725	
+ 3.0000	-1.0988	
+ 4.0000	 0.1110	
+ 5.0000	 0.7084	
+ 6.0000	-0.5484	
+ 0.0000	 14.5041 </pre></td>
+<td><pre>Animal model solutions
+
+accounting for inbreeding
+
+ 1.0000	-0.3665	
+ 2.0000	 0.1689	
+ 3.0000	-1.0983	
+ 4.0000	 0.1131	
+ 5.0000	 0.7070	
+ 6.0000	-0.4987	
+ 0.0000	 14.4957	
+	</pre>
+
+</td></TR>
+</table>
+<br>Estimating of the accuracy squared for the estimate; example 3.1 RA Mrode.
+The heritability is set to 0.33.
+
+<TABLE CELLPADDING="5" WIDTH="96%">
+  <TR>
+    <TD valign="top">
+<pre>
+<b>2 1 0 2 1 </b> 
+1 0 0 0 0
+2 0 0 0 0
+3 0 0 0 0
+4 1 0 1 4.5
+5 3 2 2 2.9
+6 1 2 2 3.9
+7 4 5 1 3.5
+8 3 6 1 5.0</pre>
+</td>  <td>
+<pre>Genealogical diagram
+<IMG SRC="ped4.gif" HEIGHT=110 ></td>  
+  <td><pre>
+Relationship matrix
+1.00 0.00 0.00 0.00 0.50 0.50 0.00 0.00 0.00 0.00 
+0.00 1.00 0.00 0.00 0.00 0.00 0.50 0.50 0.50 0.00 
+0.00 0.00 1.00 0.00 0.50 0.50 0.00 0.00 0.00 0.00 
+0.00 0.00 0.00 1.00 0.00 0.00 0.50 0.50 0.50 0.00 
+0.50 0.00 0.50 0.00 1.00 0.50 0.00 0.00 0.00 0.00 
+0.50 0.00 0.50 0.00 0.50 1.00 0.00 0.00 0.00 0.00 
+0.00 0.50 0.00 0.50 0.00 0.00 1.00 0.50 0.50 0.00 
+0.00 0.50 0.00 0.50 0.00 0.00 0.50 1.00 0.50 0.00 
+0.00 0.50 0.00 0.50 0.00 0.00 0.50 0.50 1.00 0.00 
+0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 1.00 </td>
+</TR>
+  <td><pre>
+The inverse Matrix
+ 2.00  0.00 1.00  0.00 -1.00 -1.00  0.00  0.00  0.00 0.00 
+ 0.00  2.50 0.00  1.50 0.00   0.00 -1.00 -1.00 -1.00 0.00 
+1.00   0.00 2.00  0.00 -1.00 -1.00  0.00  0.00  0.00 0.00 
+ 0.00  1.50 0.00  2.50 0.00   0.00 -1.00 -1.00 -1.00 0.00 
+-1.00  0.00 -1.00 0.00 2.00   0.00  0.00  0.00  0.00 0.00 
+-1.00  0.00 -1.00 0.00 0.00   2.00  0.00  0.00  0.00 0.00 
+ 0.00 -1.00 0.00 -1.00 0.00   0.00  0.00  0.00  0.00 0.00 
+ 0.00 -1.00 0.00 -1.00 0.00   0.00  0.00  2.00  0.00 0.00 
+ 0.00 -1.00 0.00 -1.00 0.00   0.00  0.00  0.00  2.00 0.00 
+ 0.00  0.00 0.00  0.00 0.00   0.00  0.00  0.00  0.00 1.00 </td>
+</TR>
+
+</table>
+
+<br>Larger example solutions for y, <b>note that there is free numbering of the animals</b> as long as the oldest occur first,
+sex 2 has a 5.6002 units lower performance.
+<TABLE CELLPADDING="5" WIDTH="96%">
+  <TR>
+    <TD valign="top">
+<pre>
+
+
+
+animal sire  dam  y  sex trait2
+
+<b>2 0 0 -1 1 2</b>
+1 0 0 0 0 0
+2 0 0 0 0 0
+3 0 0 0 0 0
+4 0 0 0 0 0
+5 0 0 0 0 0
+6 0 0 0 0 0
+7  0  0  93   2 2
+8  1  2  78   1 2
+9  1  2  63   1 3
+10 1  3  91   1 3
+11 1  3  70   2 3
+12 1  3  100   2 2
+13 1  4  102   1 4
+14 1  5  119   1 5
+15 1  5  121   2 4
+16 1  6  93   2 6
+17 1  6  81   2 4
+18 1  6  82   2 3
+19 14 17 78   2 2
+20 14 17 88   1 5
+21 14 17 85   2 6
+22 14 7  91   2 5
+23 14 7  113   1 7
+24 14 7  118   2 5
+25 14 15 91   2 4
+26 14 15 83   2 2
+27 14 15 102   1 4
+<b>128</b> 14 12 87   2 5
+29 14 12 83   1 3
+30 14 12 86   1 3
+31 14 16 106   2 4
+32 14 16 90   1 5
+33 14 16 57   2 3
+34 23 25 82   1 2
+35 23 25 84   1 1
+36 23 25 77   2 3
+37 23 22 83   2 2
+38 23 <b>128</b> 95   1 5
+39 23 <b>128</b> 68   2 4
+40 23 31 116   1 6
+41 23 31 112   1 7
+42 23 31 88   2 5
+43 23 24 121   1 4
+44 23 24 98   1 4
+45 23 24 86   1 4
+</pre>
+</td><td>
+<pre>Animal model solutions
+
+The first variable contains numbers 
+of animal (mean) classes and regressions
+and the second the estimate
+
+ 1.0000	-1.4325	
+ 2.0000	-4.4927	
+ 3.0000	 3.1002	
+ 4.0000	 0.4142	
+ 5.0000	 2.9162	
+ 6.0000	-3.3706	
+ 7.0000	 2.8651	
+ 8.0000	-4.7612	
+ 9.0000	-5.6569	
+ 10.0000	 2.9802	
+ 11.0000	-0.0996	
+ 12.0000	 2.7212	
+ 13.0000	-0.0949	
+ 14.0000	-0.4850	
+ 15.0000	 4.8850	
+ 16.0000	-3.7721	
+ 17.0000	-6.5152	
+ 18.0000	-0.2880	
+ 19.0000	-4.0711	
+ 20.0000	-5.4854	
+ 21.0000	-5.5097	
+ 22.0000	-0.0535	
+ 23.0000	-1.6506	
+ 24.0000	 5.2497	
+ 25.0000	 0.6864	
+ 26.0000	 1.4889	
+ 27.0000	 2.0724	
+ <b>128.0000</b>	-3.1481	
+ 29.0000	 1.6076	
+ 30.0000	 2.2076	
+ 31.0000	 0.8187	
+ 32.0000	-3.9882	
+ 33.0000	-5.0696	
+ 34.0000	-1.9767	
+ 35.0000	-0.4821	
+ 36.0000	 0.2475	
+ 37.0000	-0.9527	
+ 38.0000	-3.2048	
+ 39.0000	-7.2870	
+ 40.0000	 2.0375	
+ 41.0000	-0.6642	
+ 42.0000	-1.8980	
+ 43.0000	 5.5520	
+ 44.0000	 0.9520	
+ 45.0000	-1.4479	
+ 0.0000	 90.0823	
+ 2.0000	 5.4732	
+ 3.0000	-5.0481	
+ 4.0000	 15.9558	
+ 5.0000	 16.9446	
+ 6.0000	 19.6661	
+ 7.0000	 29.1753	
+ 0.0000	-5.6002	
+</pre>
+</td></tr></table>
+The theory has been given by late Poul Jensen; 
+<br><A HREF="pj3.pdf">Back to theory 3 of animal model</A> and <A HREF="pj4.pdf">back to  theory 4 of animal model</A>; 
+
+See also <A HREF="//agtr.ilri.cgiar.org/index.php?option=com_content&view=article&id=74&Itemid=185">Erling Strandbergs notes </A>
+<P><A HREF="0.htm">Back to the other programs</A>
+
+
+</BODY>
+</HTML>

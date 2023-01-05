@@ -1,0 +1,123 @@
+<HTML>
+<HEAD>
+<META NAME="Generator" CONTENT="Microsoft FrontPage 4.0">
+<TITLE>Selecci&oacute;n contra el recesivo</TITLE>
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#551a8b" ALINK="#ff0000" BGCOLOR="#ffffff">
+<H3>3.2 Selecci&oacute;n contra el recesivo</H3>
+
+<P><A HREF="1.htm">P&aacute;gina anterior</A> </P>
+
+<P>Al seleccionar en contra del  recesivo se obtiene la siguiente tabla.
+ Selecci&oacute;n (s) en contra del  recesivo es relativa en comparaci&oacute;n con el tipo dominante. 
+A la selecci&oacute;n del porcentaje de un determinado genotipo se da el 
+s&iacute;mbolo s, que no se reproducen en 
+cada generaci&oacute;n. Por lo tanto, 'el fitness 'es igual a
+ 1-s.</P>
+
+<BR WP="BR1"><BR WP="BR2"><PRE>Tabla con formulaci&oacute;n de selecci&oacute;n:
+---------
+Genotipo         EE               EE             ee       Total
+Frecuencia        p<SUP>2</SUP>               2pq           q<SUP>2</SUP>        = 1,00
+Fitness           1                1            1-s      
+Proporci&oacute;n       p<SUP>2</SUP>               2pq           q<SUP>2</SUP>(1-s)   = 1-sq<SUP>2</SUP>
+despu&eacute;s de selecci&oacute;n
+---------
+</PRE>
+
+<P>Despu&eacute;s de la selecci&oacute;n la frecuencia g&eacute;nica se calcula por el m&eacute;todo del
+ conteo de genes. La nueva 
+frecuencia g&eacute;nica q' se calcula como los heterocigotos m&aacute;s 2 veces los
+sobreviven recesivo con respecto a la proporci&oacute;n de genes de todos los supervivientes despu&eacute;s de la selecci&oacute;n, 
+que es igual a 1-sq<SUP>2</SUP> cada uno contiene 2 genes.
+<PRE>
+            q'  = (2pq  + 2*q<SUP>2</SUP>(1-s))/(2(1-sq<SUP>2</SUP>)) 
+
+</PRE>
+
+<TABLE ALIGN="RIGHT" BORDER="0" WIDTH="50%" >
+<TR><TD>
+Figura 3.3. Efecto de la selecci&oacute;n contra los recesivos y los cambios en 
+frecuencias g&eacute;nicas a trav&eacute;s de generaciones. Para 
+un gen de baja frecuencia  los cambios son muy lentos.
+<br><img src="../../genetik/3/2.gif" ></TD></TR></TABLE>
+
+<P>La frecuencia q' representa los genes que sobreviven y, por tanto, corresponde a la 
+frecuencia g&eacute;nica en  la pr&oacute;xima generaci&oacute;n despu&eacute;s de la selecci&oacute;n. La f&oacute;rmula puede ser 
+aplicada repetidamente generaci&oacute;n tras generaci&oacute;n. En la f&oacute;rmula 
+q se calcula de la generaci&oacute;n anterior y as&iacute; sucesivamente.</P>
+
+<P>Figura 3.3 muestra una aplicaci&oacute;n de esta f&oacute;rmula. Por una fuerte selecci&oacute;n (s = 1) el cambio de frecuencias g&eacute;nicas
+es muy r&aacute;pida para un gen con alta 
+frecuencias. Si la frecuencia g&eacute;nica en contrastes es baja, la selecci&oacute;n apenas afectar&aacute; a la frecuencia, 
+la poblaci&oacute;n se ha estacionado el gen en una posici&oacute;n de espera por as&iacute; decirlo. Esto provoca algunos problemas si 
+se refiere a un gen recesivo de enfermedad en una poblaci&oacute;n de animales. La selecci&oacute;n no puede realmente resolver este problema. 
+Por lo tanto existe un gran inter&eacute;s en la b&uacute;squeda de un m&eacute;todo de prueba de ADN para diagnosticar los heterocigotos 
+transportista. 
+
+De Figura 3.3 tambi&eacute;n se hace evidente que a presi&oacute;n bajo de selecci&oacute;n   los cambios en las frecuencias g&eacute;nicas 
+siempre son muy lentos. </P>
+
+<P>Para s = 1 la f&oacute;rmula para los cambios de las frecuencias g&eacute;nicas  se puede ampliar a las generaciones n, 
+cuando q<sub>0</SUB> es la frecuencia g&eacute;nica en la poblaci&oacute;n inicial:</P>
+<PRE>	q<SUB>n</SUB> = q<SUB>0</SUB>/(1+n*q<SUB>0</SUB>)
+</PRE>
+
+<P>De esta f&oacute;rmula, n puede ser aislada y puede calcularse el n&uacute;mero
+ de generaciones 
+que ser&aacute; necesaria para obtener un cambio en la frecuencia g&eacute;nica q.
+ </P>
+<PRE>	 n  = 1/q<SUB>n</SUB> - 1/q<SUB>0</SUB> 
+</PRE>
+
+
+<P>Ejemplo: Cuando s = 1, el cambio de frecuencia g&eacute;nicas  de 0,01 a 0,005
+ durara</P>
+
+
+<PRE>      n  = 1/0,005 - 1/0,01 = 200 - 100 = 100 
+</PRE>
+
+
+<P>Toma 100 generaciones para cambiar la frecuencia de un gen letal del 1% al 5 
+por mil. </P>
+
+<P>Un applet, como se ver&aacute; m&aacute;s adelante, para el c&aacute;lculo de las frecuencias g&eacute;nicas 
+cambios para las diferentes combinaciones de fitness, 
+haga clic<A HREF="../applets/selekt.htm"> aqu&iacute;.</A> 
+Los c&aacute;lculos indican que las frecuencias g&eacute;nicas cambio 0,5 a 0,42 despu&eacute;s de una generaci&oacute;n 
+de selecci&oacute;n cuando el 'fitness' de la recesiva es igual a 0,5 Lleva 100 generaciones para cambiar la frecuencia de un gen letal del 1% al 5 
+por mil.
+
+
+<P ALIGN="CENTER"><img src="../../genetik/3/31.gif" width="458" height="152" align=bottom > </P>
+
+<P><STRONG>Prueba de ADN y el sacrificio de machos heterocigotos</STRONG> <BR> 
+Se necesita mucho tiempo para eliminar una enfermedad recesiva de un 
+poblaci&oacute;n, cuando 
+s&oacute;lo ha sido seleccionado contra el recesivo. En muchas 
+poblaciones el n&uacute;mero es relativamente menor de machos que de hembras.
+ Por lo tanto, es a menudo 
+suficiente usar la prueba de ADN para el sexo masculino. Como los machos
+ contribuyen  la mitad de los 
+genes en la nueva generaci&oacute;n. La frecuencia g&eacute;nica de la enfermedad gen&eacute;tica  
+se reducir&aacute; a la mitad en cada 
+
+nueva generaci&oacute;n, si s&oacute;lo los machos 'libres' se utilizan para la cr&iacute;a. 
+Al 
+mismo tiempo, se logra tambi&eacute;n que no segregaci&oacute;n de los afectados
+ recesiva 
+se vaya a producir. <BR> 
+<STRONG> Ejemplo: </STRONG> La enfermedad hereditaria recesiva BLAD (Bovino  Leucocitos 
+Adherencia Deficiencia) de alta frecuencia se produce en las razas lecheras.
+ En 1992, la frecuencia g&eacute;nica en la
+poblaci&oacute;n danesa de vacas fue de aproximadamente el 15% de la BLAD gen. Sistem&aacute;ticamente 
+las pruebas de ADN para "BLAD" en todos los toros la frecuencia en el a&ntilde;o 2000 se ha reducido a menos 
+de 7%. Por este procedimiento, la  frecuencia g&eacute;nica de  
+BLAD se reduce a la mitad en cada nueva 
+generaci&oacute;n.</P>
+
+<P><A HREF="3.htm">P&aacute;gina siguiente</A> </P>
+
+</BODY>
+</HTML>

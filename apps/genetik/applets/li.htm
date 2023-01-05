@@ -1,0 +1,416 @@
+<HTML>
+<HEAD>
+<SCRIPT LANGUAGE="JavaScript">
+
+function Restart() {
+
+
+document.link.b3.value = "0";document.link.b4.value = "0";document.link.b5.value = "0";document.link.b6.value = "0";
+ 
+document.link.c2.value ="0.3";
+document.link.c3.value =" ";document.link.c4.value =" ";document.link.c5.value =" ";document.link.c6.value =" ";
+
+document.link.d2.value ="0.2";
+
+document.link.d3.value =" ";document.link.d4.value =" ";document.link.d5.value =" ";document.link.d6.value =" ";
+
+document.link.e2.value ="0.2";
+
+document.link.e3.value =" ";document.link.e4.value =" ";document.link.e5.value =" ";document.link.e6.value =" ";
+
+ 
+document.link.f2.value ="0.3";
+
+document.link.f3.value =" ";document.link.f4.value =" ";document.link.f5.value =" ";document.link.f6.value =" ";
+
+
+document.link.g2.value ="0.5";
+
+document.link.g3.value =" ";document.link.g4.value =" ";document.link.g6.value =" ";
+document.link.i2.value ="0" ;
+document.link.store.value =" ";
+
+}
+
+function Initiate() { 
+document.link.b3.value = "1";document.link.b4.value = "0";document.link.b5.value = "0";document.link.b6.value = "0";
+document.link.c2.value = "0";document.link.d2.value = "0";document.link.e2.value = "0";document.link.f2.value = "1";
+document.link.f3.value ="AaBb  1" ;document.link.i2.value ="1" ;
+
+} 
+
+function Calculate() {
+
+cif= document.link.gg2.value;
+
+
+ genera = document.link.i2.value  ;x =genera; genera = 1 +eval(x);
+ document.link.i2.value = genera ;
+
+
+  f1 =                 document.link.c2.value ;
+  f2 =                 document.link.d2.value ;
+  f3 =                 document.link.e2.value ;
+  f4 =                 document.link.f2.value ;
+  f5 =                 document.link.b3.value ;
+  f6 =                 document.link.b4.value ;
+
+
+sum =eval(f1) + eval(f2) + eval(f3)+ eval(f4);
+
+if(sum != 1 ) {alert("Error in gamete freq.\n Do not sum to 1");abort();}
+
+ 
+if(f5 == "0" && f6 == "0") {document.link.b3.value = f1;document.link.b4.value = f2;document.link.b5.value = f3;document.link.b6.value = f4;}
+ 
+
+  g1 =                 document.link.b3.value ;
+  g2 =                 document.link.b4.value ;
+  g3 =                 document.link.b5.value ;
+  g4 =                 document.link.b6.value ; 
+
+d = (f4*g1 + f1*g4 - f2*g3 -f3*g2 )/2;
+
+document.link.g6.value =  d ;
+
+pA =(eval(f1) + eval(f2) + eval(g1)+ eval(g2))/2;
+
+document.link.g3.value ="p(A) =" + pA;
+
+pB =(eval(f1) + eval(f3) + eval(g1)+ eval(g3))/2;
+
+document.link.g4.value ="p(B) ="+ pB ;
+
+
+c= document.link.g2.value;
+d *=(1-c);
+
+f1 =pA*pB+d; g1=f1;
+
+            document.link.c2.value = f1.toFixed(cif);
+            document.link.b3.value = f1.toFixed(cif);
+
+f2 =pA*(1-pB)-d; g2=f2;
+f3 =(1-pA)*pB-d;  g3=f3;
+f4 =(1-pA)*(1-pB)+d; g4=f4;
+
+            document.link.d2.value = f2.toFixed(cif) ;
+            document.link.e2.value = f3.toFixed(cif) ;
+            document.link.f2.value = f4.toFixed(cif) ;
+            document.link.b4.value = f2.toFixed(cif) ;
+            document.link.b5.value = f3.toFixed(cif) ;
+            document.link.b6.value = f4.toFixed(cif) ;
+
+
+
+document.link.c3.value = "AABB "+(f1*g1).toFixed(cif) ;document.link.c4.value ="AABb "+ (f1*g2).toFixed(cif) ;
+document.link.c5.value = "AaBB "+(f1*g3).toFixed(cif) ;document.link.c6.value = "AaBb "+(f1*g4).toFixed(cif) ;
+
+document.link.d3.value ="AABb "+ (f2*g1).toFixed(cif) ;document.link.d4.value ="AAbb "+ (f2*g2).toFixed(cif) ;
+document.link.d5.value ="aABb "+ (f2*g3).toFixed(cif) ;document.link.d6.value ="Aabb "+ (f2*g4).toFixed(cif) ;
+
+document.link.e3.value ="AaBB "+ (f3*g1).toFixed(cif) ;document.link.e4.value ="aABb "+ (f3*g2).toFixed(cif) ;
+document.link.e5.value ="aaBB "+ (f3*g3).toFixed(cif) ;document.link.e6.value ="aaBb "+ (f3*g4).toFixed(cif) ;
+
+document.link.f3.value ="AaBb "+ (f4*g1).toFixed(cif) ;document.link.f4.value = "Aabb "+ (f4*g2).toFixed(cif) ;
+document.link.f5.value ="aaBb "+ (f4*g3).toFixed(cif) ;document.link.f6.value = "aabb "+ (f4*g4).toFixed(cif) ;
+
+
+
+}
+
+function Run() {
+
+cif= document.link.gg2.value;
+
+
+   antABf =  document.link.c2.value ;
+   antAbf =  document.link.d2.value ;
+   antaBf =  document.link.e2.value ;
+   antabf =  document.link.f2.value ;
+
+   antABm = document.link.b3.value ;
+   antAbm = document.link.b4.value ;
+   antaBm = document.link.b5.value ;
+   antabm = document.link.b6.value ;
+
+
+  hjp = eval(antABf)+eval(antAbf) +eval(antaBf)+eval(antabf);
+  if (hjp == 0.)    {
+  antABf = antABm;
+  antAbf = antAbm;
+  antaBf = antaBm;
+  antabf = antabm;
+                       }
+
+  genfA = (eval(antABm)+eval(antAbm) +eval(antABf)+eval(antAbf))/2;
+  genfB = (eval(antABm)+eval(antaBm) +eval(antABf)+eval(antaBf))/2;
+
+  c= document.link.g2.value;
+  genera = document.link.i2.value;
+  if(genera < 2){genera =50; document.link.i2.value ="50";} 
+
+   dis1 = (antABf*antabm+antabf*antABm-antAbf*antaBm-antaBf*antAbm)/2;
+
+  a= "Generation Diseq. (D)\n";
+
+rm =[];
+
+   for( i = 1; i < genera ;  ++i)
+   {  
+
+  dis = (antABf*antabm+antabf*antABm-antAbf*antaBm-antaBf*antAbm)/2;
+  
+  antABm =  (eval(antABf)+eval(antABm))/2- c*dis   ;
+  antAbm =  c*dis +  (eval(antAbf)+eval(antAbm))/2 ;
+  antaBm =  c*dis +(eval(antaBf)+eval(antaBm))/2   ;
+  antabm =  (eval(antabf)+eval(antabm))/2 - c*dis  ;
+  antABf = antABm;
+  antAbf = antAbm;
+  antaBf = antaBm;
+  antabf = antabm;
+
+
+ if (dis*dis < .000001*.000001) {dis=0. ;}
+
+  rm[i] =dis;
+
+  a += i + "\t" + dis.toFixed(cif) + "\n";
+
+     }
+
+
+document.link.store.value = a;
+
+for(  m = 1; m < 2 ;  ++m) {
+                       if (m == 1){ri=rm};
+ 
+qq=0; gg=1;   
+for(  k = 0; k < genera ;  ++k) { ggg = gg;qqq = qq;
+gg = ((k-1)/(genera-1))*500;
+qq = (1-ri[k])*300;
+                                      
+var c = document.getElementById("myCanvas");
+var ctx = c.getContext("2d");
+ctx.moveTo(gg,qq); 
+ctx.lineTo(ggg,qqq);
+ctx.stroke();
+} ctx.fillText(m,gg,qq);   ctx.moveTo(0,300);               }
+
+  
+    } 
+
+
+</SCRIPT>
+
+   <title>Linkage  calculation of gamete and genotype frequencies </title></HEAD>
+<BODY BGCOLOR="#00FFFF">
+<h3>2.5 Linkage, Calculation of gamete and genotype frequencies generation
+after generation</h3>
+
+<P>- Put your observed gamete frequencies or click the <B>initiate Mendel</B>
+button. If the mothers gamete frequencies sum to zero, the frequencies
+for the fathers is also applied for the mothers.
+<BR>- Click on <B>Next generation </B>button calculate the gamete and genotype
+frequencies in next generation.
+
+<FORM name="link">
+
+<table border="4"><tr>
+
+  <td><input type="text" name="a1" value="Gamet types" ></td>
+
+  <td><input type="text" name="a2" value="Mothers" ></td>
+
+  <td><input type="text" name="a3" value="Freq. gamet AB" ></td>
+
+  <td><input type="text" name="a4" value="Freq. gamet Ab" ></td>
+
+  <td><input type="text" name="a5" value="Freq. gamet aB" ></td>
+
+  <td><input type="text" name="a6" value="Freq. gamet ab" ></td>
+
+</tr><tr>
+
+  <td><input type="text" name="b1" value="Fathers" ></td>
+
+  <td><input type="text" name="b2" value="Frequencies" ></td>
+
+  <td><input type="text" name="b3" value="0" ></td>
+
+  <td><input type="text" name="b4" value="0" ></td>
+
+  <td><input type="text" name="b5" value="0" ></td>
+
+  <td><input type="text" name="b6" value="0" ></td>
+
+ 
+
+</tr><tr>
+
+  <td><input type="text" name="c1" value="Freq. gamet AB" ></td>
+
+  <td><input type="text" name="c2" value="0.3" ></td>
+
+  <td><input type="text" name="c3" value=" " ></td> 
+
+  <td><input type="text" name="c4" value=" " ></td>
+
+  <td><input type="text" name="c5" value=" " ></td>
+
+  <td><input type="text" name="c6" value=" " ></td>
+
+ 
+
+</tr><tr>
+
+  <td><input type="text" name="d1" value="Freq. gamet Ab" ></td>
+
+  <td><input type="text" name="d2" value="0.2" ></td>
+
+  <td><input type="text" name="d3" value=" " ></td>
+
+  <td><input type="text" name="d4" value=" " ></td>
+
+  <td><input type="text" name="d5" value=" " ></td>
+
+  <td><input type="text" name="d6" value=" " ></td>
+
+</tr><tr>
+
+  <td><input type="text" name="e1" value="Freq. gamet aB" ></td>
+
+  <td><input type="text" name="e2" value="0.2" ></td>
+
+  <td><input type="text" name="e3" value=" " ></td>
+
+  <td><input type="text" name="e4" value=" " ></td>
+
+  <td><input type="text" name="e5" value=" " ></td>
+
+  <td><input type="text" name="e6" value=" " ></td>
+
+ 
+
+</tr><tr>
+
+  <td><input type="text" name="f1" value="Freq. gamet ab" ></td>
+
+  <td><input type="text" name="f2" value="0.3" ></td>
+
+  <td><input type="text" name="f3" value=" " ></td>
+
+  <td><input type="text" name="f4" value=" " ></td>
+
+  <td><input type="text" name="f5" value=" " ></td>
+
+  <td><input type="text" name="f6" value=" " ></td>
+
+</tr><tr>
+
+ 
+
+  <td>Recombination freq -></td>
+  <td> <input type="text" name="g2" value="0.5" ></td>
+  <td><input type="text" name="g3" value="p(A) " ></td>
+  <td><input type="text" name="g4" value="p(B) " ></td>
+  <td><input type="text" name="g5" value="Diseq. ->" ></td>
+  <td><input type="text" name="g6" value=" " ></td>
+
+ 
+</tr><tr>
+
+  <td><input type="text" name="h1" value="Knud Christensen" ></td>
+
+  <td><input type="text" name="h2" value="Mail kc@sund.ku.dk" ></td>
+
+  <td><input type="text" name="h3" value="April 2015" ></td>
+
+  <td><input type="button" name="h4" value="Next generation" OnClick="Calculate()"></td>
+
+  <td><input type="button" name="h5" value="Initiate Mendel" OnClick="Initiate()"></td>
+
+ 
+  
+</tr><tr>  
+   <td>Generation -> </td>
+   <td><input type="text" name="i2" value="1" ></td>
+ <td>Set digit for print -> </td>
+<td><input type="text" name="gg2" value="5" ></td>
+ <td><input type="button" name="gg3" value="Restart" OnClick="Restart()"></td>
+ <td><input type="button" name="h6" value="Run over generations" OnClick="Run()"> </td>
+
+ 
+</tr></table>
+
+<b>Generation  disequlibrium  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ........Disequilibrium over generations......</b>
+<br><TEXTAREA NAME="store" cols="24" rows="18"></TEXTAREA> 
+<canvas id="myCanvas" width="600" height="300" style="border:1px solid #d3d3d3;"></canvas>
+
+</form>
+
+
+<P>In all cells with initial values you can put data and
+to get the results press the <B>Next generation</B> button. Table values are rounded
+to the desired number of decimals.
+<HR>
+Example:
+<br>When you look at segregation of genes at two loci the gametes that can
+be formed are shown below and symbols are given for the observed and expected
+frequencies, the deviation between the two has the symbol D for disequlibrium.
+<PRE>
+ Gamete  Observed frequency   Expected frequency    Deviation
+ --------------------------------------------------------------
+  AB       r                 p(A)*p(B)             D
+  Ab       s                 p(A)*q(b)             -D
+  aB       t                 q(a)*p(B)             -D
+  ab       u                 q(a)*q(b)             D</PRE>
+
+<p>The disequilibrium gets the symbol D can be calculated from the table above,
+and  can also be calculated as the half of
+the difference in the frequency of double heterozygotes in linkage- and
+repulsion phase:
+<PRE>      D = r*u - t*s    (= [f(AB/ab) - f(Ab/aB)]/2) from the table above
+    </PRE>
+The maximum disequilibrium occurs, when all double heterozygotes are in
+linkage phase f(AB/ab) or in repulsion phase f(Ab/aB). See the Figure below.
+
+<P><center><IMG SRC="../../genetik/2/5.gif" width=400 ></center>
+
+<P>Are the recombination frequency c would D be reduced to D*(1-c)
+per generation, and for the n'th generation D<SUB>n</SUB> = D<SUB>0</SUB>*(1-c)<SUP>n</SUP>.
+
+<P>If you apply the initial values r=0.1, s=0.2, t=0.3, u=0.4 and press the
+<B>Next generation </B>button, you will see calculated all the genotype
+frequencies and D=0.0199 rounded 0.02. If you continue using the <B>Next
+generation </B>button more times with c=0.5 you will see that D= approach
+0  which means observed and expected gamete frequencies are equal i.e.
+r=0,12.
+<hr>
+Questions:
+<br>Calculate the gamete frequency in the first 5 generations 
+and the equilibrium gamete frequencies in the genetic system shown below
+where the recombination frequencies between the two loci A and B is c=0.2.
+<p>
+<pre>Gamete  Observed frequency
+AB        0.21
+Ab 	  0.49
+aB	  0.19
+ab	  0.11
+</pre>
+<p>What would be the frequencies of the two types of double heterozygotes 
+in next generation?
+<br>How many generations will it take to reach equilibrium within 0.02 units ?
+Repeat the calculations for c=0.05.
+<p>In a F<sub>3</sub> after a cross between two pure lines aabb X AABB. What would
+be the gamete frequencies if c=.5 , .4 and .1 ?
+<br>Hints: Use the initiate mendel button and use the next generation button more times.
+<hr>
+
+<A HREF="../../genetics/2/5.htm">Back to theory</A>,
+<A HREF="../2/5.htm">Back to theory (in Danish)</A>
+
+or <A HREF="0.htm">Back to the other programs</A>
+</BODY>
+</HTML>
+

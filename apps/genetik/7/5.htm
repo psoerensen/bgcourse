@@ -1,0 +1,82 @@
+
+ 
+<HTML>
+<HEAD>
+<TITLE>7.5 Animal model avlsværdi estimering</TITLE>
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#551a8b" ALINK="#ff0000" BGCOLOR="#ffffff">
+<H3>7.5 Animal model avlsværdi estimering</H3>
+
+<P>&nbsp;<A HREF="4.htm"> foregående side</A> </P>
+
+<P>Animal model avlsværdi estimering benytter sig af alle informationer fra alle de målte dyr, derfor er det en 
+fordel om man kan sætte den inverse slægtskabsmatrise op direkte uden at skulle invertere den,
+ når det drejer sig om store populationer, se det følgende link.
+
+<p>Som man ksn se nedenfor har den inverse slægtskabsmatrise en meget simpel struktur, link til teorien for den simple struktur
+
+<P>
+
+<TABLE CELLPADDING="5" >
+  
+ <TR>
+
+    <TD valign="top" BGCOLOR="#99ff99" "ALIGN="CENTER">
+<pre>animal sire dam
+---------------
+1 0 0
+2 0 0 
+3 0 0
+4 0 0 
+5 1 2
+6 1 2 
+7 3 4 
+8 5 6 
+
+genealogical diagram
+<IMG SRC="../../genetik/applets/ped1.gif" HEIGHT=130 >
+</pre></TD>
+
+ 
+
+    <TD valign="top" BGCOLOR="#99ff99" ALIGN="CENTER">
+<pre>relationship matrix
+1.00 0.00 0.00 0.00 0.50 0.50 0.00 0.50  
+0.00 1.00 0.00 0.00 0.50 0.50 0.00 0.50 
+0.00 0.00 1.00 0.00 0.00 0.00 0.50 0.00 
+0.00 0.00 0.00 1.00 0.00 0.00 0.50 0.00 
+0.50 0.50 0.00 0.00 1.00 0.50 0.00 0.75 
+0.50 0.50 0.00 0.00 0.50 1.00 0.00 0.75 
+0.00 0.00 0.50 0.50 0.00 0.00 1.00 0.00 
+0.50 0.50 0.00 0.00 0.75 0.75 0.00 1.25 
+
+
+<pre>The inverse Matrix
+2.0  1.0  0.0  0.0 -1.0 -1.0  0.0  0.0 
+1.0  2.0  0.0  0.0 -1.0 -1.0  0.0  0.0 
+0.0  0.0  1.5  0.5  0.0  0.0 -1.0  0.0  
+0.0  0.0  0.5  1.5  0.0  0.0 -1.0  0.0 
+-1.0 -1.0 0.0  0.0  2.5  0.5  0.0 -1.0  
+-1.0 -1.0 0.0  0.0  0.5  2.5  0.0 -1.0 
+0.0  0.0 -1.0 -1.0  0.0  0.0  2.0  0.0 
+0.0  0.0  0.0  0.0 -1.0 -1.0  0.0  2.0  
+    </TR>
+
+
+</table>
+<p>
+
+<P>Direkte sæt up af den inverse slægtskabsmatrice <A HREF="../applets/pj3.pdf">click here</A> </P>
+		
+
+
+
+<P>Applet med mange beregnings eksempler af brugen af animal model <A HREF="../applets/animalm.htm">click here</A> </P>
+
+<P>Animal model inkluderende simultan beregning af middelværdi og andre korrektionsfaktore <A HREF="../applets/pj4.pdf">click here</A> </P>
+
+
+<P><A HREF="0.htm">lektion 7</A> </P>
+
+</BODY>
+</HTML>

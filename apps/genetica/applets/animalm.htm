@@ -1,0 +1,388 @@
+<HTML>
+<HEAD>
+   <TITLE>Estimaci&oacute;n de los valores de cr&iacute;a usando el modelo de animal  
+</TITLE>
+</HEAD>
+<BODY BGCOLOR="#00FFFF">
+
+<H3>7.2 Estimaci&oacute;n de los valores de cr&iacute;a usando el modelo de animal   </H3>
+
+Los c&aacute;lculos se basan en  parte  de la matriz general que ha sido producido
+ de Bryan Lewis con su applet matriz general.
+La parte general incluyen, por ejemplo matriz multiplicati&oacute;n como A = b*c o  A = b*c', que puede ser utilizado junto
+ con los c&aacute;lculos del modelo de animal.
+
+<p>El applet se puede manejar <A HREF="tabularapp.htm">c&aacute;lculo de la consanguinidad y relaci&oacute;n, 
+la matriz inversa</a> y la estimaci&oacute;n de los valores de cr&iacute;a del modelo de animal.</b> <a href="#example">Enlace ejemplo
+</a>
+
+<P><APPLET 
+    code=TabularApp.class
+    name=TabularApp
+    width=800
+    height=500 >If
+you see this you can't run the applet.
+<BR>chose Options | Network Preferences | Languages | Enable Java </APPLET>
+
+
+
+
+<P><b>La estimaci&oacute;n de las valores de cr&iacute;a del modelo de animal, comando an=:animalm(a), </b> se puede corregir para 
+cualquier n&uacute;mero de variables de clase   o variables continuas en cualquier combinaci&oacute;n.
+ 
+<br>Para las variables de clase la primera clase es excluida por no haber
+ un grado de libertad porque el valor medio siempre se calcula.
+ El cero es considerado como valor perdido, si el cero es una 
+parte del conjunto de observaciones una constante se debe ser a&ntilde;adida.
+Las primeras 3 columnas en el conjunto de datos deber&aacute; contener  animal, padre y madre - todas las dem&aacute;s columnas 
+se pueden utilizar libremente
+
+
+<p><b>Los par&aacute;metros de la primera l&iacute;nea de datos especifica - refiri&eacute;ndose al ejemplo seguido y en general</b>
+<pre>
+1.   1 especifica (sigmaE/sigmaA)<sup>2</sup> en este caso 1 es igual a h<sup>2</sup> = 0,50
+ 
+2.   0 impresi&oacute;n de las soluciones 
+     1 impresi&oacute;n de las soluciones y la precisi&oacute;n cuadrada, para un n&uacute;mero peque&ntilde;o de datos (pc tiempo problemas)
+     2 impresi&oacute;n de la  triangualrization incluido la variable dependiente - la &uacute;ltima l&iacute;nea las soluciones
+     3 impresi&oacute;n de la entrada matriz reorganizado con las clases de cero a n-1 y la variable dependiente como la final.
+     4 impresi&oacute;n de las ecuaciones incluido la variable dependiente.
+
+3.   0 no incluyendo la consanguinidad
+     1 modelo incluyendo la consanguinidad - para menor n&uacute;mero de datos (m&aacute;s redondeos y problemas de PC tiempo)
+
+4.-  0 excluir el rasgo del an&aacute;lisis 
+     1 especificar una variable continua, el &uacute;ltimo es el rasgo dependiente
+    -1 especificar la variable dependiente, si no es el &uacute;ltimo rasgo - que luego se intercambian con la &uacute;ltima variable
+     2 especificar una variable de clase (factor fijo)
+     3 especificar una variable de clase donde se usan todos las clases (no puede ser resolvado) </PRE>
+
+
+<br>Modelo de animal soluciones<b> se obtiene con la inserci&oacute;n del comando an=:animalm(a) </b> en la ventana de entrada.
+
+<p><a name="example"></a>Ejemplo de estimaci&oacute;n de valores de cr&iacute;a ded modelo de animal  de 8 animales, 
+la lista de entrada contiene:
+ <br> Animal padre, madre, donde 0 significa desconocido, un factor fijo, 
+ dos variables continuas,
+ y el tama&ntilde;o de la camada. 
+  - excepto la primera l&iacute;nea que se especifican los par&aacute;metros que se 
+  explican por encima
+
+
+<TABLE CELLPADDING="5" WIDTH="96%">
+  <TR>
+<TD BGCOLOR="#99ff99">
+<pre>Ponga los datos
+en el &aacute;rea de entrada, 
+seguido de un retorno
+
+a=
+<b>1 0 0 2 1 1  1</b> 
+1 0 0 3 2 0  10
+2 0 0 2 3 1   9
+3 0 0 1 4 0   8 
+4 0 0 2 1 1   7
+5 1 2 1 5 1   9 
+6 1 2 1 6 0  10 
+7 3 4 2 4 1   8
+8 5 6 3 6 1  11
+ 
+
+</td>  <td><pre>Diagram  genealogical    
+<br><IMG SRC="../../genetik/applets/ped1.gif" HEIGHT=120 ></td>  
+<td>
+<pre>Resultando en los siguientes
+en el output &aacute;rea
+a =
+ 1  0  0  2  1  1  1 
+ 1  0  0  3  2  0  10 
+ 2  0  0  2  3  1  9 
+ 3  0  0  1  4  0  8 
+ 4  0  0  2  1  1  7 
+ 5  1  2  1  5  1  9 
+ 6  1  2  1  6  0  10 
+ 7  3  4  2  4  1  8 
+ 8  5  6  3  6  1  11	
+</pre>
+</td><td>
+<pre>Seguido  de <b>an=:animalm(a)</b> 
+y presionar de retorno
+
+Animal model solutions
+an =
+ 1.0000	 0.1955	
+ 2.0000	 0.4287	
+ 3.0000	-0.3799	
+ 4.0000	-0.2443	
+ 5.0000	 0.3420	
+ 6.0000	 0.3582	
+ 7.0000	-0.4206	
+ 8.0000	 0.2903	
+ 0.0000	 6.9749	el valor medio
+ 2.0000	 0.5183	clase, no hay un grado de libertad para la clase 1
+ 3.0000	 1.8716	clase
+ 0.0000	 0.4191	regresi&oacute;n 1
+ 0.0000	-0.5322	regresi&oacute;n 2</pre>
+</td>  </TR></table>
+
+
+
+
+
+<p>El primer ejemplo en la teor&iacute;a de Poul Jensen se refiera a la tasa de crecimiento en cerdos j&oacute;venes aqu&iacute;  
+los resueltos son diferentes como el a&ntilde;o en la clase se da para todos los animales de la siguiente manera.
+ Pero el sistema aqu&iacute;  anular&aacute; el primer a&ntilde;o y luego se convierte en una regresi&oacute;n dando 4,3883 gramo extra 
+del segundo a&ntilde;o.
+ La heredabilidad se establece en 0,33.
+
+
+<TABLE CELLPADDING="5" WIDTH="96%">
+  <TR><TD valign="top">
+<pre>a=
+<b>2 0 0 2 1 </b>
+1 0 0 0 0
+2 0 0 1 225
+3 0 0 1 220
+4 0 0 1 255
+5 1 3 2 250
+6 1 3 2 198
+7 2 4 2 245
+8 2 4 2 260
+9 2 4 2 235</pre>
+</td>  <td>
+<pre>Diagram  genealogical 
+<IMG SRC="../../genetik/applets/ped2.gif" HEIGHT=110 ></td>  
+<td><pre>
+Animal model solutions
+
+animal   estimate
+an =
+ 1.0000	-3.1844	
+ 2.0000	-0.3009	
+ 3.0000	-6.2135	
+ 4.0000	 9.6990	
+ 5.0000	-1.0912	
+ 6.0000	-11.4912	
+ 7.0000	 5.4271	
+ 8.0000	 8.4271	
+ 9.0000	 3.4271	
+ 0.0000	 232.2718	
+ 0.0000	 4.3883	</pre>
+  </td></TR>
+</table>
+
+<p>En el caso de algunos de los padres son consanguinas las estimaciones no ser&aacute; el mismo. En las siguientes
+ soluciones de un peque&ntilde;o ejemplo se hacen con (par&aacute;metro 3 a 1). Un ejemplo 2.1 de RA. Mrode
+  'linear models for estimating breeding values, CABI Publishing'. La heredabilidad se establece en 0,33.
+
+<TABLE CELLPADDING="5" WIDTH="96%">
+  <TR>
+    <TD valign="top">
+<pre>a=
+<b>2 0 1 1 </b>
+1 0 0 15
+2 0 0 19
+3 1 2 7
+4 1 0 13
+5 4 3 22
+6 5 2 10</pre>
+</td>  <td>
+<pre>Diagram  genealogical 
+<IMG SRC="../../genetik/applets/ped3.gif" HEIGHT=110 ></td>  
+  <td><pre>Animal model solutions
+
+accounting for innbreeding
+an =
+ 1.0000	-0.3665	
+ 2.0000	 0.1689	
+ 3.0000	-1.0983	
+ 4.0000	 0.1131	
+ 5.0000	 0.7070	
+ 6.0000	-0.4987	
+ 0.0000	 14.4957
+</td>
+<td><pre>
+Animal model solutions
+
+no accounting for innbreeding
+an =
+ 1.0000	-0.3699	
+ 2.0000	 0.1725	
+ 3.0000	-1.0988	
+ 4.0000	 0.1110	
+ 5.0000	 0.7084	
+ 6.0000	-0.5484	
+ 0.0000	 14.5041 	
+	</pre>
+
+</td></TR>
+</table>
+<p>La estimaci&oacute;n de la precisi&oacute;n cuadrado para la estimaci&oacute;n, ejemplo 3.1 de RA Mrode.
+ La heredabilidad se establece en 0,33.
+
+
+<TABLE CELLPADDING="5" WIDTH="96%">
+  <TR>
+    <TD valign="top">
+<pre>a=
+<b>2 1 0 2 1 </b> 
+1 0 0 0 0
+2 0 0 0 0
+3 0 0 0 0
+4 1 0 1 4.5
+5 3 2 2 2.9
+6 1 2 2 3.9
+7 4 5 1 3.5
+8 3 6 1 5.0</pre>
+</td>  <td>
+<pre>Genealogical diagram
+<IMG SRC="../../genetik/applets/ped4.gif" HEIGHT=110 ></td>  
+  <td><pre>
+Animal model solutions
+with its squared accuracy
+an =
+ 1.0000	 0.0984	 0.0578	
+ 2.0000	-0.0187	 0.0158	
+ 3.0000	-0.0410	 0.0870	
+ 4.0000	-0.0086	 0.1446	
+ 5.0000	-0.1857	 0.1437	
+ 6.0000	 0.1768	 0.1154	
+ 7.0000	-0.2494	 0.1162	
+ 8.0000	 0.1826	 0.1552	
+ 0.0000	 4.3585	 0.	
+ 0.0000	-0.9540	 0.	 </td>
+</TR>
+</table>
+
+<p>Soluciones de un ejemplo m&aacute;s grande, <b>numeraci&oacute;n de los animales est&aacute; libre</b>, 
+siempre y cuando los animales m&aacute;s antiguos son los primeros. La heredabilidad se establece en 0,33. 
+El sexo 2 tiene 5,6002 unidades menos del sexo 1 (&uacute;ltimo l&iacute;nea).
+
+<TABLE CELLPADDING="5" WIDTH="96%">
+  <TR>
+    <TD valign="top">
+<pre>
+
+
+
+animal sire  dam  y  sex trait2
+a=
+<b>2 0 0 -1 1 2</b>
+1 0 0 0 0 0
+2 0 0 0 0 0
+3 0 0 0 0 0
+4 0 0 0 0 0
+5 0 0 0 0 0
+6 0 0 0 0 0
+7  0  0  93   2 2
+8  1  2  78   1 2
+9  1  2  63   1 3
+10 1  3  91   1 3
+11 1  3  70   2 3
+12 1  3  100   2 2
+13 1  4  102   1 4
+14 1  5  119   1 5
+15 1  5  121   2 4
+16 1  6  93   2 6
+17 1  6  81   2 4
+18 1  6  82   2 3
+19 14 17 78   2 2
+20 14 17 88   1 5
+21 14 17 85   2 6
+22 14 7  91   2 5
+23 14 7  113   1 7
+24 14 7  118   2 5
+25 14 15 91   2 4
+26 14 15 83   2 2
+27 14 15 102   1 4
+<b>128</b> 14 12 87   2 5
+29 14 12 83   1 3
+30 14 12 86   1 3
+31 14 16 106   2 4
+32 14 16 90   1 5
+33 14 16 57   2 3
+34 23 25 82   1 2
+35 23 25 84   1 1
+36 23 25 77   2 3
+37 23 22 83   2 2
+38 23 <b>128</b> 95   1 5
+39 23 <b>128</b> 68   2 4
+40 23 31 116   1 6
+41 23 31 112   1 7
+42 23 31 88   2 5
+43 23 24 121   1 4
+44 23 24 98   1 4
+45 23 24 86   1 4
+</pre>
+</td><td>
+<pre>Animal model solutions
+
+The first variable contains numbers 
+of animal (mean) classes and regressions
+and the second the estimate
+an =
+ 1.0000	-1.4325	
+ 2.0000	-4.4927	
+ 3.0000	 3.1002	
+ 4.0000	 0.4142	
+ 5.0000	 2.9162	
+ 6.0000	-3.3706	
+ 7.0000	 2.8651	
+ 8.0000	-4.7612	
+ 9.0000	-5.6569	
+ 10.0000	 2.9802	
+ 11.0000	-0.0996	
+ 12.0000	 2.7212	
+ 13.0000	-0.0949	
+ 14.0000	-0.4850	
+ 15.0000	 4.8850	
+ 16.0000	-3.7721	
+ 17.0000	-6.5152	
+ 18.0000	-0.2880	
+ 19.0000	-4.0711	
+ 20.0000	-5.4854	
+ 21.0000	-5.5097	
+ 22.0000	-0.0535	
+ 23.0000	-1.6506	
+ 24.0000	 5.2497	
+ 25.0000	 0.6864	
+ 26.0000	 1.4889	
+ 27.0000	 2.0724	
+ <b>128.0000</b>	-3.1481	
+ 29.0000	 1.6076	
+ 30.0000	 2.2076	
+ 31.0000	 0.8187	
+ 32.0000	-3.9882	
+ 33.0000	-5.0696	
+ 34.0000	-1.9767	
+ 35.0000	-0.4821	
+ 36.0000	 0.2475	
+ 37.0000	-0.9527	
+ 38.0000	-3.2048	
+ 39.0000	-7.2870	
+ 40.0000	 2.0375	
+ 41.0000	-0.6642	
+ 42.0000	-1.8980	
+ 43.0000	 5.5520	
+ 44.0000	 0.9520	
+ 45.0000	-1.4479	
+ 0.0000	 90.0823	
+ 2.0000	 5.4732	
+ 3.0000	-5.0481	
+ 4.0000	 15.9558	
+ 5.0000	 16.9446	
+ 6.0000	 19.6661	
+ 7.0000	 29.1753	
+ 0.0000	-5.6002	
+</pre>
+</td></tr></table>
+<A HREF="pj3.pdf">Volver a la teor&iacute;a 3 de modelo de animal , en Ingl&eacute;s</A> y <A HREF="pj4.pdf"> de nuevo a la teor&iacute;a 
+4 de modelo de animal , en Ingl&eacute;s</A>;
+
+ que hayan sido producidos por el finado  Poul Jensen.
+
+<P>or <A HREF="0.htm">Volver al otro applets</A>
+
+
+</BODY>
+</HTML>

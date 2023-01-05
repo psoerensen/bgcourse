@@ -1,0 +1,170 @@
+<HTML>
+<title>Beregning af indavl og sl&aelig;gtskab, 
+tabularmetoden</title>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#551a8b" ALINK="#ff0000" BGCOLOR="ffffff">
+<H3>4.5 Tabularmetoden til beregning af sl&aelig;gtskab og indavl </H3>
+
+<P><A HREF="4.htm">Foreg&aring;ende side</A> </P>
+
+<P>Beregning af indavl og sl&aelig;gtskab kan ske ved hj&aelig;lp af tabularmetoden. Tabularmetoden har den fordel, at der ikke skal
+opstilles et diagram over dyrene, samtidig med at man hele tiden regner fremad. Man bygger alts&aring; videre p&aring; de foreg&aring;ende
+generationers indavl og sl&aelig;gtskab, da hvert trin kun g&aring;r tilbage til for&aelig;ldrene.
+
+<P>Der anvendes kun to simple formler, 
+idet sl&aelig;gtskab og indavl ben&aelig;vnes med 
+a og F, som vist i efterf&oslash;lgende 2 punkter.
+
+<P>1) Indavlen for et dyr (X) er lig med halvdelen af 
+sl&aelig;gtskabet mellem dets to for&aelig;ldre
+ A og B og det additive sl&aelig;gtskabet med sig selv er
+<br>a<sub>XX</sub> = 1 + F<sub>X</sub>
+
+<br>2) Additiv sl&aelig;gtskab mellem to dyr X og Y er lig 
+halvdelen af sl&aelig;gtskabet mellem det &aelig;ldste dyr (X) og 
+det yngste dyrs (Y's) for&aelig;ldre A og B
+<br>a<sub>XY</sub> = (a<sub>XA</sub> + a<sub>XB</sub>)/2 </P>
+
+<P>Trin i opstilling af sl&aelig;gtskabs tabellen
+ er vist  nedenst&aring;ende. 
+
+<P>1) Skriv en linie med dyrnumrene (de &aelig;ldste f&oslash;rst)
+
+<br>2) Ovenover hvert dyrnr. skrives nummeret p&aring; hver af dets to for&aelig;ldre
+
+<br>3) Kopier trin 1) i en lodret s&oslash;jle
+
+<br>4) Skriv en r&aelig;kke 1'er i diagonalen
+
+<br>5) Beregn sl&aelig;gtskabet mellem dyr 1 og 2, 3, 4 op til n
+
+<br>6) Kopier f&oslash;rst r&aelig;kke i f&oslash;rste s&oslash;jle
+
+<br>7) Beregn sl&aelig;gtskabet mellem dyr 2 og 3, 4 op til n
+
+<br>8) Kopier anden r&aelig;kke i anden s&oslash;jle
+
+<br>9) etc. - - til diagonal elementet i hver r&aelig;kke adderes halvdelen af for&aelig;ldrenes sl&aelig;gtskab
+
+
+<p><br><TABLE align=right width="30%"><TR>
+<TD>
+<br><IMG SRC  = "../../genetik/4/51.gif"  ></TD>
+</TR></TABLE>
+
+<b>Eksempel: tabularmetoden anvendt til opstilling af sl&aelig;gtskabsmatrice</b>
+<br>Der foreligger f&oslash;lgende dataset med tilsvarende figur.
+<pre>Dyr Far Mor
+  1  0  0
+  2  1  0
+  3  1  0
+  4  1  0
+  5  3  2
+  6  3  4
+  7  5  6 </pre>
+<br>For h&aring;ndkalkulation er f&oslash;rst vist trinnene fra 1 til 4 
+nedenst&aring;ende.
+<pre>For&aelig;ldre        -    1 -   1 -   1 -   3-2   3-4   5-6 
+Dyr nr.         1     2     3     4     5     6     7
+              -----------------------------------------
+   1            1    
+   2                 1       
+   3                        1             
+   4                             1
+   5                                   1
+   6                                         1
+   7                                               1</pre>
+<br>N&aelig;ste trin (5 og 6) er at udfylde r&aelig;kke 1. F&oslash;rste v&aelig;rdi der 
+skal inds&aelig;ttes er v&aelig;rdien for dyr 2. Man g&aring; op i for&aelig;ldre r&aelig;kken
+her st&aring;r 1 og - (ukendt). V&aelig;rdien i kolonne 1 er 1  og ukendt s&aelig;ttes til 0
+hvilket giver(1 +0)/2 = 1/2 der inds&aelig;ttes. Samme resultat f&aring;r man for dyr 
+3 og 4. For dyr 5 er for&aelig;ldrene 2 og 3, i de tilsvarende 
+kolonner st&aring;r der nu 1/2 og 1/2, der l&aelig;gges sammen og deles med 
+to der giver en 1/2. Resultatet er det samme for dyrene
+6 og 7. Herefter kopieres f&oslash;rste r&aelig;kke i f&oslash;rste s&oslash;jle og man har.
+
+<pre>For&aelig;ldre        -    1 -   1 -   1 -   3-2   3-4   5-6 
+Dyr nr.         1     2     3     4     5     6     7
+              -----------------------------------------
+   1            1   1/2   1/2   1/2   1/2   1/2   1/2
+   2           1/2   1       
+   3           1/2         1             
+   4           1/2               1
+   5           1/2                     1
+   6           1/2                           1
+   7           1/2                                 1</pre>
+<BR>Herefter g&aring;s videre med anden r&aelig;kke (trin 7 og 8). Dyr 3 og 
+4 har 1 og
+ukendt som for&aelig;ldre. I s&oslash;jle 1 st&aring;r der 1/2 i anden r&aelig;kke
+der giver (1/2+0)/2 = 1/4 for dyr 3 og 4. For dyr 5
+der har for&aelig;ldrene 2 og 3 st&aring;r der 1 og 1/4 i de to tilsvarende s&oslash;jler
+og man f&aring;r (1+1/4)/2 = 5/8 for dyr 5. Dyr 3 og 4 er for&aelig;ldre
+til 6 deres gennemsnit sl&aelig;gtskab til 2 er en 1/4, der inds&aelig;ttes.
+Dyr 7 har for&aelig;ldrene 5 og 6, deres gennemsnitlige sl&aelig;gtskab til 2
+er (5/8+1/4)/2 = 7/16 der inds&aelig;ttes. Herefter kopieres
+de nye resultater til de tilsvarende pladser i s&oslash;jle 2.
+
+<pre>For&aelig;ldre        -    1 -   1 -   1 -   3-2   3-4   5-6 
+Dyr nr.         1     2     3     4     5     6     7
+               -----------------------------------------
+   1            1   1/2   1/2   1/2   1/2   1/2   1/2
+   2           1/2   1    1/4   1/4   5/8   1/4   7/16
+   3           1/2  1/4    1             
+   4           1/2  1/4          1
+   5           1/2  5/8               1
+   6           1/2  1/4                      1
+   7           1/2  7/16                           1</pre>
+<br>S&aring;ledes forts&aelig;ttes der med skemaet som 
+er en gentagelse af trin 7 og 8. Der skal
+dog lige huskes (trin 9), at der til diagonalelementet skal adderes halvdelen af
+for&aelig;ldrenes sl&aelig;gtskab. Det er f&oslash;rst aktuelt for dyr 5, hvor dyr 2 og 3
+har sl&aelig;gtskab p&aring; 1/4, der afl&aelig;se i linie 2 s&oslash;jle 3.
+<pre>For&aelig;ldre        -    1 -   1 -   1 -   3-2   3-4   5-6 
+Dyr nr.         1     2     3     4     5     6     7
+               -----------------------------------------
+   1            1   1/2   1/2   1/2   1/2   1/2   1/2
+   2           1/2   1    <b>1/4</b>   1/4   5/8   1/4   7/16
+   3           1/2  1/4    1    1/4   5/8   5/8   5/8         
+   4           1/2  1/4   1/4    1    1/4   5/8   7/16
+   5           1/2  5/8   5/8   1/4  1+1/8
+   6           1/2  1/4   5/8   5/8          1
+   7           1/2  7/16  5/8   7/16               1</pre>
+
+<BR><table align=right width="35%">
+<rt><td>De samme resultater beregnet med applet. Input i nederste del af vinduet og
+output i &oslash;verste del.
+<br><img src="../../genetik/4/tab.gif"  > 
+</td></table>
+<br>Det f&aelig;rdige skema bliver:
+<pre>For&aelig;ldre        -    1 -   1 -   1 -   3-2   3-4   5-6 
+Dyr nr.         1     2     3     4     5     6     7
+               -----------------------------------------
+   1            1   1/2   1/2   1/2   1/2   1/2   1/2
+   2           1/2   1    1/4   1/4   5/8   1/4   7/16
+   3           1/2  1/4    1    1/4   5/8   5/8   5/8         
+   4           1/2  1/4   1/4    1    1/4   5/8   7/16
+   5           1/2  5/8   5/8   1/4  1+1/8  7/16  25/32
+   6           1/2  1/4   5/8   5/8   7/16 1+1/8  25/32
+   7           1/2  7/16  5/8   7/16 25/32 25/32 1+7/32</pre>
+
+<P>Tabularmetoden kan edb'ficeres p&aring; en meget simpel 
+m&aring;de, s&aring; den metode er den foretrukne 
+n&aring;r beregningerne skal ske i
+store dyrebestande.</P>
+
+<P>Pile diagrammerne anvendes bedst i forbindelse med 
+genealogien, hvor det er vigtigt med overblikket. 
+I s&aring;danne tilf&aelig;lde
+spiller det enkelte dyr ofte en betydelig rolle. </P>
+
+<P>For at gennemf&oslash;re beregningerne er det lettest at anvende et edb program, 
+<A HREF="../applets/tabularapp.htm">klik her for applet</A>.
+Udskrift fra et DOS program, der kan analyserer hele populationer, kan ses <A HREF="inbred.htm"> her</A>. &Oslash;nskes
+programmet taget hjem <A HREF="inbred.exe"> klik her</A>
+ og fejl liste filen <A HREF="lf90.zip">klik her</A>. N&aring;r din browser foresl&aring;r save, klik save tasten og gem filen som
+'inbred.exe' og fl90.exe. Omd&oslash;b fl90.zip filen til fl90.eer. Filen inbred.exe der er en dos fil kan nu eksekveres 
+under DOS. Input filen generes som vist i udskrifts eksemplet.</P>
+
+<P><A HREF="0.htm">Lektion 4</A> </P>
+
+</BODY>
+</HTML>

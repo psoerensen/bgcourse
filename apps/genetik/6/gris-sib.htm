@@ -1,0 +1,99 @@
+DATA;
+/* Tekst
+   GRIS-SIB.htm contains data for 60 pigs for  body length. For each animal are
+   given fatherr and motherr No. Calculate the heritability and the common milieu factor.
+   for body length */
+input
+BODYL DAM SIRE    ;  CARDS;
+92.5    1 1
+93.5    1 1
+95.0    1 1
+89.5    1 1
+93.0    2 1
+98.0    2 1
+95.0    2 1
+92.5    2 1
+94.0    3 1
+91.0    3 1
+93.0    3 1
+92.0    3 1
+89.0    4 1
+89      4 1
+88      4 1
+91      4 1
+93      5 1
+91      5 1
+94      5 1
+90      5 1
+91.5    6 2
+95      6 2
+91      6 2
+91      6 2
+92      7 2
+95.5    7 2
+95.5    7 2
+92.5    7 2
+95.5    8 2
+90.5    8 2
+94.5    8 2
+92.5    8 2
+88.5    9 2
+91.     9 2
+91.5    9 2
+96.5    9 2
+93.5   10 2
+94.0   10 2
+91.0   10 2
+93.0   10 2
+96.0   11 3
+95.0   11 3
+89.0   11 3
+95.0   11 3
+94     12 3
+96     12 3
+93.5   12 3
+97     12 3
+94.5   13 3
+100    13 3
+95     13 3
+96     13 3
+92.5   14 3
+93     14 3
+93     14 3
+92.5   14 3
+91     15 3
+94     15 3
+99     15 3
+94.5   15 3
+PROC SORT; BY SIRE DAM;
+PROC nested;
+CLASS         SIRE DAM;
+VAR  BODYL;       run;
+
+/* alternativ analyse kan k&oslash;res
+ via GLM, mixed  og varcomp proceduren */
+
+
+proc glm;
+class sire dam;
+model bodyl =  sire sire(dam) /solution;
+random sire sire(dam);
+lsmeans sire sire(dam);
+means sire sire(dam) /duncan;
+run;
+
+proc varcomp maxiter=50 method=reml;
+class sire dam;
+model bodyl = sire dam ;
+run;
+
+proc mixed;
+class sire ;
+model bodyl = sire;
+run;
+
+
+proc mixed;
+class sire dam;
+model bodyl = sire dam ;
+run;

@@ -1,0 +1,324 @@
+<HTML><head>
+<title> 
+Program for mean, Genotypic and Breeding values and Dominance   
+</title>
+<SCRIPT LANGUAGE="JavaScript">
+
+function Calculate() {
+
+cif= document.adef.gg2.value;
+
+
+oAA= document.adef.c2.value ;
+oAa= document.adef.c3.value ;
+oaa= document.adef.c4.value 
+
+p = document.adef.d2.value ;
+q = document.adef.d4.value ;
+
+ mean=eval(oAA*p*p)+eval(oAa*2*p*q)+eval(oaa*q*q);
+
+document.adef.c5.value = "Mean value = " + mean.toFixed(cif); 
+  
+  gAA = oAA-mean;
+  gAa = oAa-mean;
+  gaa = oaa-mean;
+  VT  = p*p*gAA*gAA +2*p*q*gAa*gAa + q*q*gaa*gaa;
+
+  aAA =   2*(  gAA*p+gAa*q );   
+  aaa =   2*(  gAa*p+gaa*q );  
+  aAa =    (aAA+aaa)/2     ;
+  VA  = p*p*aAA*aAA +2*p*q*aAa*aAa + q*q*aaa*aaa;
+
+  dAA = gAA-aAA;
+  dAa = gAa-aAa;
+  daa = gaa-aaa;
+  VD  = p*p*dAA*dAA +2*p*q*dAa*dAa + q*q*daa*daa;
+
+
+document.adef.f2.value = gAA.toFixed(cif);
+document.adef.g2.value = gAa.toFixed(cif);
+document.adef.h2.value = gaa.toFixed(cif);
+document.adef.i2.value = "VarT =" + VT.toFixed(cif);
+
+document.adef.f3.value = aAA.toFixed(cif);
+document.adef.g3.value = aAa.toFixed(cif);
+document.adef.h3.value = aaa.toFixed(cif);
+document.adef.i3.value = "VarA =" + VA.toFixed(cif);
+
+document.adef.f4.value = dAA.toFixed(cif);
+document.adef.g4.value = dAa.toFixed(cif);
+document.adef.h4.value = daa.toFixed(cif);
+document.adef.i4.value = "VarD =" + VD.toFixed(cif);
+
+    a = (oAA - oaa)/2;
+    d = oAa -(eval(oAA) + eval(oaa))/2;
+    alfa = a + d*(q-p);
+
+document.adef.i1.value = "a = " + a.toFixed(cif) + " d = " + d.toFixed(cif) + " alfa = " + alfa.toFixed(cif) ;
+
+   }
+
+
+function Run() {
+cif= document.adef.gg2.value;
+
+      
+aa= " ";
+   
+
+oAA= document.adef.c2.value ;
+oAa= document.adef.c3.value ;
+oaa= document.adef.c4.value ;
+
+    a = (oAA - oaa)/2;
+    d = oAa -(eval(oAA) + eval(oaa))/2;
+ 
+
+aa +=  " q     VarianceA     VarianceD\n 0     0       0\n ";
+
+
+  hlpVA=0; hlpVD=0;
+
+
+va  =[];
+vd  =[];
+
+
+   for(  i = 0; i < 51 ; i++)
+   {  
+              q=i; q= q/50;
+              p = 1-q;
+  mean = oAA*p*p+oAa*2*p*q+oaa*q*q;
+  alfa = eval(a) + d*(q-p);
+
+  gAA = oAA-mean;
+  gAa = oAa-mean;
+  gaa = oaa-mean;
+  VT  = p*p*gAA*gAA +2*p*q*gAa*gAa + q*q*gaa*gaa;
+
+  aAA =   2*(  gAA*p+gAa*q );
+  aaa =   2*(  gAa*p+gaa*q );  
+  aAa =    (aAA+aaa)/2     ;
+  VA  = p*p*aAA*aAA +2*p*q*aAa*aAa + q*q*aaa*aaa;
+
+  dAA = gAA-aAA;
+  dAa = gAa-aAa;
+  daa = gaa-aaa;
+  VD  = p*p*dAA*dAA +2*p*q*dAa*dAa + q*q*daa*daa;
+
+  
+
+if (VA > hlpVA) {  hlpVA= VA;   }
+if (VD > hlpVD) {  hlpVD= VD;   }
+
+  va[i+1] =  VA ;
+  vd[i+1] = VD ;
+ 	              
+aa +=  q.toFixed(cif) + "\t" + VA.toFixed(cif) + "\t" + VD.toFixed(cif) + "\n";
+
+ 
+     }
+
+
+
+if (hlpVA < hlpVD){ hlpVA= hlpVD;}  //graph correction factor
+
+
+ri=[];
+document.adef.store.value = aa;
+
+for(  m = 1; m < 3 ;  ++m) {
+                       if (m == 1){ri=va};
+                       if (m == 2){ri=vd};
+
+
+qq=0; gg=1;   
+for(  k = 0; k < 51 ;  ++k) { ggg = gg;qqq = qq;
+gg = ((k-1)/(48))*500;
+qq = (1-ri[k]/hlpVA)*300;
+                                      
+var c = document.getElementById("myCanvas");
+var ctx = c.getContext("2d");
+ctx.moveTo(gg,qq); 
+ctx.lineTo(ggg,qqq);
+ctx.stroke();
+} ctx.fillText(m,gg,qq);   ctx.moveTo(0,300);               }
+
+    }
+
+
+function Nullify() {
+document.adef.c5.value = "Mean value = " ; 
+
+document.adef.f2.value =" ";document.adef.g2.value = " ";
+document.adef.h2.value = " ";document.adef.i2.value = "VarT ="  ;
+
+document.adef.f3.value = " ";document.adef.g3.value = " ";
+document.adef.h3.value = " ";document.adef.i3.value = "VarA ="  ;
+
+document.adef.f4.value = " ";document.adef.g4.value = " ";
+document.adef.h4.value = " ";document.adef.i4.value = "VarD ="  ;
+
+document.adef.i1.value = "a = "  ;
+
+var c = document.getElementById("myCanvas");
+var ctx = c.getContext("2d");
+ctx.clearRect ( 0 , 0 , 500, 300 );
+
+}
+ 
+</SCRIPT>
+</head>
+<BODY BGCOLOR="#00ffff">
+
+<H3>6.2
+Program for calculation of mean, Genotypic and Breeding values and Dominance
+deviations</H3>
+<P><B>In all cells with initial values you can put data</B>
+<p>
+
+<FORM name="adef">
+ 
+<table border="4"><tr>
+
+<td><input type="text" name="b1" value="Genotyper" ></td>
+<td><input type="text" name="b2" value="AA" ></td>
+  <td><input type="text" name="b3" value="Aa" ></td>
+  <td><input type="text" name="b4" value="aa" ></td>
+
+</tr><tr>
+  <td><input type="text" name="c1" value="Meassured values" ></td>
+<td><input type="text" name="c2" value="1882" ></td>
+  <td><input type="text" name="c3" value="1882" ></td>
+  <td><input type="text" name="c4" value="2082" ></td>
+  <td><input type="text" name="c5" value="Mean value =" ></td>
+</tr><tr><td>-</td>
+
+</tr><tr>
+  <td><input type="text" name="d1" value="Gene frequency p ->" ></td>
+<td><input type="text" name="d2" value=".667" ></td>
+  <td><input type="text" name="d3" value="Gene frequency q ->" ></td>
+  <td><input type="text" name="d4" value=".333" ></td>
+<td><input type="button" name="d5" value="Calculate values" OnClick="Calculate()"></td>
+
+</tr><tr>
+<td><input type="text" name="e1" value="Genotypes " ></td>
+<td><input type="text" name="e2" value="Genotypic values, G" ></td>
+  <td><input type="text" name="e3" value="Additive values, A" ></td>
+  <td><input type="text" name="e4" value="Dominance deviations, D " ></td>
+ 
+
+</tr><tr>
+<td><input type="text" name="f1" value="AA" ></td>
+<td><input type="text" name="f2" value=" " ></td>
+  <td><input type="text" name="f3" value=" " ></td>
+  <td><input type="text" name="f4" value=" " ></td>
+<td><input type="button" name="e6" value="Nullify" OnClick="Nullify()"></td> 
+</tr><tr>
+<td><input type="text" name="g1" value="Aa" ></td>
+<td><input type="text" name="g2" value=" " ></td>
+  <td><input type="text" name="g3" value=" " ></td>
+  <td><input type="text" name="g4" value=" " ></td>
+ 
+</tr><tr>
+<td><input type="text" name="h1" value="aa" ></td>
+<td><input type="text" name="h2" value=" " ></td>
+  <td><input type="text" name="h3" value=" " ></td>
+  <td><input type="text" name="h4" value=" " ></td>
+<td><input type="button" name="h5" value="Make graph " OnClick="Run()"></td> 
+
+ 
+</tr><tr>
+<td><input type="text" name="i1" value="" ></td>
+<td><input type="text" name="i2" value="VarT " ></td>
+ <td><input type="text" name="i3" value="VarA " ></td>
+ <td><input type="text" name="i4" value="VarD " ></td>
+
+ 
+</tr><tr>
+  <td><input type="text" name="j1" value="Knud Christensen" ></td>
+  <td><input type="text" name="j2" value="Mail kc@sund.ku.dk" ></td>
+  <td><input type="text" name="j3" value="April 2015" ></td>
+<td><input type="text" name="gg1" value="Set digit for print ->" ></td>
+<td><input type="text" name="gg2" value="4" ></td>
+
+ 
+
+
+
+</tr></table>
+<b>Generation  q Frequency  Genetic load &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ........Change of Variance for gene frequency q from 0 to 1......</b>
+<br><TEXTAREA NAME="store" cols="34" rows="18"></TEXTAREA> 
+<canvas id="myCanvas" width="500" height="300" style="border:1px solid #d3d3d3;"></canvas>
+
+
+</form>
+
+<p>
+<Example:
+
+<br>When you have entered your data or you want to calculate the 
+loaded test example press the <b>Calculate</b> button,
+
+you can proceed  by setting deltaq, or getting the graph by pressing the run button
+and you get the new values by pressing the  <b>q+deltaq</b> button
+or getting the graph by pressing the run button.
+<hr>
+Example:
+<br>The test example is the  transfferin example given in  Veterinary Genetics. Jersey 
+cows with the  genotype  tt yield 2082 kg milk
+and cows with the  genotypes Tt and TT yield 1882 kg milk. The 
+gene frequencies p(T) and q(t) are given as  0,67 and 0,33, respectively.
+<p>All the values are calculated by the classical formula for a mean value and
+the breeding value is defined as shown below. To see the results 
+press the <b>Calculate</b> button.
+
+<P><center><img src="../6/23.gif" height="100" ></center>
+
+<HR>
+Questions:
+<br>Calculate the breeding value and dominance deviation  for the gene frequencies
+ p equal  .1, .2,  .3, .4, .5, .6, .7, .8 and .9 for the following genotypic 
+values
+<pre>A<sub>2</sub>A<sub>2</sub>    100
+A<sub>1</sub>A<sub>2</sub>    115
+A<sub>1</sub>A<sub>1</sub>    110</pre>
+<p>Compare the results, for which gene frequency are there the smallest
+difference in breeding value between the three genotypes and the smallest 
+additive variance? why ?
+
+<p>The halothane locus (Hal) has influence on the quality of
+ swine meat on the basis of a meat quality index where meat colour
+is the main component. The average index for the (Hal) genotypes 
+are given below:
+<pre>
+			Genotype	Meat-quality-index
+			 N/N 	        8.00
+			 N/n  	        7.10
+			 n/n  	        6.00</pre>
+<br>Suppose that the frequency of q(n) = 0.20 calculate the following:
+
+<br>	a)	the average Meat-quality-index for the population, 
+
+<br>	b)	the average Meat-quality-index for offspring from 
+individuals with the genotype  
+		N/N respectively n/n supposing adef mating  in the population,
+
+<br>	c)	the breeding value of the three genotypes
+
+<br>	d)	the additive variance, due to the halothane locus,
+
+<br>e)	the proportion of the  additive variance<sub>Hal</sub>
+ of the  total additive variance for the Meat-quality-index
+		as its h<sup>2</sup> = 0,44 and variance<sub>P</sub> =1,69.
+
+<hr>
+
+
+<P><A HREF="../6/2.htm">Back to theory (in Danish)</A>,
+<P><A HREF="../genetics/6/2.htm">Back to theory </A>, 
+or <A HREF = "0.htm">Back to the other programs</A>
+
+</BODY>
+</HTML>

@@ -1,0 +1,66 @@
+<html>
+<pre>
+
+data;
+/* The observations are: -  Student height =HOJDE and KON 1=male 2= female,  
+   The parents height father=HFAR and mother =HMOR and parent average = HGNS.
+*/
+title 'Veterinay studnts year 2001 ';
+options pagesize=85;
+input hojde kon hfar hmor;
+hgns= (hfar + hmor) / 2;
+cards;
+168 2 185 168
+176 2 180 168
+177 2 185 176
+163 2 171 170
+180 2 170 184
+179 2 185 170
+179 2 181 167
+162 2 172 160
+170 2 180 168
+172 2 178 170
+182 1 191 151
+170 2 185 165
+175 2 180 173
+178 2 184 180
+175 1 185 170
+179 2 170 165
+170 2 195 160
+163 2 174 164
+178 2 176 174
+165 2 178 167
+170 2 175 166
+167 2 172 170
+180 1 180 168 
+164 2 172 167
+164 2 180 165
+169 2 172 167
+165 2 174 165
+180 2 178 173
+159 2 183 163
+176 2 184 172
+178 2 184 176
+160 2 180 164
+159 2 167 158
+176 2 180 160
+176 2 189 167
+176 2 191 175
+168 2 185 164
+ 
+proc print; run;
+proc corr; var hojde hfar hmor hgns;
+proc sort; by kon; run;
+proc corr; var hojde hfar hmor hgns;
+by kon; run;
+proc glm;
+class kon;
+model hojde = kon hfar hmor / solution ; run ;
+proc glm;
+class kon;
+model hojde = kon hgns / solution; run  ;
+options pagesize=35;
+proc plot; plot hojde*hfar=kon hojde*hmor=kon hfar*hmor; run;
+proc plot; plot hojde*hgns=kon; run;
+</pre>
+</html>

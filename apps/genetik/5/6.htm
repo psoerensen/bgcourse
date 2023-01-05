@@ -1,0 +1,89 @@
+ <HTML>
+<title>Testparringer, statistisk test</title>
+<BODY text="#000000" link="#0000ff" vlink="#551a8b" alink="#ff0000" 
+bgcolor="#ffffff">
+<h3>5.6 Testparringer, statistisk test</h3>  
+ <P><A HREF = "../../genetik/5/5.htm">Foreg&aring;ende side</A> 
+<p>N&aring;r der foreligger et mindre materiale, der tyder p&aring; Mendelsk udspaltning, vil der 
+ofte v&aelig;re alternative hypoteser, som ikke kan udelukkes. Der kan jo tillige v&aelig;re simuleret
+genetik (f&aelig;nokopier) eller nedarvning som en t&aelig;rskelegenskab, hvor udspaltningen (forekomsten) kan minde
+om simpel Mendelsk nedarvning. I s&aring;danne tilf&aelig;lde m&aring; der gennemf&oslash;res testparringer 
+for at f&aring; sagen endelig klarlagt.
+<p>Testparringer kan i mange tilf&aelig;lde blot v&aelig;re afventning af f&oslash;dsler, hvor man i forvejen
+kan forudsige resultatet, s&aring;fremt en given hypotese kan fastholdes. Afviger resultatet, m&aring;
+der formuleres en ny hypotese, der kan afpr&oslash;ves.
+<p>Et af de vigtige sp&oslash;rgsm&aring;l man m&aring; stille sig, f&oslash;r der gennemf&oslash;res egentlige testparringer, er 
+<b>hvor stort et datamateriale er n&oslash;dvendigt, for at en given test kan give et tilfredsstillende
+endegyldigt svar.</b>
+<p>Testparring af tyr, der er mist&aelig;nkt anl&aelig;gsb&aelig;rer, kan ske ved at parre tyren med k&oslash;er, 
+der har lidelsen, med kendte anl&aelig;gsb&aelig;rere eller med egne d&oslash;tre. Hvor mange stk. raskt afkom
+skal tyren have f&oslash;r han kan frikendes som anl&aelig;gsb&aelig;rer i de tre tilf&aelig;lde. Sandsynlighederne for
+at 
+der f&oslash;des  normalt afkom i de tre tilf&aelig;lde er henholdsvis ½, 3/4 og 7/8. Ved
+ anvendelse af sandsynlighedsregningens multiplikationsregel
+ har man for en parring med kendte b&aelig;rere, at 
+sandsynligheden for at f&aring; n normale afkom er (3/4)<sup>n</sup>.
+Ved hj&aelig;lp af denne formel  og signifikansgr&aelig;nserne
+0,05, 0,01 og 0,001 kan n bestemmes, s&aring;ledes at de klassiske sandsynlighedskriterier kan
+opfyldes.
+
+<p><b>Antal afkom (n) der er n&oslash;dvendig for at udelukke at en tyr er anl&aelig;gsb&aelig;rere</b>
+<pre>
+Udelukkelse af at                Sandsynlighed           Formel
+v&aelig;re b&aelig;rere ved test   ------------------------------
+parring af tyr til        0,05    0,01       0,001       (x)<sup>n</sup> mindre end
+
+Kendte recessive             5        7       10         x=1/2
+Kendte anl&aelig;gsb&aelig;rere         11       16       24         x=3/4
+Egne d&oslash;tre                  23       35       52         x=7/8
+</pre>
+<p>Sandsynligheden 7/8 for normalt afkom efter heterozygotisk individ
+ved fader datter parringer kan afledes af  figur 5.6. Antallet af afkom der skal 
+anvendes for at frikende faderen for at v&aelig;re anl&aelig;gsb&aelig;rer p&aring; 5% niveauet
+er (7/8)<sup>n</sup> = 0,05 svarende til n*ln(7/8) = ln(0,05), der afrundet giver n=23.
+
+<center><p>Figur 5.6. <IMG SRC  = "../../genetik/5/fdatter.gif"  align=top></center>
+<p>Parring med egne d&oslash;tre har tillige den fordel, at det tester faderen for alle mulige
+andre recessive arveanl&aelig;g, end det som den er under mistanke for.
+
+<p>Ved test af udspaltningsforhold for kendte parringer kan der anvendes Chi-i-anden test.
+Testen minder ved parring af kendte anl&aelig;gsb&aelig;rere om testen for H-W udspaltning, men nu er
+det forventede blot i forholdet 1:2:1 ved codominans eller 3:1 ved dominans. 
+De forventede antal f&aring;s ved at multiplicere forventet frekvens med N.
+
+<p><b> Udspaltning ved testparring Aa x Aa, codominant nedarvning.</b>
+<pre>---------
+Genotype        AA               Aa             aa       Total
+Antal, obs      30               51             39      = 120 = N
+Frekvens, exp   1/4              ½            1/4     = 1,00
+Antal, exp      30               60              30     = 120
+Afvigelse        0                -9             9 
+Chi-i-anden      0              1,35            2,70    = 4,05
+----------
+</pre>
+
+<p>Df = 3-1 = 2, da materialet kun leverer parameteren N til beregning af forventet antal.
+Chi-i-anden v&aelig;rdien er mindre end H<sub>0</sub> testv&aelig;rdien 5,99, s&aring; der er ikke signifikant afvigelse
+fra en 1:2:1 udspaltning p&aring; 5% niveauet.
+
+ 
+<p><b>             Udspaltning ved testparring Aa x Aa, dominant nedarvning</b>
+<pre>---------
+Genotype        AA+ Aa         aa       Total
+Antal, obs      81             39      = 120 = N
+Frekvens, exp   3/4            1/4     = 1,00
+Antal, exp      90             30      = 120
+Afvigelse       -9              9 
+Chi-i-anden     1,00            2,70    = 3,70
+----------
+</pre>
+
+<p>Df = 2-1 = 1, da materialet kun leverer parameteren N til beregning af forventet antal.
+Chi-i-anden v&aelig;rdien er lige under H<sub>0</sub> testv&aelig;rdien 3,84, s&aring; der er ikke signifikant afvigelse
+fra en 3:1 udspaltning p&aring; 5% niveauet.
+ 
+<P> Applet til beregning af Chi-i-anden for Mendelske 
+udspaltninger ved testparringer, <A HREF = "../applets/ki.htm">klik her</A>.
+
+ 
+<P>  <A HREF = "7.htm">N&aelig;ste side</A>   

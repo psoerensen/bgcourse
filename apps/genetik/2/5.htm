@@ -1,0 +1,113 @@
+  <HTML>
+<head>
+<TITLE>Gametfrekvenser  og koblingsuligev&aelig;gt</TITLE>
+</head>
+<BODY text="#000000" link="#0000ff" vlink="#551a8b" alink="#ff0000" bgcolor="#ffffff">
+
+<h3>2.5 Gametfrekvenser  og koblingsuligev&aelig;gt</h3>  
+ <P><A HREF = "4.htm">Foreg&aring;ende side</A> 
+<p>
+
+<p>Gamet- eller haplotype-frekvenser anvendes, n&aring;r man ser p&aring; to loci samtidig. Hver ny gamet vil indeholde en allel fra hvert locus. Ser man p&aring; to loci A og B, kan der inden for hvert loci v&aelig;re H-W-ligev&aelig;gt, uden at det er tilf&aelig;ldet for de to loci tilsammen. Dette kan have stor betydning i forbindelse med DNA-mark&oslash;rer, hvor det kan ske, at en bestemt allel altid forefindes sammen med en skadelig allel p&aring; det andet loci. Er de to loci t&aelig;t koblede, vil det vare mange generationer, f&oslash;r der opst&aring;r ligev&aelig;gt mellem de to loci. 
+<p><b>Definition af koblingsuligev&aelig;gt og statistisk test:</b> Vi vil nu se p&aring; de mulige gameter, der kan dannes ud fra to loci A og B med hver to alleler. Kombination af to loci A og B med hver to alleler er vist nedenfor i en klassisk tabel, hvor r, s, t, og u er de observerede gametfrekvenser af gameterne AB, Ab, aB og ab. Gameterne er opstillet i tabel som kendt fra den almene genetik, de forventede frekvenser svarer til sandsynlighedsregningens multiplikationsregel: 
+
+
+<pre>         gamet   observeret frekvens   forventet frekvens   afvigelse
+         ----------------------------------------------------------------- 
+	   AB		r		  p(A)*p(B)		D
+	   Ab		s		  p(A)*q(b)	       -D
+	   aB		t		  q(a)*p(B)	       -D
+	   ab		u		  q(a)*q(b)		D</pre>
+
+
+
+<br>Genfrekvenserne beregnes ud fra tabellen med 
+gent&aelig;llemetoden som, p(A) = r + s = p(A)*p(B) + D + p(A)*q(b) - D = p(A)[p(B) + q(b)] = p(A). 
+<i>Koblingsuligev&aelig;gt er defineret som afvigelsen mellem observeret og forventet gametfrekvens 
+og f&aring;r symbolet D (eng. Disequlibrium).</i> 
+Bem&aelig;rk at afvigelsen (D) er lige stor for alle gameter, men der er negativ fortegn for gameterne Ab og aB.
+
+
+<p>Eksempel med statistisk test: Det observerede antal gameter er f&oslash;lgende: AB 6, Ab 49, aB 34 og ab 11. 
+Den statistiske test for koblingsuligev&aelig;gt illustreres bedst n&aring;r tallene inds&aelig;ttes i den klassiske to gange to 
+tabel med test for uafh&aelig;ngighed svarende til D=0. 
+Gamet og allel-frekvenserne er anf&oslash;rt i parenteser. 
+
+<pre>locus A/locus B 	 	B	         b              Sum (Frek)
+          ------------------------------------------------------------
+    	  A	   |    6  (r=0,06)	49  (s=0,49)   |  55  (p(A)=0,55)
+   	  a	   |   34  (t=0,34)	11  (u=0,11)   |  45  q(a)=0,45)
+          -------------------------------------------------------------
+	Sum (Frek) |   40 (p(B)=0,4)	60  (q(b)=0.6) | 100    1
+
+                                      
+					  Chi-i-anden = 43.1<sup>***</sup> Df=1
+ 				      D= u-q(a)*q(b)=0,11 - 0,45*0,6= -0,16</pre>
+
+<p>Der er statistisk signifikant afvigelse fra tilf&aelig;ldig kombination mellem generne 
+A og B svarende til en disekvilibrium p&aring; -0.16. I tilf&aelig;lde af en sygdomsallel store
+ B er chancerne for at have den meget stor (34/40) n&aring;r der er et lille a allel i lokus A. 
+<p><B>Detekterbare rekombinanter:</b> I nedenst&aring;ende skema er vist de mulige genotyper i 
+et to loci system. Dobbelt heterozygoterne er fremh&aelig;vet med fed skrift. 
+Fysisk rekombination har kun betydning hos dobbelt heterozygoterne, hos alle andre 
+genotyper vil fysisk rekombination ikke give anledning til detekterbar rekombination. 
+De tilsvarende forventede genotypefrekvenser under tilf&aelig;ldig parring f&aring;s som vist 
+ved multiplikation af gametfrekvenserne. 
+<pre>         gamet   mor	AB  	Ab   	aB   	ab   
+		   	r 	s	 t	u
+	   far  ------------------------------------    
+	   AB	  |	AABB	AABb	AaBB	<b>AaBb</b>
+		r |	r*r	r*s	r*t	r*u
+	   Ab	  |	AABb	AAbb	<b>AaBb</b>	Aabb	
+		s |	s*r	s*s	s*t	s*u
+	   aB     | 	AaBB	<b>AaBb</b>	aaBB	aaBb	
+		t |	t*r	t*s	t*t	t*u
+	   ab	  |	<b>AaBb</b>	Aabb	aaBb	aabb
+		u |	u*r	u*s	u*t	u*u</pre>
+
+
+
+<p>I figur 2.5 er vist de to typer dobbelt heterozygoter AB/ab og Ab/aB. Ved rekombination dannes gameter af den andens type og omvendt. Der er derfor koblingsligev&aelig;gt, n&aring;r der er lige mange af hver af de to typer dobbelt heterozygoter. 
+Dette udm&oslash;nter sig i en formel mere for D som vist nedenst&aring;ende. 
+<br><TABLE><TR>
+<TD><br>Figur 2.5. Viser de to homologe kromosomer hos de to mulige heterozygoter i de to modsatte faser. 
+Sker der rekombination dannes den modsattes gameter. Dette sker med frekvensen c </TD>
+<TD><IMG SRC  = "../../genetik/2/5.gif" height=120 ></TD>
+</TR></TABLE>
+
+<br><b>Estimation af D.</b> Det forventede antal af en bestemt gamet svarer til det antal der vil v&aelig;re, n&aring;r der er uafh&aelig;ngighed mellem allelerne p&aring; de to loci; derfor kan sandsynlighedsregningens multiplikationsregel som f&oslash;r n&aelig;vnt anvendes til at beregne det forventede antal. D er defineret som (observeret - forventet gamet frekvens), men kan ogs&aring; beregnes som 
+halvdelen af forskellen mellem frekvensen af dobbelt heterozygoter i de to mulige faser, se tabel og Figur 2.5: 
+<pre>        D = u  -  q(a)*q(b), eller		
+	D = r*u - t*s    (= [f(AB/ab) - f(Ab/aB)]/2) 
+        
+</pre>
+<p>Den maksimale uligev&aelig;gt opst&aring;r, n&aring;r alle dobbelt heterozygoter er i samme fase (AB/ab) eller  (Ab/aB); 
+den har da v&aelig;rdien D<sub>Max</sub>. 
+
+
+
+<p>
+Er rekombinationsfrekvensen c, vil D formindskes til D*(1-c) per generation, s&aring; man har
+ i n'te generation 
+<br><br>D<sub>n</sub> = D<sub>0</sub>*(1-c)<sup>n</sup>, hvor
+D<sub>0</sub> er uligev&aelig;gten i udgangspopulationen, se figur 2.6. 
+<br><TABLE><TR>
+<TD><br>Figur 2.6. 
+<br>Kurver over antal generationer  hen mod koblings-ligev&aelig;gt 
+for forskellige rekombinations frekvenser.</TD>
+<TD><IMG SRC  = "../../genetik/2/51.gif" align=right width="250"> </TD>
+</TR></TABLE>
+<p>
+For to uafh&aelig;ngige loci med en rekombinationsfrekvens p&aring; 0,5 g&aring;r der 4 til 5 generationer, f&oslash;r der i praksis opst&aring;r ligev&aelig;gt. Drejer det sig derimod om t&aelig;t koblede loci med under 5 % rekombination, g&aring;r der let 25 generationer, f&oslash;r man n&aelig;rmer sig ligev&aelig;gt, se Figur 2.6. 
+<p>Der er som vist ovenst&aring;ende i alt 16 genotype-kombinationer, n&aring;r man tr&aelig;kker en tilf&aelig;ldig gamet fra henholdsvis far og mor hvilket svarer til de klassiske Mendelske to genspaltninger. Mendels anden lov udsiger, at der opst&aring;r koblingsligev&aelig;gt i F2 i en analysekrydsning, hvilket skyldes at alle individer i F1 er dobbelt heterozygoter i den ene fase. Da det kun er dobbelt-heterozygoterne, der kan 'rekombinere', g&aring;r det meget langsommere i en blandingspopulation, hvor frekvensen af dobbelt-heterozygoten kun er 2(r*u + t*s).
+<P>Opbrud af koblingsuligev&aelig;gt kan give anledning til ny genetisk variation for kvantitative egenskaber. Er to gener koblede, og har de henholdsvis positiv og negativ effekt, og de sidder p&aring; samme kromosom, opst&aring;r den nye variation ved, at rekombinerer bringer de to positive gener til at sidde p&aring; samme kromosom. 
+<p>I forbindelse med en ny mutation er der koblingsuligev&aelig;gt i mange generationer fremover, da mutationen opst&aring;r p&aring; et og kun et kromosom. Denne koblingsuligev&aelig;gt kan bruges i forbindelse med anvendelse af DNA-mark&oslash;rer til p&aring;visning af genets placering p&aring; et unikt kromosom og til p&aring;visning af anl&aelig;gsb&aelig;rer ved hj&aelig;lp af DNA-mark&oslash;rer. 
+<p>Der er altid maksimal koblingsuligev&aelig;gt indenfor en familie. Dette g&oslash;r det muligt at arbejde med DNA-mark&oslash;rer indenfor familier. Er der f&oslash;dt et sygt individ med en recessiv sygdom types dette med DNA-mark&oslash;rerne. Er der t&aelig;t kobling vil fremtidige afkom med samme kombination af DNA-mark&oslash;rer med stor sandsynlighed ogs&aring; v&aelig;re syge. 
+	
+<P>Applet til  beregning af Chi-i-anden for koblingsligev&aelig;gt, 
+<A HREF = "../applets/ki1.htm">klik her</A>, og
+Applet til studie af kobling og koblingsuligev&aelig;gt,
+<A HREF = "../applets/li.htm">klik her</A>.    
+
+ 
+<P>  <A HREF = "0.htm">Lektion 2</A>  

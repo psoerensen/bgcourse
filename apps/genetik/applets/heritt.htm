@@ -1,0 +1,229 @@
+<HTML><head>
+<title>  Calculating heritability for threshold traits (diseases)</title>
+<SCRIPT LANGUAGE="JavaScript">
+ 
+function Calculate() {
+
+cif= document.heritt.gg2.value;
+
+ 
+ 
+   o1 =                 document.heritt.c2.value ;
+   a1 =                 document.heritt.c3.value ;
+   o2=                   document.heritt.d2.value ;
+   a2=                   document.heritt.d3.value ;
+  b1 =                  document.heritt.c4.value ;
+  b2 =                  document.heritt.d4.value ;
+ 
+ 
+oo1 =o1 -o2;
+aa1 =a1 -a2;
+document.heritt.e2.value =  oo1;
+document.heritt.e3.value =  aa1;
+oo2 = o2;
+aa2 = a2;
+ 
+ 
+                           fantal =  eval(oo1)+eval(oo2)+eval(aa1)+eval(aa2) ;
+
+if(fantal >.01) {
+ 
+  p1= (eval(oo1)+eval(oo2))/fantal ;
+  p2= (eval(aa1)+eval(aa2))/fantal ;
+  q1= (eval(oo1)+eval(aa1))/fantal ;
+  q2= (eval(oo2)+eval(aa2))/fantal ;
+ 
+hjp  =  p1*q1*fantal ;
+hjp1 =  p1*q2*fantal ;
+hjp2 =  p2*q1*fantal ;
+hjp3 =  p2*q2*fantal ;
+ 
+chi = eval((oo1 -hjp)*(oo1 -hjp)/hjp) + eval((oo2 -hjp1)*(oo2 -hjp1)/hjp1) + eval((aa1 -hjp2)*(aa1 -hjp2)/hjp2) + eval((aa2 -hjp3)*(aa2 -hjp3)/hjp3);
+ 
+document.heritt.g2.value =  "Chi-sqr = " + chi.toFixed(cif);
+
+  f1= a1/(eval(o1)+eval(a1)) ;
+  f2= a2/(eval(o2)+eval(a2)) ;
+
+
+ document.heritt.c4.value =  f1.toFixed(cif);
+ document.heritt.d4.value =  f2.toFixed(cif);
+
+  rr = f2/f1;
+ document.heritt.f4.value = "Rel-Risk = " + rr.toFixed(cif);
+
+ }
+
+if (fantal < 1 )  {
+f1= document.heritt.c4.value ;
+f2= document.heritt.d4.value ;
+  }
+				inte =f1;
+				dinte  =f2;
+  hjp1= 1 / Math.sqrt(6.28);
+
+// der gaas i step fra -4 standardenheder i skrit af 1/200;
+
+    hjp = dinte;
+    if (dinte > 0.5) hjp = 1 - dinte;
+    hjp2=0.00003134;
+    i = -800;
+    while (  hjp2<hjp )
+       {hjp3 =-i;  
+        hjp3= - hjp3*hjp3/80000;
+        hjp2=hjp2 + 0.005*hjp1*Math.exp(hjp3);
+        i++;
+      }
+        hjp3 = -i + 1.0;
+        x22= hjp3/200;
+        hjp3= - hjp3*hjp3/80000;
+        dinte = hjp1*Math.exp(hjp3)/dinte;
+
+
+
+    hjp = inte;
+    if (inte > 0.5) hjp = 1 - inte;
+    hjp2=0.00003134;
+    i = -800;
+    while ( hjp2<hjp  )
+       {hjp3 =-i;  
+        hjp3= - hjp3*hjp3/80000;
+        hjp2=hjp2 + 0.005*hjp1*Math.exp(hjp3);
+        i++;
+      }
+        hjp3 = -i + 1.0;
+        x11= hjp3/200;
+        hjp3= - hjp3*hjp3/80000;
+        inte = hjp1*Math.exp(hjp3)/inte;
+   
+   if (f2 > 0.5) x22 =  - x22;
+   if (f1 > 0.5) x11 =  - x11;
+
+rela = document.heritt.g4.value ;
+ 
+   heri = (x11-x22)/(inte*rela);
+
+   if (f1 > f2) heri =  0;
+
+
+document.heritt.f1.value = "i = " + inte.toFixed(cif);
+document.heritt.f2.value = "x1 = " + x11.toFixed(cif);
+document.heritt.f3.value = "x2 = " + x22.toFixed(cif);
+document.heritt.g1.value = "h-sqr = " + heri.toFixed(cif);
+
+}
+ 
+function Nullify() { 
+document.heritt.c2.value ="0"; document.heritt.c3.value ="0";document.heritt.c4.value ="0.05";
+document.heritt.d2.value ="0"; document.heritt.d3.value ="0";document.heritt.d4.value ="0.20";
+document.heritt.e2.value ="0"; document.heritt.e3.value ="0";document.heritt.e4.value ="0";
+
+document.heritt.f1.value ="i="; document.heritt.f2.value ="X1=";document.heritt.f3.value ="x2";
+document.heritt.g1.value ="h-sqr"; document.heritt.g2.value ="Chi-sqr";document.heritt.f4.value ="Rel-Risk";
+}
+ 
+</SCRIPT>
+</head>
+<BODY BGCOLOR="#00ffff">
+
+<H3>8.3
+Calculating heritability for threshold traits (diseases)</H3>
+The calculations are based on disease frequencies in the general population (Population) and 
+among relatives (Indiv. related ) to a diseased animals. The relatives can be 
+(both parents diseased), first degree (father, mother or full sibs) or second
+degree (half sibs or grand parents).<b>Remember only one type of relatives can be analyzed at the same time.</b>
+
+<p><FORM name="heritt">
+ 
+<table border="4"><tr>
+  <td><input type="button" name="b1" value="Nullify" OnClick="Nullify()"></td>
+<td><input type="text" name="b2" value="Normal, numbers" ></td>
+  <td><input type="text" name="b3" value="Affected numbers" ></td>
+  <td><input type="text" name="b4" value="Frequencies" ></td>
+ 
+</tr><tr>
+  <td><input type="text" name="c1" value="Population" ></td>
+  <td><input type="text" name="c2" value="0" ></td>
+ <td><input type="text" name="c3" value="0" ></td> 
+  <td><input type="text" name="c4" value="0.05" ></td>
+ 
+ 
+</tr><tr>
+  <td><input type="text" name="d1" value="Indivi. related" ></td>
+  <td><input type="text" name="d2" value="0" ></td>
+  <td><input type="text" name="d3" value="0" ></td>
+  <td><input type="text" name="d4" value="0.20" ></td>
+ 
+</tr><tr>
+  <td><input type="text" name="e1" value="Indivi. non related" ></td>
+  <td><input type="text" name="e2" value="0" ></td>
+  <td><input type="text" name="e3" value="0" ></td>
+  <td><input type="text" name="e4" value="0" ></td>
+ 
+</tr><tr>
+  <td><input type="text" name="f1" value="i=" ></td>
+  <td><input type="text" name="f2" value="X1=" ></td>
+  <td><input type="text" name="f3" value="X2=" ></td>
+  <td><input type="text" name="f4" value="Rel-Risk =" ></td>
+ 
+</tr><tr>
+  <td><input type="text" name="g1" value="h-sqr" ></td>
+  <td><input type="text" name="g2" value="Chi-sqr" ></td>
+  <td>Degree of relation -> </td>
+  <td><input type="text" name="g4" value="1" ></td>
+ 
+ 
+</tr><tr>
+  <td><input type="text" name="h1" value="Knud Christensen" ></td>
+  <td><input type="text" name="h2" value="Mail kc@sund.ku.dk" ></td>
+  <td><input type="text" name="h3" value="April 2015" ></td>
+  <td><input type="button" name="h4" value="Calculate" OnClick="Calculate()"></td>
+</tr><tr>
+<td>Set digit for print -> </td>
+<td><input type="text" name="gg2" value="4" ></td>
+
+ 
+ </tr></table></form>
+ 
+
+<p><b>Observe: The chi-square test calculation is based on: that the related ones is subtracted from the population numbers!
+</b>
+
+<HR>
+Example:
+<br>Enter your observed numbers  and degree of relationship  
+ and then press the <B>Calculate</B> button. The values in the (Degree of relationship) field should 1, .5 and .25 for the 
+three above mentioned cases.
+<br>You can also enter the frequencies  but then the numbers shall be zeros
+in the observed number fields. 
+<hr>Illustration  of the case where both parents are affected are given below.
+The program is initiated with the actual data for frequencies and the "Degree of relationship" is set to 1 (both parents diseased); to see 
+Press the <B>Calculate</B> button and see the results corresponding to the figure below.
+<P><center><img src="../../genetik/8/33.gif" width="350" ></center>
+<P><b>Remember in case of first or 
+second degree relative analyses with half or full sib, one affected individual per family is an 
+index case and should be subtracted from the group 'individual related'.</b> So if there are 10 
+families with at least one affected in the population, 10 affected should be subtracted.
+
+<hr>
+Questions:
+<br>In the table below is given observed numbers for disease frequencies in the 
+population and in first-degree relatives to diseased animals. 
+
+<pre>              Normal  Diseased  Frequency
+------------------------------------------
+Population      980       20        0.020
+First-degree
+relative        140       10        0.066
+------------------------------------------</pre>
+<p>Estimate the heritability.
+<br>What is the relative risk to be related to a diseased animal ?
+<br>Is the heritability statistically significant different from 0 with (p< 0.05) ?
+<hr>
+<A HREF = "../../genetics/8/3.htm">Back to theory</A>,
+ <A HREF = "../8/3.htm">Back to theory (in Danish) </A>
+
+or <A HREF = "0.htm">Back to the other programs</A>
+
+</BODY>
+</HTML>

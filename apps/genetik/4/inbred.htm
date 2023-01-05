@@ -1,0 +1,87 @@
+ <HTML>
+ 
+<h3>Calculation of inbreeding coefficients</h3>
+
+<p>After  the program  inbred.zip and lf90.zip files have been down loaded as inbred.exe and
+lf90.eer (both files shall be in the same direktory)  can inbred.exe be run ! !  !
+
+<p>A dataset can look as shown below, the oldest  animal come f&oslash;rst. Every line contains 
+animal No, father No, mother Nr, and generatio No. Exist no information about 
+father and mothe put  0, 
+<pre>
+11 0 0 1
+10 0 0 1
+9  0 0 1
+8 11 10 2
+7 11 10 2
+6 9 10 2
+5 0 0 1
+4 7 6 3
+3 6 5 3
+2 8 4 4 
+1 2 3 5
+
+In the following ar show a path diagram and a print from inbred.exe run with the  dataset 
+above as input.
+
+ 
+<IMG SRC  = "inbred.gif">
+
+
+    III    NN        NN   BBBBBB     RRRRRR    EEEEEEEE   DDDDDDD      
+    III    NNN       NN   BB    B    RR    R   EE         DD     D     
+    III    NN N      NN   BB     B   RR     R  EE         DD      D    
+    III    NN  N     NN   BB     B   RR    R   EE         DD      D    
+    III    NN   N    NN   BB    B    RRRRRR    EEEEE      DD      D    
+    III    NN    N   NN   BBBBBB     RRR       EE         DD      D    
+    III    NN     N  NN   BB    B    RR R      EE         DD      D    
+    III    NN      N NN   BB     B   RR  R     EE         DD      D    
+    III    NN       NNN   BB    B    RR   R    EE         DD     D     
+    III    NN        NN   BBBBBB     RR    R   EEEEEEEE   DDDDDDD      
+-----------------------------------------------------------------------
+ 
+     A PROGRAM TO CALCULATE INDIVIDUAL INBREEDING COEFFICIENTS         
+                  AND GENERATION COEFFICIENTS                          
+ 
+                        Program written by                             
+                            Peer Berg                                  
+                  Danish Institute of Animal Science                   
+                  Dept. Animal Breeding and Genetics                   
+                       Research Centre Foulum                          
+                    P.O.Box 39, 8830 Tjele Denmark                     
+                      Phone : +45 89 99 12 26                          
+                      Fax   : +45 89 99 13 00                          
+                      E-mail: Peer.Berg@sh.dk                          
+-----------------------------------------------------------------------
+ Program uses a bit-tree to renumber animal id's and computes indivi- 
+ dual inbreeding coefficients based on the algorithm proposed by :     
+ MEUWISSEN, THE & LUO, Z.; 1992. GENET. SEL. EVOL. 24:305-313.         
+-----------------------------------------------------------------------
+ File with Relationships : f.txt                    
+   
+Number of animals in pedigree :           11
+    Animal      Sire       Dam      Group     Inb.coeff  Gen.coeff
+        11         0         0         1       0.0000      1.0000
+        10         0         0         1       0.0000      1.0000
+         9         0         0         1       0.0000      1.0000
+         8        11        10         2       0.0000      2.0000
+         7        11        10         2       0.0000      2.0000
+         6         9        10         2       0.0000      2.0000
+         5         0         0         1       0.0000      1.0000
+         4         7         6         3       0.1250      3.0000
+         3         6         5         3       0.0000      2.5000
+         2         8         4         4       0.1875      3.5000
+         1         2         3         5       0.1094      4.0000
+
+    Group   Total  Inbred     Total   Inbred  Maximum
+              N       N       av. F   av. F      F   
+       1       4       0      0.0000  0.0000  0.0000
+       2       3       0      0.0000  0.0000  0.0000
+       3       2       1      0.0625  0.1250  0.1250
+       4       1       1      0.1875  0.1875  0.1875
+       5       1       1      0.1094  0.1094  0.1094
+     ALL      11       3      0.0384  0.1406  0.1875
+
+
+</pre>
+<P> <A HREF = "4.htm">Theory in danish</A>   

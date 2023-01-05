@@ -1,0 +1,463 @@
+<HTML>
+<HEAD>
+   <TITLE> Estimating simple forms of breeding values  
+</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+
+function Calculate() {
+
+cif= document.avs.gg2.value;
+
+
+mid= document.avs.c2.value ;
+hhh= document.avs.c3.value ;hh=hhh/100;
+
+ccc= document.avs.c4.value ;cc=ccc/100;
+hlp= document.avs.c5.value ;ccc=hlp/100;
+
+
+// fædre full sib
+
+antf= document.avs.e2.value ;
+
+    af = 0; sf = 0;  
+   if(antf > 0)
+   {
+  ant=antf;
+
+ mf= document.avs.e3.value ;
+
+  vvs2  = .5;
+
+  vvs3  = .5;
+  hjp= vvs2*hh ;
+  if (vvs2 < 1.01 && vvs2 > .99) {hjp = ccc; }
+  if (vvs2 < .51 && vvs2 > .49 ) {hjp = vvs2*hh + eval(cc); }
+
+  b = (ant*hh*vvs3)/(1+ (ant-1)*hjp);
+  af = eval(mid) + eval(b*(mf-mid));
+  sf  = b*vvs3;
+
+document.avs.e4.value = af.toFixed(cif);
+document.avs.e5.value = sf.toFixed(cif);
+ 
+   }
+// fædre half sib
+
+antf= document.avs.f2.value ;
+
+    af = 0; sf = 0;  
+   if(antf > 0)
+   {
+  ant=antf;
+
+ mf= document.avs.f3.value ;
+
+  vvs2  = .25;
+
+  vvs3  = .5;
+  hjp= vvs2*hh ;
+  if (vvs2 < 1.01 && vvs2 > .99) {hjp = ccc; }
+  if (vvs2 < .51 && vvs2 > .49 ) {hjp = vvs2*hh + eval(cc); }
+
+  b = (ant*hh*vvs3)/(1+ (ant-1)*hjp);
+  af = eval(mid) + eval(b*(mf-mid));
+  sf  = b*vvs3;
+
+document.avs.f4.value = af.toFixed(cif);
+document.avs.f5.value = sf.toFixed(cif);
+ 
+   }
+
+// own performance
+
+antf= document.avs.g2.value ;
+
+    af = 0; sf = 0;  
+   if(antf > 0)
+   {
+  ant=antf;
+
+ mf= document.avs.g3.value ;
+
+  vvs2  = 1;
+
+  vvs3  = 1;
+  hjp= vvs2*hh ;
+  if (vvs2 < 1.01 && vvs2 > .99) {hjp = ccc; }
+  if (vvs2 < .51 && vvs2 > .49 ) {hjp = vvs2*hh + eval(cc); }
+
+  b = (ant*hh*vvs3)/(1+ (ant-1)*hjp);
+  af = eval(mid) + eval(b*(mf-mid));
+  sf  = b*vvs3;
+
+document.avs.g4.value = af.toFixed(cif);
+document.avs.g5.value = sf.toFixed(cif);
+ 
+   }
+ 
+ 
+// on half sib
+
+antf= document.avs.h2.value ;
+
+    af = 0; sf = 0;  
+   if(antf > 0)
+   {
+  ant=antf;
+
+ mf= document.avs.h3.value ;
+
+  vvs2  = .25;
+
+  vvs3  = .25;
+  hjp= vvs2*hh ;
+  if (vvs2 < 1.01 && vvs2 > .99) {hjp = ccc; }
+  if (vvs2 < .51 && vvs2 > .49 ) {hjp = vvs2*hh + eval(cc); }
+
+  b = (ant*hh*vvs3)/(1+ (ant-1)*hjp);
+  af = eval(mid) + eval(b*(mf-mid));
+  sf  = b*vvs3;
+
+document.avs.h4.value = af.toFixed(cif);
+document.avs.h5.value = sf.toFixed(cif);
+ 
+   }
+ 
+
+// both parents
+antf= document.avs.i2.value ;
+
+    af = 0; sf = 0;  
+   if(antf > 0)
+   {
+  ant=antf;
+
+ mf= document.avs.i3.value ;
+
+  vvs2  = 0;
+
+  vvs3  = .5;
+  hjp= vvs2*hh ;
+
+  b = (ant*hh*vvs3)/(1+ (ant-1)*hjp);
+  af = eval(mid) + eval(b*(mf-mid));
+  sf  = b*vvs3;
+
+document.avs.i4.value = af.toFixed(cif);
+document.avs.i5.value = sf.toFixed(cif);
+ 
+   }
+ 
+
+
+
+// selected information
+
+  
+  antfa = document.avs.j2.value ;
+  afa = 0; sfa = 0;  
+  if(antfa > 0.)
+  {
+              ant=antfa;
+ 
+   mfa = document.avs.j3.value ;
+ 
+ vvd2  = document.avs.k3.value ;
+  
+  vvd3  = document.avs.k2.value ;
+
+
+  hjp= vvd2*hh ;
+  if (vvd2 < 1.01 && vvd2 > .99) {hjp = ccc; }
+  if (vvd2 < .51 && vvd2 > .49 ) {hjp = vvd2*hh + eval(cc); }
+
+  b   = (ant*hh*vvd3)/(1+ (ant-1)*hjp);
+  afa  = eval(mid) + eval(b*(mfa-mid));
+  sfa  = b*vvd3;
+
+document.avs.j4.value = afa.toFixed(cif);
+document.avs.j5.value = sfa.toFixed(cif);
+ 
+
+ 
+      }
+      }
+
+function Run() {
+cif= document.avs.gg2.value;
+      
+a= " ";
+   
+mid= document.avs.c2.value ;
+hhh= document.avs.c3.value ;hh=hhh/100;
+
+ccc= document.avs.c4.value ;cc=ccc/100;
+hlp= document.avs.c5.value ;ccc=hlp/100;
+
+ 
+
+a +=  "h-square (rAI) = offspring1 ofspring2 owen fullsib halfsib parents\n ";
+
+
+
+  antf = document.avs.e2.value ;
+  antfa = document.avs.f2.value ;
+  antm = document.avs.g2.value ;
+  ante = document.avs.h2.value ;
+  antea = document.avs.i2.value ;
+  vavuat = document.avs.j2.value ;
+
+  vavu2  = document.avs.k2.value ;
+  vavu3  = document.avs.k3.value ;
+
+rai1 =[];
+rai2 =[];
+rai3 =[];
+rai4 =[];
+rai5 =[];
+rai6 =[];
+
+
+ 
+   for(  i = 0; i < 50 ;  ++i)
+   {  
+
+    hh= i*2; hh=hh/100;
+  
+// far halvsøskende afkom oplysninger;
+  
+  ant=antf;
+  b = (ant*hh*.5)/(eval(1)+ (ant-1)*(hh*.5+eval(cc)));
+  
+  sf  = Math.sqrt(b/2);
+  rai1[i+1] = sf;
+ 
+ // far helsøskende afkom oplysninger;
+              ant=antfa;
+  b   = (ant*hh*.5)/(eval(1)+ (ant-1)*0.25*hh);
+  sfa  = Math.sqrt(b/2.);
+  rai2[i+1] = sfa;
+
+// egen oplysninger;
+
+  ant=antm;
+
+  b = (ant*hh)/(1+ (ant-1)*(eval(ccc)+eval(hh)));
+
+  sm  = Math.sqrt(b);
+  rai3[i+1] = sm;
+  
+
+// halvsøskende oplysninger;
+
+  ant=ante; 
+  b = (ant*hh*.25)/(eval(1)+ (ant-1)*hh*.25);
+  se  = Math.sqrt(b/4);
+  rai5[i+1] = se;
+
+ // de to forældre  oplysninger;
+
+     ant=antea;
+  b   = (ant*hh*.5)/(eval(1)+ (ant-1)*0.0*hh);
+  sea  = Math.sqrt( b/2.);
+  rai6[i+1] = sea;      
+
+
+ // ukendt slægtskab;
+
+
+  hjp= vavu2*hh;
+  if (vavu2 < 1.01 && vavu2 > .99) {hjp = hh+ccc; }
+  if (vavu2 < .51 && vavu2 > .49 ) {hjp = vavu2*hh + eval(cc); }
+  b   = (vavuat*hh*vavu3)/(eval(1)+ (vavuat-1)*hjp);
+  vavusi  = Math.sqrt(b*vavu3);
+  rai4[i+1] = vavusi;
+
+ 
+            
+a += i + "\t" + sf.toFixed(cif) + "\t" + sfa.toFixed(cif) + "\t" + sm.toFixed(cif) + "\t" +
+               se.toFixed(cif) + "\t" + sea.toFixed(cif) + "\t" + vavusi.toFixed(cif) + "\n";
+
+       }
+
+ri=[];
+document.avs.store.value = a;
+for(  m = 1; m < 7 ;  ++m) {
+                       if (m == 1){ri=rai1};
+                       if (m == 2){ri=rai2};
+                       if (m == 3){ri=rai3};
+                       if (m == 4){ri=rai4};
+                       if (m == 5){ri=rai5};
+                       if (m == 6){ri=rai6};
+
+qq=0; gg=1;  
+for(  k = 1; k < 50 ;  ++k) { ggg = gg;qqq = qq;
+gg = ((k-1)/(49))*500;
+qq = (1-ri[k])*300;
+                                      
+var c = document.getElementById("myCanvas");
+var ctx = c.getContext("2d");
+ctx.moveTo(gg,qq); 
+ctx.lineTo(ggg,qqq);
+ctx.stroke();
+} ctx.fillText(m,gg,qq);                }
+
+    }
+
+
+function Nullify() {
+document.avs.f5.value = ".1"; document.avs.f4.value = ".1" ;document.avs.e4.value = " ";
+document.avs.e5.value = " "; document.avs.g4.value = " "; document.avs.g5.value = " ";
+document.avs.h3.value = ".1"; document.avs.h4.value = ".1" ;document.avs.i4.value = " ";
+document.avs.i5.value = " "; document.avs.j4.value = " "; document.avs.j5.value = " ";
+var c = document.getElementById("myCanvas");
+var ctx = c.getContext("2d");
+ctx.clearRect ( 0 , 0 , 500, 300 );
+
+}
+ 
+</SCRIPT>
+ 
+</HEAD>
+<BODY BGCOLOR="#00ffff">
+
+<H3>
+7.2 Estimating simple forms of breeding values depending on heritability</H3>
+
+The breeding value can be based on own, fathers + mothers record as well
+as average of offspring or sibs to the animals. Heritability, repeatability,
+common environmental effect (milieu) for full sibs and population mean
+value have to be specified. In the last case relationship (a and a') shall be defined.
+ The relationship (a) between the related individuals giving 
+the phenotypic measurements; with the relationship (a') to the animal being evaluated.
+The 'common milieu' is used when full sibs are measured.
+
+
+<FORM name="avs">
+ 
+<table border="4"><tr>
+
+<td><input type="text" name="b1" value="Knud Christensen" ></td>
+<td><input type="text" name="b2" value="Mean value" ></td>
+  <td><input type="text" name="b3" value="Heritability" ></td>
+  <td><input type="text" name="b4" value="Common millieu %" ></td>
+   <td><input type="text" name="b5" value="Repeatability" ></td>
+</tr><tr>
+  <td><input type="text" name="c1" value="Mail kc@sund.ku.dk" ></td>
+<td><input type="text" name="c2" value="100" ></td>
+  <td><input type="text" name="c3" value="25" ></td>
+  <td><input type="text" name="c4" value="5" ></td>
+   <td><input type="text" name="c5" value="30" ></td>
+</tr><tr><td>-</td>
+
+</tr><tr>
+  <td><input type="text" name="d1" value="April 2015" ></td>
+<td><input type="text" name="d2" value="Number" ></td>
+  <td><input type="text" name="d3" value="Average" ></td>
+  <td><input type="text" name="d4" value="Breeding value (BV)" ></td>
+   <td><input type="text" name="d5" value="Accuracy**2 (r**2)" ></td>
+<td><input type="button" name="d6" value="Nullify" OnClick="Nullify()"></td> 
+</tr><tr>
+<td><input type="text" name="e1" value="On offspring, full sibs (1)" ></td>
+<td><input type="text" name="e2" value="20" ></td>
+  <td><input type="text" name="e3" value="110" ></td>
+  <td><input type="text" name="e4" value=" " ></td>
+   <td><input type="text" name="e5" value="" > </td>
+<td><input type="button" name="e6" value="Calculate BV" OnClick="Calculate()"></td> 
+
+</tr><tr>
+<td><input type="text" name="f1" value="On offspring, half sibs (2)" ></td>
+<td><input type="text" name="f2" value="20" ></td>
+  <td><input type="text" name="f3" value="110" ></td>
+  <td><input type="text" name="f4" value=" " ></td>
+   <td><input type="text" name="f5" value="" > </td>
+</tr><tr>
+<td><input type="text" name="g1" value="On own performance (3)" ></td>
+<td><input type="text" name="g2" value="3" ></td>
+  <td><input type="text" name="g3" value="110" ></td>
+  <td><input type="text" name="g4" value=" " ></td>
+   <td><input type="text" name="g5" value="" > </td>
+</tr><tr>
+<td><input type="text" name="h1" value="On half sibs (4 )" ></td>
+<td><input type="text" name="h2" value="20" ></td>
+  <td><input type="text" name="h3" value="110" ></td>
+  <td><input type="text" name="h4" value=" " ></td>
+   <td><input type="text" name="h5" value="" > </td>
+</tr><tr>
+<td><input type="text" name="i1" value="On both parents (5)" ></td>
+<td><input type="text" name="i2" value="2" ></td>
+  <td><input type="text" name="i3" value="110" ></td>
+  <td><input type="text" name="i4" value=" " ></td>
+   <td><input type="text" name="i5" value="" > </td>
+ 
+
+</tr><tr>
+<td><input type="text" name="j1" value="On - a' and a see below (6)" ></td>
+<td><input type="text" name="j2" value="5" ></td>
+  <td><input type="text" name="j3" value="110" ></td>
+  <td><input type="text" name="j4" value=" " ></td>
+   <td><input type="text" name="j5" value="" > </td>
+<td><input type="button" name="j6" value="Make graph h**2 from 0 to 1 " OnClick="Run()"></td> 
+</tr><tr><td>-</td>
+
+</tr><tr>
+<td><input type="text" name="k1" value="For above a and a' ->" ></td>
+<td><input type="text" name="k3" value="0.5" ></td>
+ <td><input type="text" name="k2" value="1" ></td>
+<td><input type="text" name="gg1" value="Set digit for print ->" ></td>
+<td><input type="text" name="gg2" value="4" ></td>
+
+
+</tr></table>
+<b>Generation  q Frequency  Genetic load &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ........ Change of r<sub>AI</sub> over 
+heritabilities from 0 to 1 for the 6 cases ......</b>
+<br><TEXTAREA NAME="store" cols="34" rows="18"></TEXTAREA> 
+<canvas id="myCanvas" width="500" height="300" style="border:1px solid #d3d3d3;"></canvas>
+
+
+</form>
+
+<P>In all cells with initial values you can put data  and
+press the <B>Calculate</B> button to see the results. 
+<hr>
+Example:
+<br>If you want to see how the program
+work before you enter your own data just press the <B>Calculate</B> button using
+the initial values.
+<br>In the figure below you see a regression line for the index (I) for
+the true breeding value (A) of an individual based on measurements (average
+of the records for offspring, sibs etc. = P's).. The coefficients of relationship  can be defined in the 
+bottom line.
+<br> P'er  = phenotype measurements
+<br> n     = number of phenotypes
+<br> P<sub>g</sub> bar =   average of the  P's 
+<br> a'  = relationship between the index animal and the P's
+<br> a   = relationship between the P's 
+<br> P bar = Population mean
+<br> A bar = Population mean A's =  P bar
+<br> h<sup>2</sup> = heritability
+<br> c<sup>2</sup> = common environmental factor for the P's
+<br> r<sub>AI</sub> = the accuracy of the index 
+<br> t = a h<sup>2</sup> + c<sup>2</sup> = phenotypic correlation between P's
+
+<CENTER><IMG SRC="../../genetik/7/1.gif" HEIGHT=250  ALIGN=BOTTOM></CENTER>
+<HR>
+Questions:
+<br>Calculate the breeding value for the following animals when Mean=100 and the 
+heritability have the following values 5, 10, 25, 40 and 60 %.
+<pre>own performance 	 110
+average of the parents  115
+10 half sib offspring   106
+100 half sibs           105</pre>
+<p>Compare the results, which animal have the highest breeding value for 
+each heritability? And which one have the most accurate estimate for each heritability ?
+<hr>
+
+<P><A HREF="../../genetics/7/2.htm">Back to theory </A>,
+<P><A HREF="../7/2.htm">Back to theory (in Danish)</A>
+
+
+or <A HREF="0.htm">Back to the other programs</A>
+</BODY>
+</HTML>

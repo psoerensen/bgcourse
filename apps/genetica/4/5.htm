@@ -1,0 +1,197 @@
+<HTML>
+<HEAD>
+<META NAME="Generator" CONTENT="Microsoft FrontPage 4.0">
+
+<TITLE> Calculo de relaci&oacute;n y consanguinidad, el m&eacute;todo de la tabular</TITLE>
+</HEAD>
+
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#551a8b" ALINK="#ff0000" BGCOLOR="#ffffff">
+
+
+
+<h3>4.5 Calculo de relaci&oacute;n y consanguinidad, el m&eacute;todo de la tabular</h3>
+
+
+<P><A HREF="3.htm">P&aacute;gina anterior</A> </P>
+
+
+<p>El c&aacute;lculo de relaci&oacute;n y consanguinidad se puede hacer por medio del m&eacute;todo 
+tabular. La gran ventaja es que un dibujo gr&aacute;fico de la genealog&iacute;a no es
+necesario. Al mismo tiempo s&oacute;lo hay necesidad de concentrarse en dos
+generaciones a la vez, como el m&eacute;todo siempre se mueve a partir de los m&aacute;s antiguos
+a  los animales m&aacute;s j&oacute;venes. Por lo tanto, es posible calcular  la
+consanguinidad y relaci&oacute;n basado de la generaci&oacute;n anterior, ya que cada nivel s&oacute;lo 
+considera a los padres. </p>
+
+<p>S&oacute;lo dos f&oacute;rmulas simples se aplican en el c&aacute;lculo de coeficiente de
+relaci&oacute;n y de consanguinidad y los dos tienen los s&iacute;mbolos a y F, como se
+muestra en los dos puntos siguientes: </p>
+
+<p>1) Consanguinidad en un animal (F<sub>X</sub>) es igual a la mitad de la relaci&oacute;n
+aditivo entre sus padres, A y B, y la relaci&oacute;n con uno mismo es<br>
+a<sub>XX</sub> = 1 + F<sub>X</sub> <br>
+2) La relaci&oacute;n aditivo entre dos animales, X e Y, es igual a la mitad de la
+relaci&oacute;n entre la m&aacute;s antigua (X) y los padres, A y B, del m&aacute;s joven (Y). <br>
+a<sub>XY</sub> = (a<sub>XA</sub> + a<sub>XB</sub>)/2 </p>
+
+<p>La construcci&oacute;n de la matriz de relaci&oacute;n se muestra en los siguientes puntos. </p>
+
+<p class=MsoNormal><span style='mso-fareast-font-family:"Times New Roman"'>1)
+Ponga el n&uacute;mero de todos los animales en una l&iacute;nea (la m&aacute;s antigua primero) <br>
+2) Ponga el n&uacute;mero de cada uno de los padres sobre el n&uacute;mero del individuo. <br>
+3) Copiar el paso 1) en una columna vertical en el lado izquierdo del papel <br>
+4) Escriba una fila de 1 en la diagonal <br>
+5) Calcular la relaci&oacute;n entre los animales 1 y 2, 3, 4, hasta  n <br>
+6) Copia  la primera fila en la primera columna <br>
+7) Calcular la relaci&oacute;n entre los animales 2 y 3, 4, hasta n <br>
+8) Copiar la segunda fila en la segunda columna <br>
+9) etc. - - la mitad de la relaci&oacute;n de los padres se a&ntilde;ade al elemento de la
+diagonal, en su caso el paso 9 se llevar&aacute; a cabo antes del paso 7 <o:p></o:p></span></p>
+
+<p><strong>Ejemplo de aplicaci&oacute;n del m&eacute;todo de tabular </strong><br>
+Usando el siguiente conjunto de datos.</p>
+
+<TABLE CELLPADDING="5" WIDTH="96%">
+  <TR>
+    <TD valign="top" width="27%">
+<pre>Animal Padre Madre
+---------------
+ a =
+ 1     0   0
+ 2     1   0
+ 3     1   0
+ 4     1   0
+ 5     2   3
+ 6     4   3
+ 7     5   6</pre>
+</TD>
+    <TD valign="top" width="40%">
+<IMG SRC="../genetik/applets/ped.gif" height="150" >
+
+</td></TR>
+</table>
+
+<P>Para el c&aacute;lculo a mano los pasos del 1 al 4 se muestran primero. (-) Significa un padre desconocido
+</P>
+<PRE>Padres        - -   1 -   1 -   1 -   3-2   3-4   5-6 
+Animal          1     2     3     4     5     6     7
+              -----------------------------------------
+   1            1    
+   2                  1       
+   3                        1             
+   4                             1
+   5                                   1
+   6                                         1
+   7                                               1</PRE>
+<BR>
+
+<P>Los pr&oacute;ximos pasos (5 y 6) es llenar la primera fila en la matriz. El primer valor es el valor del animal el n&uacute;mero 2.
+ Mirar en la columna de los padres, que muestra 1 y - (desconocido). El valor en la columna 1 es 1, y la inc&oacute;gnita es igual a 0,
+ lo que equivale a (1+0)/2 = 1/2 que se pone en la columna 2. El mismo resultado se obtiene del animales 3 y 4. 
+Para del animal 5 los padres son 2 y 3, en sus correspondientes columnas
+ es 1/2 y 1/2, y sumado y dividido por 2 da 
+1/2. Los resultados son los mismos para los animales 6 y 7. Ahora se copia fila una en columna una como se ve a continuaci&oacute;n 
+ </P>
+
+<PRE>Padres       - -   1 -   1 -   1 -   3-2   3-4   5-6 
+Animal         1     2     3     4     5     6     7
+              -----------------------------------------
+   1            1   1/2   1/2   1/2   1/2   1/2   1/2
+   2           1/2   1       
+   3           1/2         1             
+   4           1/2               1
+   5           1/2                     1
+   6           1/2                           1
+   7           1/2                                 1</PRE>
+<BR>
+
+<P>Y luego contin&uacute;a con la segundo fila  (el paso 7 y 8). Animales 3 y 4 tienen 1 y desconocidos como los padres.
+ En  columna 1 segunda fila es 1/2, lo que equivale a (1/2+0)/2 = 1/4 de los animales 3 y 4. El animales 5, 
+que tienen los padres 2 y 3, tiene 1 y 1/4 en las dos columnas correspondientes, se obtiene (1+1/4)/2 = 5/8. 
+Animales 3 y 4 son los padres de los animales 6, el promedio de su relaci&oacute;n
+ con los dos es 1/4, que es poner en el diagrama.
+ Animal 7 tiene el 5 y 6 como padres, el promedio de su relaci&oacute;n los dos es (5/8 + 1/4) /2 = 7/16, que se pone.
+ Los nuevos resultados se copian en el lugar correspondiente en la columna 2. 
+ </P>
+
+<PRE>Padres        - -   1 -   1 -   1 -   3-2   3-4   5-6 
+Animal          1     2     3     4     5     6     7
+               -----------------------------------------
+   1            1   1/2   1/2   1/2   1/2   1/2   1/2
+   2           1/2   1    1/4   1/4   5/8   1/4   7/16
+   3           1/2  1/4    1             
+   4           1/2  1/4          1
+   5           1/2  5/8               1
+   6           1/2  1/4                      1
+   7           1/2  7/16                           1</PRE>
+<BR>
+
+<P>Ahora podemos seguir llenando la tabla de repitiendo los pasos 7 y 8. Recuerde (paso 9) que la mitad 
+de la relaci&oacute;n entre  los padres deben a&ntilde;adirse a la diagonal elemento. Esto no es relevante hasta el animales 
+5, donde los padres, 2 y 3, tienen una relaci&oacute;n de 1/4, que se puede leer en la fila 2 columna 3. Recuerde, si procede 
+el paso 9 debe llevarse a cabo antes del paso 7. 
+ </P>
+
+<PRE>Padres        - -   1 -   1 -   1 -   3-2   3-4   5-6 
+Animal          1     2     3     4     5     6     7
+               -----------------------------------------
+   1            1   1/2   1/2   1/2   1/2   1/2   1/2
+   2           1/2   1    <b>1/4</b>    1/4   5/8   1/4   7/16
+   3           1/2  1/4    1    1/4   5/8   5/8   5/8         
+   4           1/2  1/4   1/4    1    1/4   5/8   7/16
+   5           1/2  5/8   5/8   1/4  1+1/8
+   6           1/2  1/4   5/8   5/8          1
+   7           1/2  7/16  5/8   7/16               1</PRE>
+
+
+
+
+
+<BR><table align=right width="40%">
+<rt><td>Los mismos resultados calculados por un applet.
+ Entrada en la parte inferior de la ventana, salida en la parte superior.
+
+
+<br><img src="../genetik/4/tab.gif"  > 
+</rt></td></table>
+<P>La tabla final:</P>
+<PRE>Padres    - -   1 -   1 -   1 -   3-2   3-4   5-6 
+Animal     1     2     3     4     5     6     7
+         -----------------------------------------
+   1       1   1/2   1/2   1/2   1/2   1/2   1/2
+   2      1/2   1    1/4   1/4   5/8   1/4   7/16
+   3      1/2  1/4    1    1/4   5/8   5/8   5/8         
+   4      1/2  1/4   1/4    1    1/4   5/8   7/16
+   5      1/2  5/8   5/8   1/4  1+1/8  7/16  25/32
+   6      1/2  1/4   5/8   5/8   7/16 1+1/8  25/32
+   7      1/2  7/16  5/8   7/16 25/32 25/32 1+7/32</PRE>
+
+<p>El m&eacute;todo es simple para informatizar, por lo que este m&eacute;todo debe usarse en
+las grandes poblaciones de animales. </ P></p>
+
+<p>El camino gr&aacute;fico que se utiliza es mejor en relaci&oacute;n con la de genealog&iacute;a, cuando
+un buen panorama es importante. En tales casos, el animal puede jugar un papel
+importante.</p>
+
+<p>Es m&aacute;s f&aacute;cil utilizar un programa, cuando se realice el c&aacute;lculo, <a
+href="../applets/tabularapp.htm">haga clic aqu&iacute; para un applet</a>.<br>
+Un programa de DOS, que puede utilizarse para analizar toda la poblaci&oacute;n, se
+puede ver <a href="../genetik/4/inbred.htm">aqu&iacute; </a>. Para descargar el
+programa, <a href="../genetik/4/inbred.zip">haga clic aqu&iacute; </a>y por un
+error lista de archivo<a href="lf90,zip"> haga clic aqu&iacute; </a>. Cuando su
+navegador quiere guardar, haga clic en guardar y guardar los archivos
+inbred.exe y fl90.eer. El archivo inbred.exe, que es un programa de DOS,
+y ahora puede ser ejecutado en DOS. El archivo de entrada debe ser generada, como
+se indica en el ejemplo impreso. </p>
+
+<P><A HREF="0.htm">Capulo 4</A> </P>
+
+</body></html>
+
+
+
+
+
+
+
+

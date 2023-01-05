@@ -1,0 +1,271 @@
+<HTML>
+<HEAD>
+
+<title>Calculation of Chi-square test for deviation from Hardy-Weinberg equilibrium
+</title>
+
+<SCRIPT LANGUAGE="JavaScript">
+
+function Calculate() {
+
+cif= document.kisqr.gg2.value;
+
+
+   three=	document.kisqr.co3.value ;
+   four=	document.kisqr.co4.value ;
+   if(four == "4"){three=3};
+
+if(four != "4"){ 
+  document.kisqr.h2.value ="0";document.kisqr.h3.value =" ";
+  document.kisqr.i2.value ="0";document.kisqr.i3.value =" ";
+  document.kisqr.j2.value ="0";document.kisqr.j3.value =" ";
+  document.kisqr.k2.value ="0";document.kisqr.k3.value =" ";
+if(three != "3"){ 
+  document.kisqr.e2.value ="0";document.kisqr.e3.value =" ";
+  document.kisqr.f2.value ="0";document.kisqr.f3.value =" "; 
+  document.kisqr.g2.value ="0";document.kisqr.g3.value =" "; }
+}
+
+   AA=	document.kisqr.b2.value ;
+   AB=	document.kisqr.c2.value ;
+   BB=	document.kisqr.d2.value ;
+   AC=	document.kisqr.e2.value ;
+   BC=	document.kisqr.f2.value ;
+   CC=	document.kisqr.g2.value ;
+   AD=	document.kisqr.h2.value ;
+   BD=	document.kisqr.i2.value ;
+   CD=	document.kisqr.j2.value ;
+   DD=	document.kisqr.k2.value ;
+
+
+n =eval(AA) + eval(AB) + eval(BB) + eval(AC) + eval(BC) + eval(CC) + eval(AD) + eval(BD) + eval(CD) + eval(DD);
+document.kisqr.f4.value = " N = " + n.toFixed(cif); ;
+
+   p=((AA*1) + (AB/2) +(AC/2) +(AD/2) )/n;
+document.kisqr.b4.value = "p = "  + p.toFixed(cif);
+
+
+   q=((BB*1) + (AB/2) +(BC/2) +(BD/2))/n;
+document.kisqr.c4.value = "q  = "  + q.toFixed(cif);
+
+   r=((CC*1) + (AC/2) +(BC/2) +(CD/2))/n;
+document.kisqr.d4.value = "r  = "  + r.toFixed(cif);
+
+   s=((DD*1) + (AD/2) +(BD/2) +(CD/2))/n;
+document.kisqr.e4.value = "s  = "  + s.toFixed(cif);
+
+   p2=(p*p*n);
+document.kisqr.b3.value =  p2.toFixed(cif);
+
+   q2=(q*q*n);
+document.kisqr.d3.value = q2.toFixed(cif);
+
+   pq=(p*q*n*2); 
+document.kisqr.c3.value = pq.toFixed(cif);
+
+   pr=(p*r*n*2);
+document.kisqr.e3.value =  pr.toFixed(cif);
+
+   qr=(q*r*n*2);
+document.kisqr.f3.value = qr.toFixed(cif);
+
+   r2=(r*r*n); 
+document.kisqr.g3.value = r2.toFixed(cif);
+
+   ps=(p*s*n*2); 
+document.kisqr.h3.value = ps.toFixed(cif);
+
+   qs=(q*s*n*2);
+document.kisqr.i3.value =  qs.toFixed(cif);
+
+   rs=(r*s*n*2);
+document.kisqr.j3.value = rs.toFixed(cif);
+
+   s2=(s*s*n); 
+document.kisqr.k3.value = s2.toFixed(cif);
+
+ ki= (AA-p2)*(AA-p2)/p2 + (BB-q2)*(BB-q2)/q2 + (AB-pq)*(AB-pq)/pq;
+
+if(three == "3"){ki += (CC-r2)*(CC-r2)/r2 + (AC-pr)*(AC-pr)/pr + (BC-qr)*(BC-qr)/qr;}
+
+if(four == "4"){ki +=   (DD-s2)*(DD-s2)/s2 + (AD-ps)*(AD-ps)/ps + (BD-qs)*(BD-qs)/qs + (CD-rs)*(CD-rs)/rs;}
+
+ document.kisqr.g4.value = " Chi = " + ki.toFixed(cif) ;
+ 
+}
+  
+function Nullify() {
+  document.kisqr.b2.value ="0";document.kisqr.b3.value =" ";
+  document.kisqr.b2.value ="0";document.kisqr.b3.value =" ";
+  document.kisqr.c2.value ="0";document.kisqr.c3.value =" ";
+  document.kisqr.d2.value ="0";document.kisqr.d3.value =" ";
+  document.kisqr.e2.value ="0";document.kisqr.e3.value =" ";
+  document.kisqr.f2.value ="0";document.kisqr.f3.value =" ";
+  document.kisqr.g2.value ="0";document.kisqr.g3.value =" ";
+  document.kisqr.h2.value ="0";document.kisqr.h3.value =" ";
+  document.kisqr.i2.value ="0";document.kisqr.i3.value =" ";
+  document.kisqr.j2.value ="0";document.kisqr.j3.value =" ";
+  document.kisqr.k2.value ="0";document.kisqr.k3.value =" ";
+  document.kisqr.b4.value ="q";
+  document.kisqr.c4.value ="p";
+  document.kisqr.d4.value ="r";
+  document.kisqr.e4.value ="s";
+  document.kisqr.f4.value ="N";
+  document.kisqr.g4.value ="chi";
+document.kisqr.co3.value ="0";
+document.kisqr.co4.value ="0";
+
+}
+</SCRIPT>
+ </HEAD>
+<BODY BGCOLOR="#00ffff">
+<h3>2.2 Calculation of Chi-square test for deviation from Hardy-Weinberg equilibrium</h3>
+
+<P>- Put your observed numbers and click  the <B>Calculate</B> button.
+
+
+<FORM name="kisqr">
+ 
+<table border="4"><tr>
+  <td><input type="text" name="a1" value="Genotypes" ></td>
+  <td><input type="text" name="a2" value="Observed numbers" ></td>
+  <td><input type="text" name="a3" value="Expected numbers" ></td>
+  <td><input type="button" name="a4" value="Calculate" OnClick="Calculate()"></td>
+</tr><tr>
+  <td><input type="text" name="b1" value="AA" ></td>
+ <td><input type="text" name="b2"  value="0" ></td>
+  <td><input type="text" name="b3" value="" ></td>
+  <td><input type="text" name="b4" value="p"></td>
+</tr><tr>
+  <td><input type="text" name="c1" value="AB" ></td>
+ <td><input type="text" name="c2" value="0" ></td>
+ <td><input type="text" name="c3" value="" ></td>
+  <td><input type="text" name="c4" value="q"></td>
+</tr><tr> 
+  <td><input type="text" name="d1" value="BB" ></td>
+  <td><input type="text" name="d2" value="0" ></td>
+  <td><input type="text" name="d3" value="" ></td>
+  <td><input type="text" name="d4" value="r"></td>
+</tr> <tr>
+
+<td>Three alleles put 3 -></td>    
+<td><input type="text" name="co3" value="0" "></td>
+<td></td>
+ <td><input type="text" name="e4" value="s"></td>
+
+
+
+</tr><tr>
+  <td><input type="text" name="e1" value="AC" ></td>
+  <td><input type="text" name="e2" value="0" ></td>
+  <td><input type="text" name="e3" value="" ></td>
+ <td><input type="button" name="h4" value="Nullify" OnClick="Nullify()"></td> 
+</tr><tr>
+  <td><input type="text" name="f1" value="BC" ></td>
+ <td><input type="text" name="f2" value="0" ></td>
+ <td><input type="text" name="f3" value="" ></td>
+  <td><input type="text" name="f4" value="N"></td>
+</tr><tr> 
+  <td><input type="text" name="g1" value="CC" ></td>
+  <td><input type="text" name="g2" value="0" ></td>
+  <td><input type="text" name="g3" value="" ></td>
+ <td><input type="text" name="g4" value="HW-Chi-square"></td>
+</tr><tr> 
+ <td>Four alleles, put 4 -></td></td>
+  <td><input type="text" name="co4" value="0" onChange="FixCurrent()"></td>
+<td></td>
+<td>Set digit for print -></td>
+
+
+</tr><tr>
+  <td><input type="text" name="h1" value="AD" ></td>
+  <td><input type="text" name="h2" value="0" ></td>
+  <td><input type="text" name="h3" value="" ></td>
+ <td><input type="text" name="gg2" value="4" ></td>
+
+ 
+</tr><tr>
+  <td><input type="text" name="i1" value="BD" ></td>
+  <td><input type="text" name="i2" value="0" ></td>
+  <td><input type="text" name="i3" value="" ></td>
+  <td><input type="text" name="i4" value="Knud Christensen"></td>
+</tr><tr>
+  <td><input type="text" name="j1" value="CD" ></td>
+  <td><input type="text" name="j2" value="0" ></td>
+  <td><input type="text" name="j3" value="" ></td>
+  <td><input type="text" name="j4" value="Mail kc@sund.ku.dk"></td>
+</tr><tr> 
+  <td><input type="text" name="k1" value="DD" ></td>
+  <td><input type="text" name="k2" value="0" ></td>
+  <td><input type="text" name="k3" value="" ></td>
+  <td><input type="text" name="k4" value="April 2015"></td>
+</tr></table></form>
+
+
+<p>The  number of degrees of freedom for the chi-square is equal to one for
+two allele systems; and three for three allele systems; and six for  four allele systems.
+The results are rounded (four decimals).
+<hr>
+Example:
+<br>In a population was fund  the following  number of the three genotypes (obs), 
+and there is calculated the gene frequencies for the alleles  A and  B
+and the corresponding expected (exp) under Hardy-Weinberg equilibrium.
+<pre>
+---------
+Genotype         AA               AB             BB       Total
+Number, obs      36               47             23     = 106 = N
+Frequency, exp   p<sup>2</sup>               2pq             q<sup>2</sup>    = 1,00
+Number, exp      33,4             52,2           20,4    = 106
+Deviation        2,6             -5.2            2,6
+Chi-square       0.20             0,52           0,33    = 1,05
+----------
+
+
+Frequency  of A is calculated as  p = (2*36 + 47)/(2*106)  = 0,561
+    do        B         do        q = (2*23 + 47)/(2*106)  = 0,439
+                                                             -----
+                                                              1.00  
+</pre>
+<P>Try to put the observed numbers in the program and  press 
+the <b>Calculation</b> button.
+
+<hr>
+Questions:
+<br>Calculate the gene frequency in  the genetic system shown below
+and a Chi-square test for H-W equilibrium.
+<p>
+<pre>Genotype  Observed number
+AA           31
+AB 	     51
+BB	     23
+CA           55
+CB 	     71
+CC	     83</pre>
+<p>Is there statistically significant deviation from H-W equilibrium ?
+<br>
+<p>In the Danish Landrace are found four h&aelig;mopexin alleles 
+with codominat inheritance.
+In 1969 were typed 716 animals and the results of 
+	h&aelig;mopexin type are shown below:
+<pre>              H&aelig;mopexin type Number
+			0/0	 2
+			0/1	 16
+			1/1	 75
+			0/2	 10
+			l/2	 67
+			2/2	 20
+			0/3	 21
+			1/3	 229
+			2/3	 116
+			3/3	 160</pre>
+<br>
+	a)	Calculate the gene frequencies for the four alleles.
+<br>	b)	Is the population in Hardy-Weinberg equilibrium ?
+ 
+<hr>
+<A HREF="../../genetics/2/2.htm">Back to theory</A>,
+<A HREF="../2/2.htm">Back to theory (in Danish)</A>
+
+or <A HREF = "0.htm">Back to the other programs</A>
+</BODY>
+</HTML>

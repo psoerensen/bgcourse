@@ -1,0 +1,66 @@
+<HTML>
+<HEAD>
+ <title>Applet para calculaci&oacute;n de cambio en la frecuencia g&eacute;nicas y  los genotipos,
+y el efecto del tama&ntilde;o de la poblaci&oacute;n  </title>  
+</HEAD>
+<BODY BGCOLOR="#00FFFF">
+
+<H3>
+3.5 Cambias en las  frecuencias g&eacute;nicas y  los genotipos,
+y el efecto del tama&ntilde;o de la poblaci&oacute;n</H3>
+
+<HR><B>En todas las celdas con los valores in&iacute;ciales se puede poner datos (campos verde y/o
+amarillos)</B>
+<p>
+<APPLET HEIGHT=400 WIDTH=650 
+ CODE="rand.class">if you see this text you can't run this applets&nbsp; chose Options | Network
+PReferencies | Languages | Enable Java</APPLET>
+
+<p>Usted puede poner observaciones reales (n&uacute;meros) o relativa (porcientos) del genotipo
+frecuencias en los campos verdes y Haga clic al <B>Calculate</B> bot&oacute;n.
+<br>Una otra posibilidad: Ponga el fitness de los genotipos (relativos o n&uacute;meros) y
+ ejecutar una generaci&oacute;n tras la otra pulsando el bot&oacute;n + 1 generaci&oacute;n, o usted puede obtener un 
+gr&aacute;fico sobre los cambios de frecuencia g&eacute;nicas  de 60 generaciones pulsando el <b>Run </b> bot&oacute;n. 
+
+<br>Si se define el tama&ntilde;o de la poblaci&oacute;n (pop size) puede simular cambios aleatorios en
+frecuencias g&eacute;nicas durante el tiempo.
+<br>Si se define m&aacute;s poblaciones (number of pop.) se obtiene una estimaci&oacute;n media de los
+frecuencias g&eacute;nicas a trav&eacute;s de generaciones y su error de est&aacute;ndar.
+
+<br><b>Si utiliza una grande poblaci&oacute;n y muchas simulaci&oacute;nes las calculaciones pueden tardar varios minutos, empezar
+con poblaciones de escasos y peque&ntilde;os para que usted pueda tener una idea del  consumo de tiempo de su
+ordenador.</b>
+
+<hr>
+Ejemplo:
+<p>Si usted tiene un sistema gen&eacute;tico (Aa) con la frecuencia  g&eacute;nica  q = 0,5 y tiene 
+apareamiento al azar. Cuantos de diez poblaciones 
+ han perdido o fijado el gen despu&eacute;s de 20 generaciones?
+despu&eacute;s de 40? y despu&eacute;s de 60 generaciones?
+
+
+<p> Poner 10 en el campo 'pop size', haga clic al <b>Run</b> bot&oacute;n 10 veces  y recordar p&eacute;rdida
+o fijaci&oacute;n de gene 'a' en cada ronda. 
+<hr>
+Cuestiones:
+<br>Calcular la frecuencia g&eacute;nica en los primeros 60 generaciones
+de la selecci&oacute;n en el sistema gen&eacute;tico que se muestra a continuaci&oacute;n
+con la selecci&oacute;n favoreciendo los heterocigotos con s<sub>1</sub> = 0,3 y s<sub>2</sub> = 0,5
+ y con un tama&ntilde;o de poblaci&oacute;n de 20,
+<p>
+<pre>Genotipo          AA               Aa             aa       Total
+N&uacute;mero observado  225	           157           43
+Frecuencia         p<sup>2</sup>              2pq            q<sup>2</sup>       = 1,00
+Fitness          1-s<sub>1</sub>              1            1-s<sub>2</sub>      
+Proporci&oacute;n       p<sup>2</sup>(1-s<sub>1</sub>)         2pq           q<sup>2</sup>(1-s<sub>2</sub>)   = 1-p<sup>2</sup>s<sub>1</sub> - q<sup>2</sup>s<sub>2</sub>
+despu&eacute;s de selecci&oacute;n</pre>
+
+<p>Puede el equilibrio se alcanz&oacute; dentro de 0,02 unidades?
+
+
+<hr>
+<A HREF="../3/2.htm">Volver a la teor&iacute;a</A>,
+
+o <A HREF="0.htm">Volver al otro applets</A>
+</BODY>
+</HTML>

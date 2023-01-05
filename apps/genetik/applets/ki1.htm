@@ -1,0 +1,199 @@
+<HTML><head>
+<SCRIPT LANGUAGE="JavaScript">
+
+function Calculate() { 
+
+cif= document.ki1.gg2.value;
+
+  f11 =	document.ki1.c2.value ; 
+  f12 =	document.ki1.c3.value ; 
+  f13 =	document.ki1.c4.value ; 
+
+  f21 =	document.ki1.d2.value ; 
+  f22 =	document.ki1.d3.value ; 
+  f23 =	document.ki1.d4.value ; 
+
+  f31 =	document.ki1.e2.value ; 
+  f32 =	document.ki1.e3.value ; 
+  f33 =	document.ki1.e4.value ; 
+
+document.ki1.f5.value = f11;
+
+b21 =eval(f11) + eval(f12) + eval(f13);
+b22 =eval(f21) + eval(f22) + eval(f23);
+b23 =eval(f31) + eval(f32) + eval(f33);
+
+
+
+n= b21 + b22 + b23;
+
+document.ki1.f5.value = " N = " + n.toFixed(cif);
+
+
+b11 =(eval(f11) + eval(f21) + eval(f31))/n;
+b12 =(eval(f12) + eval(f22) + eval(f32))/n;
+b13 =(eval(f13) + eval(f23) + eval(f33))/n;
+
+b21 =(eval(f11) + eval(f12) + eval(f13))/n;
+b22 =(eval(f21) + eval(f22) + eval(f23))/n;
+b23 =(eval(f31) + eval(f32) + eval(f33))/n;
+
+document.ki1.c5.value =b21.toFixed(cif);
+document.ki1.d5.value =b22.toFixed(cif);
+document.ki1.e5.value =b23.toFixed(cif);
+
+document.ki1.f2.value =b11.toFixed(cif);
+document.ki1.f3.value =b12.toFixed(cif);
+document.ki1.f4.value =b13.toFixed(cif);
+
+
+ki=0;
+ee1= b11*b21*n; 
+if(ee1 > 0){ki += (f11-ee1)*(f11-ee1)/ee1;} 
+ee2= b11*b22*n;
+if(ee2 > 0){ki += (f21-ee2)*(f21-ee2)/ee2;}
+ee3= b12*b21*n;
+if(ee3 > 0){ki += (f12-ee3)*(f12-ee3)/ee3;}
+ee4= b12*b22*n;
+if(ee4 > 0){ki += (f22-ee4)*(f22-ee4)/ee4 ;}
+
+
+ee5= b23*b11*n;
+if(ee5 > 0){ki += (f31-ee5)*(f31-ee5)/ee5 ;}
+ee6= b23*b12*n;
+if(ee6 > 0){ki += (f32-ee6)*(f32-ee6)/ee6 ;}
+ee7= b23*b13*n;
+if(ee7 > 0){ki += (f33-ee7)*(f33-ee7)/ee7 ;}
+ee8= b13*b21*n;
+if(ee8 > 0){ki += (f13-ee8)*(f13-ee8)/ee8 ;}
+ee9= b13*b22*n;
+if(ee9 > 0){ki += (f23-ee9)*(f23-ee9)/ee9 ;}
+
+document.ki1.g4.value ="Chi  = " + ki.toFixed(cif) ;
+
+
+}
+  
+</SCRIPT>
+
+<title>Calculation of Chi-square test</title></head>
+<BODY BGCOLOR="#00ffff">
+
+<h3>2.51 Calculation of Chi-square test for a 2 by 2, 3 by 3 or 2 by 3 table</h3>
+
+ 
+
+<P><B>In all cells with initial values you can put data,
+leave the zeros in the empty fields</B>
+
+<p>The  number of degrees of freedom for the Chi-square is equal to 1, 4 and 2 for the three
+possible combinations 2 by 2, 3 by 3 or 2 by 3 table. 
+
+
+<p>
+<FORM name="ki1">
+ 
+<table border="4"><tr>
+
+  <td><input type="text" name="b1" value="Put numbers" ></td>
+  <td><input type="text" name="b2" value="Factor 1.1" ></td>
+  <td><input type="text" name="b3" value="Factor 1.2" ></td>
+  <td><input type="text" name="b4" value="factor 1.3" ></td>
+  <td><input type="text" name="b5" value="Border freq." ></td>
+  
+</tr><tr>
+  <td><input type="text" name="c1" value="Factor 2.1" ></td>
+  <td><input type="text" name="c2" value="10" ></td>
+  <td><input type="text" name="c3" value="8" ></td>  
+  <td><input type="text" name="c4" value="0" ></td>
+  <td><input type="text" name="c5" value=" " ></td>
+
+</tr><tr> 
+  <td><input type="text" name="d1" value="Factor 2.1" ></td>
+  <td><input type="text" name="d2" value="8" ></td>
+  <td><input type="text" name="d3" value="10" ></td>
+  <td><input type="text" name="d4" value="0" ></td>
+  <td><input type="text" name="d5" value=" " ></td>
+ </tr><tr>
+  <td><input type="text" name="e1" value="Factor 2.1" ></td>
+  <td><input type="text" name="e2" value="0" ></td>
+  <td><input type="text" name="e3" value="0" ></td>
+  <td><input type="text" name="e4" value="0" ></td>
+  <td><input type="text" name="e5" value=" " ></td>
+</tr><tr>
+  <td><input type="text" name="f1" value="Border freq." ></td>
+  <td><input type="text" name="f2" value=" " ></td>
+  <td><input type="text" name="f3" value=" " ></td>
+  <td><input type="text" name="f4" value=" " ></td>
+  <td><input type="text" name="f5" value=" " ></td>
+
+</tr><tr>
+  <td><input type="text" name="g1" value="Knud Christensen" ></td>
+  <td><input type="text" name="g2" value="Mail kc@sund.ku.dk" ></td>
+  <td><input type="text" name="g3" value="April 2015" ></td>
+  <td><input type="text" name="g4" value="Chi value" ></td>
+  <td><input type="button" name="g5" value="Calculate" OnClick="Calculate()"></td>
+</tr><tr>
+<td>Set digit for print -> </td>
+<td><input type="text" name="gg2" value="4" ></td>
+
+
+</tr></table></form>
+
+
+<P>- Put your observed numbers and click the <B>Calculate</B> button.
+<hr>
+Examples:
+<br>Use the program to the test for genetic disequilibrium between two loci
+A and B. The number of observed gametes is as follows:
+<pre>
+AB gametes 10 
+Ab gametes 20 
+aB gametes 20 
+ab gametes 10 
+</pre>
+<p>The numbers are given in the initial values of the program. Factor 1 is corresponding
+to  locus A and Factor 2 is corresponding to  locus B. Press the 
+<B>Calculate</B> button to see the result. 
+<br>The Chi-square are equal to 6.66 (df=1) which is
+larger then 3.84, this  means that there is less than 5% chance that the genes at the 
+two loci  segregate independently. 
+<hr>
+Questions:
+<br>Calculate a Chi-square test for the association shown below.
+<p>
+<pre>     Genotype   Observed numbers  
+                Diseased  Healthy
+        AA        15        27
+        Aa        16        28
+        aa        51        49</pre>
+<p>Is there statistically significant association between genotype and disease frequency ?
+<br>The two dominant genotypes can be merged into one with the following results:
+
+<pre>     Genotype   Observed numbers  
+                Diseased  Healthy
+        A-        31        55
+        aa        51        49
+
+</pre>
+<p>What can justify to merge the to classes  into one?
+Is there now statistically significant association between genotype and disease frequency ?
+<p>In a two gene system you have the following set of observed numbers:
+<pre>     Genotype     BB        Bb       bb 
+              ----------------------------
+        AA    |    57       140       101
+        Aa    |    39       224       226
+        aa    |    3        54        156</pre>
+<p>Are there statistically significant association between the segregating 
+genes at the to loci ?
+<br>In case there is found association, what does this mean ? 
+<br>Can you propose a chi-square test which give 6 degrees of freedom 
+to test a hypothesis of linkage between the genes A and B ?
+</pre><hr>
+
+<P><A HREF="../../genetics/2/5.htm">Back to theory</A>,
+<A HREF="../2/5.htm">Back to theory (in Danish)</A>
+
+or <A HREF = "0.htm">Back to the other programs</A>
+
+</BODY></HTML>
